@@ -32,7 +32,7 @@ DEBUG = False
 
 # if debug = false, must have allowed_hosts on
 ALLOWED_HOSTS = [
-    '127.0.0.1'
+    "*"
 ]
 
 # Application definition
@@ -48,8 +48,22 @@ INSTALLED_APPS = [
     # pesronal apps
     'core', # used for the search logic
     'api', # used only for endpoints
+
+    # rest-framework
+    'rest_framework',
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+    ]
+}
+
+# if DEBUG is true shows JSON data + the auto-html page test
+if DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"].append(
+        "rest_framework.renderers.BrowsableAPIRenderer"
+    )
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -93,6 +107,10 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD','kl!1574FTG'), 
         'HOST': os.getenv('DB_IP','127.0.0.1'),
         'PORT': os.getenv('DB_PORT'),
+        "OPTIONS": {
+            # resolve data validation problems
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
     }
 }
 
