@@ -16,7 +16,6 @@ from .serializers import (
     InformazioniSerializers
 )
 
-from .models import ApiRequestLog
 
 from enum import Enum
 import json

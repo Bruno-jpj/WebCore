@@ -9,8 +9,3 @@ from django.db import models
 
 # model for every API-Call
 # in case of events such as errors, missing data, etc.. or saving all and deleting after x days
-class ApiRequestLog(models.Model):
-    endpoint = models.CharField(max_length=255)
-    payload = models.JSONField()
-    response_status = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True)

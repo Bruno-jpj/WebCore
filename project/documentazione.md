@@ -149,3 +149,8 @@ class MacchinariUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 #
     # raggruppo gli endpoint dell'API
     path('macchine/', include('api.urls')),
+
+
+### Steps
+
+- ritoccare il DB

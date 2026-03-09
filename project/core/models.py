@@ -11,6 +11,7 @@ from django.db import models
 class Allarmi(models.Model):
     titolo = models.CharField(unique=True, max_length=255)
 
+    # Meta class connect form with the model
     class Meta:
         managed = False
         db_table = 'allarmi'
@@ -159,10 +160,3 @@ class Macchinari(models.Model):
     class Meta:
         managed = False
         db_table = 'macchinari'
-
-class CoreRequestLog(models.Model):
-    endpoint = models.CharField(max_length=255)
-    error_title = models.CharField(max_length=255)
-    payload = models.JSONField()
-    response_status = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)

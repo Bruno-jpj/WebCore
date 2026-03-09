@@ -28,7 +28,7 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # if debug = false, must have allowed_hosts on
 ALLOWED_HOSTS = [
@@ -150,3 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    'static'
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
