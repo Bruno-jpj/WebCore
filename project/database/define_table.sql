@@ -31,15 +31,18 @@ constraint check_prorita check (priorita in ('bassa', 'normale', 'urgente')),
 constraint check_tipo check (tipo in ('Ordinaria','Straordinaria'))
 );
 
--- I dati dei motori, cilindri, riduttori si aggiornano 
+-- I dati dei motori, cilindri, riduttori si aggiornano [ALTER TABLE]
 create table if not exists dati_motori(
 id integer primary key auto_increment
+-- temperatura, velocità(giri/min), timestamp, corrente
 );
 create table if not exists dati_cilindri(
 id integer primary key auto_increment
+-- sensore posizione, stato (esteso,chiuso), timestamp, pressione
 );
 create table if not exists dati_riduttori(
 id integer primary key auto_increment
+-- temperatura, velocità(giri/min), timestamp, coppia
 );
 
 create table if not exists allarmi(
@@ -54,7 +57,7 @@ piano_produzione varchar(128) not null unique,
 categoria varchar(128) not null,
 tipo varchar(128) not null,
 tipo_plc varchar(64) not null,
-constraint check_plc check (tipo_plc in ('siemens','allen-breadly'))
+constraint check_plc check (tipo_plc in ('siemens','allen-bradly'))
 );
 
 create table if not exists api_keys(
@@ -94,7 +97,7 @@ payload json not null,
 response_status integer not null,
 created_at datetime not null,
 api_key integer not null,
-foreign key(api_key) references api_keys(id)
+foreign key(api_key) references api_keys(id) on update cascade on delete cascade
 );
 
 create table if not exists core_request_logs(
@@ -104,5 +107,5 @@ payload json not null,
 response_status integer not null,
 created_at datetime not null,
 api_key integer not null,
-foreign key(api_key) references api_keys(id)
+foreign key(api_key) references api_keys(id) on update cascade on delete cascade
 );

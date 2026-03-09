@@ -9,3 +9,35 @@ from django.db import models
 
 # model for every API-Call
 # in case of events such as errors, missing data, etc.. or saving all and deleting after x days
+
+
+class ApiKeys(models.Model):
+    header = models.CharField(unique=True, max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'api_keys'
+
+
+class ApiRequestLogs(models.Model):
+    endpoint = models.CharField(max_length=255)
+    payload = models.JSONField()
+    response_status = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True) # track data creation time, current datetime at creation
+    api_key = models.ForeignKey(ApiKeys, models.DO_NOTHING, db_column='api_key')
+
+    class Meta:
+        managed = False
+        db_table = 'api_request_logs'
+
+
+class CoreRequestLogs(models.Model):
+    endpoint = models.CharField(max_length=255)
+    payload = models.JSONField()
+    response_status = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True) # in case wants to overwrite use auto_now, that track last modification
+    api_key = models.ForeignKey(ApiKeys, models.DO_NOTHING, db_column='api_key')
+
+    class Meta:
+        managed = False
+        db_table = 'core_request_logs'

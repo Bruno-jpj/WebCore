@@ -10,12 +10,11 @@ from django.db import models
 
 class Allarmi(models.Model):
     titolo = models.CharField(unique=True, max_length=255)
+    descrizione = models.TextField()
 
-    # Meta class connect form with the model
     class Meta:
         managed = False
         db_table = 'allarmi'
-
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -87,11 +86,47 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Componenti(models.Model):
-    descrizione_pezzo = models.TextField()
+    codicefb = models.CharField(db_column='codiceFB', unique=True, max_length=255)  # Field name made lowercase.
+    cod_gestionale = models.CharField(unique=True, max_length=255)
+    descrizione = models.CharField(max_length=255)
+    tipo = models.CharField(max_length=128)
+    quantita = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'componenti'
+
+
+class DatiCilindri(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = 'dati_cilindri'
+
+
+class DatiManutenzione(models.Model):
+    id_motore = models.ForeignKey('DatiMotori', models.DO_NOTHING, db_column='id_motore')
+    id_cilindro = models.ForeignKey(DatiCilindri, models.DO_NOTHING, db_column='id_cilindro')
+    id_riduttore = models.ForeignKey('DatiRiduttori', models.DO_NOTHING, db_column='id_riduttore')
+    id_macchinario = models.ForeignKey('Macchinari', models.DO_NOTHING, db_column='id_macchinario')
+
+    class Meta:
+        managed = False
+        db_table = 'dati_manutenzione'
+
+
+class DatiMotori(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = 'dati_motori'
+
+
+class DatiRiduttori(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = 'dati_riduttori'
 
 
 class DjangoAdminLog(models.Model):
@@ -156,7 +191,19 @@ class Macchinari(models.Model):
     piano_produzione = models.CharField(unique=True, max_length=128)
     categoria = models.CharField(max_length=128)
     tipo = models.CharField(max_length=128)
+    tipo_plc = models.CharField(max_length=64)
 
     class Meta:
         managed = False
         db_table = 'macchinari'
+
+
+class Manutenzioni(models.Model):
+    cod_manutenzione = models.CharField(unique=True, max_length=128)
+    tipo = models.CharField(max_length=128)
+    cosa_fare = models.TextField()
+    priorita = models.CharField(max_length=32)
+
+    class Meta:
+        managed = False
+        db_table = 'manutenzioni'

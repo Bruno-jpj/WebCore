@@ -4,10 +4,25 @@ from .models import (
     Informazioni,
     Allarmi,
     Componenti,
+    DatiCilindri,
+    DatiManutenzione,
+    DatiMotori,
+    DatiRiduttori,
+    Manutenzioni,
+    DjangoSession,
+    DjangoAdminLog,
 )
 
 # Register your models here.
-admin.register(Macchinari)
-admin.register(Informazioni)
-admin.register(Allarmi)
-admin.register(Componenti)
+admin.site.register(Macchinari)
+admin.site.register(Informazioni)
+admin.site.register(Allarmi)
+admin.site.register(Componenti)
+admin.site.register(DatiCilindri)
+admin.site.register(DatiMotori)
+admin.site.register(DatiManutenzione)
+admin.site.register(DatiRiduttori)
+admin.site.register(Manutenzioni)
+
+admin.site.register(DjangoAdminLog)
+admin.site.register(DjangoSession)
