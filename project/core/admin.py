@@ -11,6 +11,7 @@ from .models import (
     Manutenzioni,
     DjangoSession,
     DjangoAdminLog,
+    Users
 )
 
 # Register your models here.
@@ -26,3 +27,5 @@ admin.site.register(Manutenzioni)
 
 admin.site.register(DjangoAdminLog)
 admin.site.register(DjangoSession)
+
+admin.site.register(Users)

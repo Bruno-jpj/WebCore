@@ -207,3 +207,23 @@ class Manutenzioni(models.Model):
     class Meta:
         managed = False
         db_table = 'manutenzioni'
+
+class Users(models.Model):
+    username = models.CharField(max_length=64)
+    pwd = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'users'
+
+class SolutionAllarmList(models.Model):
+    
+    titolo = models.CharField(unique=True, max_length=255) # name of the alarm
+    solution = models.CharField(max_length=255) # based on the language it returns the text from the JSON file
+    language = models.CharField(max_length=64) # 'it', 'en', 'esp', etc..
+    img = models.ImageField(upload_to="images/", blank=True, null=True)
+    video = models.FileField(upload_to="videos/", blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'soluzioni_allarmi_json'

@@ -74,6 +74,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+RESTRICT_ADMIN = True
+ALLOWED_ADMIN_IPS = ['127.0.0.1'] # add IP able to connect to admin page
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -154,3 +157,6 @@ STATICFILES_DIRS = [
     'static'
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+'''
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"'''

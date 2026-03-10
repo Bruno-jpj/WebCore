@@ -1,0 +1,60 @@
+                <tr>
+                    <td>ciao</td>
+                    <td>ciao</td>
+                    <td>
+                        <img src="project\\static\\img\\sensore_laser.png" alt="img">
+                    </td>
+                    <td>
+                        <span class="close" onclick="closeVideo()">&times;</span>
+                        <video width="720" controls>
+                            <source src="project\static\videos\video_sensore.mp4">
+                        </video>
+                    </td>
+                </tr>
+#
+<script>
+
+    function openVideo() {
+        document.getElementById("videoModal").style.display = "block";
+    }
+
+    function closeVideo() {
+
+        const modal = document.getElementById("videoModal")
+        const video = modal.querySelector("video")
+
+        video.pause()
+        modal.style.display = "none"
+
+    }
+
+    </script>
+#
+    <style>
+        .modal {
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            width:720px;
+            margin:5% auto;
+            background:black;
+            padding:10px;
+            position:relative;
+        }
+
+        .close {
+            color:white;
+            position:absolute;
+            right:10px;
+            top:5px;
+            font-size:28px;
+            cursor:pointer;
+        }
+    </style>

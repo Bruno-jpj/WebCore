@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allarm Page</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <nav>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <button type="submit">LogOut</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="choose_action">
+            <label for="#">
+                EMPTY SPACE
+            </label>
+        </div>
+        <div class="text_area">
+            <form action="#" method="GET">
+                {% csrf_token %}
+                <input type="text" name="search_text" id="serch_text">
+                <button type="submit">Search</button>
+            </form>
+            <table>
+                <tr>
+                    <th>Allarme</th>
+                    <th>Soluzione</th>
+                    <th>Immagine</th>
+                    <th>Video</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                    <tr>
+                    {% for row in rows %}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">Nessun Allarme Trovato</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="input_save">
+            <div class="input_area">
+                <form action="{% url 'alarm_page' %}" method="post">
+                    {% csrf_token %}
+
+                    <input type="text" name="alarm_title" id="alarm_title" placeholder="Titolo dell'allarme">
+                    <input type="text" name="solution_text" id="solution_text" placeholder="Testo Soluzione">
+                    <input type="file" accept=".png, .gif, jpg, .jpeg" name="solution_img" id="solution_img" placeholder="Scegli una immagine">
+                    <input type="file" accept=".mp4" name="solution_video" id="solution_video" placeholder="Scegli un video">
+
+                    <button type="submit">Update File</button>
+                </form>
+            </div>
+            <div class="save_btn"></div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

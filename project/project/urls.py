@@ -17,13 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core.views import (
-    index
+    IndexLogic,
+    login,
+    alarm_page
 )
+from django.conf import global_settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+
+    # Web-App routing
+    path('', IndexLogic.as_view() , name="index"),
+    path('login/', login, name="login"),
+    path('alarm-page/', alarm_page, name="alarm_page"),
     
     # API Routing
     path('request/', include("api.urls"))
-]
+] # + static(global_settings.MEDIA_URL, document_root=global_settings.MEDIA_ROOT)

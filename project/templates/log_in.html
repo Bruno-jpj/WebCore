@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>Benvenuto nella pagina di log-in</h1>
+            <nav>
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token%}
+                    {{form.as_p}}
+                    <button type="submit"> Log in </button>
+                    {% if report_messages %}
+                        {% for msg in report_messages %}
+                            {% if user.is_authenticated %}
+                                <p style="color: green;"> You logged-in successfully</p>
+                            {% else %}
+                                <p style="color: red;">{{msg}}</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </form>
+            </nav>
+        </div>
+    </header>
+    <body>
+    </body>
+    <footer></footer>
+</body>
+</html>
