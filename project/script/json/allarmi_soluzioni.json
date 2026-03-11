@@ -4,11 +4,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -29,11 +29,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -54,11 +54,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -79,11 +79,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -104,11 +104,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -129,11 +129,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -154,11 +154,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -179,11 +179,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -204,11 +204,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -229,11 +229,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -254,11 +254,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -279,11 +279,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -304,11 +304,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -329,11 +329,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -354,11 +354,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -380,11 +380,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -405,11 +405,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -430,11 +430,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -455,11 +455,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -480,11 +480,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -505,11 +505,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{
@@ -530,11 +530,11 @@
             "media":{
                 "video":{
                     "nome_file":"video_sensore",
-                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                    "path_file":"\\videos\\video_sensore.mp4"
                 },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"project\\static\\img\\sensore_laser.png"
+                    "path_file":"\\img\\sensore_laser.png"
                 }
             },
             "testo_soluzione":{

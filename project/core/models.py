@@ -30,6 +30,9 @@ class AllarmiSoluzioni(models.Model):
     class Meta:
         managed = True
         db_table = 'allarmi_soluzioni'
+    
+    def get_text_by_lang(self, lang_code):
+        return getattr(self, lang_code, "")
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)

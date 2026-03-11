@@ -21,7 +21,7 @@ from core.views import (
     login,
     AlarmPage
 )
-from django.conf import global_settings
+from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -34,4 +34,4 @@ urlpatterns = [
     
     # API Routing
     path('request/', include("api.urls"))
-] # + static(global_settings.MEDIA_URL, document_root=global_settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -19,7 +19,7 @@ from django.http import (
 # if want to use it on CBV need to integrate: method_decorator
 from .decorators import  check_log_in
 
-from .forms import Loginform
+from .forms import Loginform, SearchAlarmsForm
 
 from .models import (
     Macchinari,
@@ -123,9 +123,6 @@ class AlarmPage(View):
 
     def get(self, request: HttpRequest):
 
-        # take the chosen language for the alarm-text
-        chosen_language = request.GET.get('language', 'text_it') # ('name select or btn', value passata) ==> valori del btn nell'html
-            
         # read the json files
         cfg_dict: dict = self.read_conf_json(request)
         alarm_dict: dict = self.read_alarm_json(request)
@@ -137,7 +134,20 @@ class AlarmPage(View):
         db_num_alarm = alarm_solution_queryset.count()
 
         # check found number of element in the JSON
-        json_num_alarm = len(set(alarm_dict["lista_allarmi"]))
+        json_num_alarm = len(set(alarm_dict["lista_allarmi"]))     
+
+        # take the chosen language for the alarm-text
+        chosen_language = request.GET.get('language', 'text_it') # ('name select or btn', value passata) ==> valori del btn nell'html
+
+        # Search Form Logic - if search_text in the request get type (in the URL)
+        # Gestione form di ricerca separata
+        search_form = SearchAlarmsForm(request.GET)
+        if search_form.is_valid() and search_form.cleaned_data.get("search_text"):
+            search_text = search_form.cleaned_data["search_text"]
+            alarm_solution_queryset = alarm_solution_queryset.filter(titolo__icontains=search_text)
+        else:
+            search_form = SearchAlarmsForm()
+
 
         if db_num_alarm >= json_num_alarm:
             print(f"INFO: Trovato: [{db_num_alarm}] elementi nel DB...")
@@ -152,29 +162,38 @@ class AlarmPage(View):
             finally:
                 print("Finito...Controlla i risultati...")
         #
-        if chosen_language:
-            # values_list => tuple
-            # values => dict
-            alarm_solution_queryset = AllarmiSoluzioni.objects.values_list(
-                "titolo",
-                chosen_language,
-                "img",
-                "video"
-            )
-        else:
-            pass
-        #
-        print(chosen_language)
         context = {
             'alarms': alarm_solution_queryset,
-            'language' : LanguageModel.LANGUAGE_CHOICE
+            'language' : LanguageModel.LANGUAGE_CHOICE,
+            'chosen_language': chosen_language,
+            'search_form': search_form
         }
         
         return render(request, TEMPLATE.ALARM_PAGE.value, context)
     #
     def post(self, request: HttpRequest):
         
-        return HttpResponse("Btn non programmato ancora...")
+        try:
+            alarm_title = request.POST.get("alarm_title")
+            solution_text = request.POST.get("solution_text")
+            img_file = request.FILES.get("solution_img")
+            video_file = request.FILES.get("solution_video")
+            #
+            if not all([alarm_title, solution_text, img_file, video_file]):
+                messages.info(request, "INFO: Tutti i campi devono essere compilati...")
+                return redirect('alarm_page')
+            #
+            if AllarmiSoluzioni.objects.filter(titolo = alarm_title).exists():
+                messages.info(request, "INFO: Allarme già esistente")
+                return redirect('alarm_page')
+            #
+            try:
+                pass
+            except Exception as e:
+                pass
+            #            
+        except Exception as e:    
+            return HttpResponse(f"Btn non programmato ancora...{e}")
     #
     def read_conf_json(self, request: HttpRequest) -> dict:
         with open(self.CONF_PATH, 'r') as file:
