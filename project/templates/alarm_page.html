@@ -1,17 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Allarm Page</title>
+    <link rel="stylesheet" href="{% static 'css/alarm_page.css' %}">
 </head>
 <body>
     <header>
         <div class="header">
             <nav>
-                <form action="#" method="post">
+                <form action="{% url 'alarm_page' %}" method="post">
                     {% csrf_token %}
-                    <button type="submit">LogOut</button>
+                    <select name="language" id="language">
+                        <option value="it">Italiano</option>
+                        <option value="en">English</option>
+                    </select>
                 </form>
             </nav>
         </div>
@@ -41,12 +46,12 @@
                     <td>3</td>
                     <td>4</td>
                 </tr>
+
+                {% for alarm in alarms %}
                     <tr>
-                    {% for row in rows %}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ alarm.titolo }}</td>
+                        <td>{{ alarm.text_it }}</td>
+
                     </tr>
                     {% empty %}
                     <tr>
@@ -70,6 +75,11 @@
             </div>
             <div class="save_btn"></div>
         </div>
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: green;">{{message}}</p>
+            {% endfor %}
+        {% endif %}
     </main>
     <footer></footer>
 </body>

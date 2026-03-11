@@ -2,7 +2,7 @@
 
 from core.models import (
     Macchinari,
-    Allarmi,
+    AllarmiSoluzioni,
     Componenti,
     Informazioni
 )
@@ -23,7 +23,7 @@ class ComponentiSerializers(serializers.ModelSerializer):
 #
 class AllarmiSerializers(serializers.ModelSerializer):
     class Meta:
-        model = Allarmi
+        model = AllarmiSoluzioni
 
         fields = ["titolo"]
 #

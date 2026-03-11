@@ -8,13 +8,26 @@
 from django.db import models
 
 
-class Allarmi(models.Model):
+class AllarmiSoluzioni(models.Model):
+    id = models.BigAutoField(primary_key=True)
     titolo = models.CharField(unique=True, max_length=255)
-    descrizione = models.TextField()
+    text_it = models.TextField()
+    text_eng = models.TextField()
+    text_esp = models.TextField(blank=True, null=True)
+    text_de = models.TextField(blank=True, null=True)
+    text_fr = models.TextField(blank=True, null=True)
+    text_dk = models.TextField(blank=True, null=True)
+    text_pt = models.TextField(blank=True, null=True)
+    text_ru = models.TextField(blank=True, null=True)
+    text_pl = models.TextField(blank=True, null=True)
+    text_no = models.TextField(blank=True, null=True)
+    text_se = models.TextField(blank=True, null=True)
+    img = models.ImageField(upload_to="images/", max_length=255, blank=True, null=True)
+    video = models.FileField(upload_to="videos/", max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'allarmi'
+        managed = True
+        db_table = 'allarmi_soluzioni'
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -86,18 +99,20 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Componenti(models.Model):
-    codicefb = models.CharField(db_column='codiceFB', unique=True, max_length=255)  # Field name made lowercase.
+    id = models.BigAutoField(primary_key=True)
+    nome = models.CharField(max_length=255)
+    chiave_componente = models.CharField(unique=True, max_length=255)
+    codice_fb = models.CharField(unique=True, max_length=255)
     cod_gestionale = models.CharField(unique=True, max_length=255)
     descrizione = models.CharField(max_length=255)
     tipo = models.CharField(max_length=128)
-    quantita = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'componenti'
 
-
 class DatiCilindri(models.Model):
+    id = models.BigAutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -105,10 +120,12 @@ class DatiCilindri(models.Model):
 
 
 class DatiManutenzione(models.Model):
+    id = models.BigAutoField(primary_key=True)
     id_motore = models.ForeignKey('DatiMotori', models.DO_NOTHING, db_column='id_motore')
     id_cilindro = models.ForeignKey(DatiCilindri, models.DO_NOTHING, db_column='id_cilindro')
     id_riduttore = models.ForeignKey('DatiRiduttori', models.DO_NOTHING, db_column='id_riduttore')
     id_macchinario = models.ForeignKey('Macchinari', models.DO_NOTHING, db_column='id_macchinario')
+    id_manutenzione = models.ForeignKey('Manutenzioni', models.DO_NOTHING, db_column='id_manutenzione')
 
     class Meta:
         managed = False
@@ -116,6 +133,7 @@ class DatiManutenzione(models.Model):
 
 
 class DatiMotori(models.Model):
+    id = models.BigAutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -123,6 +141,7 @@ class DatiMotori(models.Model):
 
 
 class DatiRiduttori(models.Model):
+    id = models.BigAutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -175,12 +194,10 @@ class DjangoSession(models.Model):
 
 
 class Informazioni(models.Model):
+    id = models.BigAutoField(primary_key=True)
     id_macchinario = models.ForeignKey('Macchinari', models.DO_NOTHING, db_column='id_macchinario')
-    id_allarme = models.ForeignKey(Allarmi, models.DO_NOTHING, db_column='id_allarme')
+    id_allarme = models.ForeignKey(AllarmiSoluzioni, models.DO_NOTHING, db_column='id_allarme')
     id_componente = models.ForeignKey(Componenti, models.DO_NOTHING, db_column='id_componente')
-    soluzione_problema = models.TextField()
-    path_img = models.CharField(unique=True, max_length=255)
-    path_video = models.CharField(unique=True, max_length=255)
 
     class Meta:
         managed = False
@@ -188,10 +205,12 @@ class Informazioni(models.Model):
 
 
 class Macchinari(models.Model):
+    id = models.BigAutoField(primary_key=True)
     piano_produzione = models.CharField(unique=True, max_length=128)
     categoria = models.CharField(max_length=128)
     tipo = models.CharField(max_length=128)
-    tipo_plc = models.CharField(max_length=64)
+    tipo_plc = models.CharField(max_length=64, blank=True, null=True)
+    id_manutenzione = models.ForeignKey('Manutenzioni', models.DO_NOTHING, db_column='id_manutenzione')
 
     class Meta:
         managed = False
@@ -199,31 +218,21 @@ class Macchinari(models.Model):
 
 
 class Manutenzioni(models.Model):
-    cod_manutenzione = models.CharField(unique=True, max_length=128)
+    id = models.BigAutoField(primary_key=True)
+    codice_manutenzione = models.CharField(unique=True, max_length=128)
     tipo = models.CharField(max_length=128)
-    cosa_fare = models.TextField()
     priorita = models.CharField(max_length=32)
 
     class Meta:
         managed = False
         db_table = 'manutenzioni'
 
+
 class Users(models.Model):
+    id = models.BigAutoField(primary_key=True)
     username = models.CharField(max_length=64)
     pwd = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'users'
-
-class SolutionAllarmList(models.Model):
-    
-    titolo = models.CharField(unique=True, max_length=255) # name of the alarm
-    solution = models.CharField(max_length=255) # based on the language it returns the text from the JSON file
-    language = models.CharField(max_length=64) # 'it', 'en', 'esp', etc..
-    img = models.ImageField(upload_to="images/", blank=True, null=True)
-    video = models.FileField(upload_to="videos/", blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'soluzioni_allarmi_json'

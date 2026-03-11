@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import (
     Macchinari,
     Informazioni,
-    Allarmi,
+    AllarmiSoluzioni,
     Componenti,
     DatiCilindri,
     DatiManutenzione,
@@ -17,7 +17,7 @@ from .models import (
 # Register your models here.
 admin.site.register(Macchinari)
 admin.site.register(Informazioni)
-admin.site.register(Allarmi)
+admin.site.register(AllarmiSoluzioni)
 admin.site.register(Componenti)
 admin.site.register(DatiCilindri)
 admin.site.register(DatiMotori)

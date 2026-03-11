@@ -17,12 +17,13 @@ def check_log_in(func):
             try:
                 user_obj = Users.objects.get(id=user_id)
                 if user_obj.DoesNotExist:
+                    print(f"User doesn't exists: [{user_obj.username}]")
                     raise Http404
                 #
                 print(f"User Logged In: \nUsername: [{user_obj.username}]")
                 return func(request, *args, **kwargs)
             except Exception as e:
-                return HttpResponse(f"Something went wrong...")
+                return HttpResponse(f"Internal Error: Something went wrong...[{e}]")
         else:
             print("Decorator Info: User ID not found... \nThrowing exception...\nRendering Log-In Page...")
             return redirect("login")

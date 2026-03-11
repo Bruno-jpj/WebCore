@@ -12,6 +12,7 @@ from django.db import models
 
 
 class ApiKeys(models.Model):
+    id = models.BigAutoField(primary_key=True)
     header = models.CharField(unique=True, max_length=255)
 
     class Meta:
@@ -20,11 +21,12 @@ class ApiKeys(models.Model):
 
 
 class ApiRequestLogs(models.Model):
+    id = models.BigAutoField(primary_key=True)
     endpoint = models.CharField(max_length=255)
     payload = models.JSONField()
     response_status = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True) # track data creation time, current datetime at creation
-    api_key = models.ForeignKey(ApiKeys, models.DO_NOTHING, db_column='api_key')
+    created_at = models.DateTimeField()
+    api = models.ForeignKey(ApiKeys, models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -32,11 +34,12 @@ class ApiRequestLogs(models.Model):
 
 
 class CoreRequestLogs(models.Model):
+    id = models.BigAutoField(primary_key=True)
     endpoint = models.CharField(max_length=255)
     payload = models.JSONField()
     response_status = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True) # in case wants to overwrite use auto_now, that track last modification
-    api_key = models.ForeignKey(ApiKeys, models.DO_NOTHING, db_column='api_key')
+    created_at = models.DateTimeField()
+    api = models.ForeignKey(ApiKeys, models.DO_NOTHING)
 
     class Meta:
         managed = False

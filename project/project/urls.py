@@ -19,7 +19,7 @@ from django.urls import path, include
 from core.views import (
     IndexLogic,
     login,
-    alarm_page
+    AlarmPage
 )
 from django.conf import global_settings
 from django.conf.urls.static import static
@@ -30,7 +30,7 @@ urlpatterns = [
     # Web-App routing
     path('', IndexLogic.as_view() , name="index"),
     path('login/', login, name="login"),
-    path('alarm-page/', alarm_page, name="alarm_page"),
+    path('alarm-page/', AlarmPage.as_view() ,name="alarm_page"),
     
     # API Routing
     path('request/', include("api.urls"))

@@ -14,7 +14,7 @@ drop table if exists dati_manutenzione;
 drop table if exists macchinari;
 drop table if exists manutenzioni;
 drop table if exists componenti;
-drop table if exists allarmi_soluzioni;
+drop table if exists allarmi;
 
 drop table if exists dati_motori;
 drop table if exists dati_macchinari;
@@ -22,7 +22,7 @@ drop table if exists dati_riduttori;
 
 -- Users
 create table if not exists users(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 username varchar(64) not null,
 pwd varchar(255) not null
 );
@@ -30,34 +30,34 @@ pwd varchar(255) not null
 -- API
  
 create table if not exists api_keys(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 header varchar(255) not null unique
 );
 
 create table if not exists api_request_logs(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 endpoint varchar(255) not null,
 payload json not null,
 response_status integer not null,
 created_at datetime not null,
-api_id bigint not null,
+api_id integer not null,
 foreign key(api_id) references api_keys(id) on update cascade on delete cascade
 );
 
 create table if not exists core_request_logs(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 endpoint varchar(255) not null,
 payload json not null,
 response_status integer not null,
 created_at datetime not null,
-api_id bigint not null,
+api_id integer not null,
 foreign key(api_id) references api_keys(id) on update cascade on delete cascade
 );
 
 -- DB
 
 create table if not exists componenti(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 nome varchar(255) not null, -- espulsore
 chiave_componente varchar(255) not null unique,
 codice_fb varchar(255) not null unique,
@@ -68,38 +68,28 @@ tipo varchar(128) not null -- meccanico / elettrico / pneumatico
 
 -- I dati dei motori, cilindri, riduttori si aggiornano [ALTER TABLE]
 create table if not exists dati_motori(
-id bigint primary key auto_increment
+id integer primary key auto_increment
 -- temperatura, velocità(giri/min), timestamp, corrente
 );
 create table if not exists dati_cilindri(
-id bigint primary key auto_increment
+id integer primary key auto_increment
 -- sensore posizione, stato (esteso,chiuso), timestamp, pressione
 );
 create table if not exists dati_riduttori(
-id bigint primary key auto_increment
+id integer primary key auto_increment
 -- temperatura, velocità(giri/min), timestamp, coppia
 );
 
 create table if not exists allarmi_soluzioni(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 titolo varchar(255) not null unique,
-text_it mediumtext not null,
-text_eng mediumtext not null,
-text_esp mediumtext,
-text_de mediumtext,
-text_fr mediumtext,
-text_dk mediumtext,
-text_pt mediumtext, 
-text_ru mediumtext,
-text_pl mediumtext,
-text_no mediumtext, -- norvegia
-text_se mediumtext, -- svezia
+descrizione varchar(255) not null,
 img varchar(255) not null,
 video varchar(255) not null
 );
 
 create table if not exists manutenzioni(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 codice_manutenzione varchar(128) not null unique,
 tipo varchar(128) not null,
 priorita varchar(32) not null,
@@ -108,23 +98,23 @@ constraint check_tipo check (tipo in ('ordinaria','straordinaria'))
 );
 
 create table if not exists macchinari(
-id bigint primary key auto_increment,
+id integer primary key auto_increment,
 piano_produzione varchar(128) not null unique,
 categoria varchar(128) not null,
 tipo varchar(128) not null,
 tipo_plc varchar(64), -- dove c'è robot, estrusore niente PLC
-id_manutenzione bigint not null,
+id_manutenzione integer not null,
 constraint check_plc check (tipo_plc in ('siemens','allen-bradley','nessuno')),
 foreign key(id_manutenzione) references manutenzioni(id)
 );
 
 create table if not exists dati_manutenzione(
-id bigint primary key auto_increment,
-id_motore bigint not null,
-id_cilindro bigint not null,
-id_riduttore bigint not null,
-id_macchinario bigint not null,
-id_manutenzione bigint not null,
+id integer primary key auto_increment,
+id_motore integer not null,
+id_cilindro integer not null,
+id_riduttore integer not null,
+id_macchinario integer not null,
+id_manutenzione integer not null,
 foreign key(id_motore) references dati_motori(id) on update cascade on delete cascade,
 foreign key(id_cilindro) references dati_cilindri(id) on update cascade on delete cascade,
 foreign key(id_riduttore) references dati_riduttori(id) on update cascade on delete cascade,
@@ -133,12 +123,12 @@ foreign key(id_manutenzione) references manutenzioni(id) on update cascade on de
 );
 
 create table if not exists informazioni(
-id bigint primary key auto_increment,
-id_macchinario bigint not null,
-id_allarme bigint not null,
-id_componente bigint not null,
+id integer primary key auto_increment,
+id_macchinario integer not null,
+id_allarme integer not null,
+id_componente integer not null,
 foreign key(id_macchinario) references macchinari(id) on update cascade on delete cascade,
-foreign key(id_allarme) references allarmi_soluzioni(id) on update cascade on delete cascade,
+foreign key(id_allarme) references allarmi(id) on update cascade on delete cascade,
 foreign key(id_componente) references componenti(id) on update cascade on delete cascade
 );
 

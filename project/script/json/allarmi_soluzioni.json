@@ -12,12 +12,544 @@
                 }
             },
             "testo_soluzione":{
-                "it":"cambia il sensore",
-                "en":"change the sensor",
-                "esp":"cambia el sensor",
-                "de":"Wechsle den Sensor",
-                "fr":"change le capteur"
+                    "it" : "sensore",
+                    "eng" : "sensor",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }            
+        },
+        "Allarme_:)":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensor",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
             }
+        },
+        "Allarme_GG":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensor",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_LVI":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }            
+        },
+        "Allarme_brumotti":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_gino":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_carico":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_briscola":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_ciccio":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_125":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "minchia_Sensore":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_despacito":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_Senso":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_pino":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+        },
+        "Allarme_purple":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }
+            
+        },
+        "Allarme_pingu":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
+        },
+        "Allarme_piu":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
+        },
+        "Allarme_giggino":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
+        },
+        "Allarme_giggione":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
+        },
+        "Allarme_ciccinio":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
+        },
+        "Allarme_mattone":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
+        },
+        "Allarme_casa":{
+            "media":{
+                "video":{
+                    "nome_file":"video_sensore",
+                    "path_file":"project\\static\\videos\\video_sensore.mp4"
+                },
+                "img":{
+                    "nome_file":"sensore_laser",
+                    "path_file":"project\\static\\img\\sensore_laser.png"
+                }
+            },
+            "testo_soluzione":{
+                    "it" : "sensore",
+                    "eng" : "sensore",
+                    "esp" : "sensore",
+                    "de" : "sensore",
+                    "fr" : "sensore",
+                    "dk" : "sensore",
+                    "pt" : "sensore",
+                    "ru" : "sensore",
+                    "pl" : "sensore",
+                    "no" : "sensore",
+                    "se" : "sensore"
+            }   
         }
     }
 }

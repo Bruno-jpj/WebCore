@@ -24,7 +24,7 @@ from .forms import Loginform
 from .models import (
     Macchinari,
     Informazioni,
-    Allarmi,
+    AllarmiSoluzioni,
     Componenti,
     Users,
 )
@@ -32,7 +32,10 @@ from .models import (
 from api.serializers import InformazioniSerializers
 
 from enum import Enum
+from collections import namedtuple
+
 import json
+import configparser
 
 # Create your views here.
 
@@ -96,66 +99,138 @@ def logout(request: HttpRequest):
         return HttpResponse(f"ERROR: catch an error during log-out [{e}]")
 #
 
-def alarm_page(request: HttpRequest):
-    if request.method == "POST":
-        alarm_title = request.POST.get("alarm_title")
-        solution_text = request.POST.get("solution_text")
-        solution_img = request.FILES.get("solution_img")
-        solution_video = request.FILES.get("solution_video")
+class AlarmPage(View):
+    class LANGUAGE(Enum):
+        IT = 'it'
+        EN = 'en'
+        ESP = 'esp'
+        FR = 'fr'
+        DE = 'de'
+        PT = 'pt' # portoghese
+        FI = 'fi' # finlandese
+        SE = 'se' # svedese
+        NR = 'nr' # norvegese
+        PL = 'pl' # polacco
+        DK = 'dk' # danese
+        RU = 'ru'
+    #
+    JSON_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\script\json\allarmi_soluzioni.json'
+    CONF_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\conf.json'
+
+    json_update = None
+    db_update = None
+
+    def get(self, request: HttpRequest):
+
+        # read the json files
+        cfg_dict: dict = self.read_conf_json(request)
+        alarm_dict: dict = self.read_alarm_json(request)
+
+        # take all elements from the tabel -> return a QuerySet
+        alarm_solution = AllarmiSoluzioni.objects.all()
+
+        
+        # check if found at least one element in the table
+        db_num_alarm = alarm_solution.count()
+
+        # check found number of element in the JSON
+        json_num_alarm = len(set(alarm_dict["lista_allarmi"]))
+
+        if db_num_alarm >= json_num_alarm:
+            print(f"INFO: Trovato: [{db_num_alarm}] elementi nel DB...")
+            messages.info(request, f"INFO: Trovato {db_num_alarm} elementi nel DB")
+        else:
+            print(f"INFO: Trovato: [{db_num_alarm}] elementi nel DB...")
+            messages.info(request, "INFO: Nessun elemento trovato... Inizio Upload da file di configurazione...")
+            try:
+                self.upload_from_json(alarm_dict)
+            except Exception as e:
+                print(f"Upload Func Error: [{e}]")
+            finally:
+                print("Finito...Controlla i risultati...")
         #
-    elif request.method == "GET":
-        print("Search Pressed...")
-    
-    return render(request, TEMPLATE.ALARM_PAGE.value)
+        context = {
+            'alarms': alarm_solution
+        }
+        
+        return render(request, TEMPLATE.ALARM_PAGE.value, context)
+    #
+    def post(self, request: HttpRequest):
+        return HttpResponse("Btn non programmato ancora...")
+    #
+    def read_conf_json(self, request: HttpRequest) -> dict:
+        with open(self.CONF_PATH, 'r') as file:
+            cfg_dict: dict = json.load(file)
 
+        return cfg_dict
+    #
+    def read_alarm_json(self, request: HttpRequest) -> dict:
 
-# API views
-'''
-ex. received JSON: {
-    "machine_code": "pp23240", -> unique
-    "machine_type": "600",
-    "machine_alarm": "temperatura"
-}
-'''
-def handle_api_call(api_data: dict):
-    machine_code = api_data.get("machine_code")
-    machine_type = api_data.get("machine_type")
-    machine_alarm = api_data.get("machine_alarm")
+        # read and transform to python dict
+        with open(self.JSON_PATH, 'r') as file:
+            alarm_dict: dict = json.load(file)
 
-    # logic 
-    print(f"Data Received: \n {machine_code} \n {machine_type} \n {machine_alarm}")
+        return alarm_dict
+    #
+    def upload_from_json(self, alarm_dict: dict):
+        
+        # set with only the alarm titles
+        alarm_set = set(alarm_dict["lista_allarmi"])
 
-    # get data from DB
-    try:
-        machines_obj = Macchinari.objects.get(piano_produzione = machine_code)
-        alarms_obj = Allarmi.objects.get(titolo = machine_alarm)
-    except Macchinari.DoesNotExist:
-        return {"ERROR": f"Piano Produzione Macchina [{machine_code}] non trovato..."}
-    except Allarmi.DoesNotExist:
-        return {"ERROR":f"Allarme [{machine_alarm}] non trovato..."}
+        for alarm_name in alarm_set:
+            try: 
+                temp_obj = AllarmiSoluzioni.objects.get(titolo = alarm_name)
+                print(f"Già esiste: [{temp_obj}]")
+            except AllarmiSoluzioni.DoesNotExist:
+                try:
+                    # create the object and auto-save it
+                    AllarmiSoluzioni.objects.create(
+                        titolo = alarm_name,
+                        text_it = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["it"],
+                        text_eng = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["eng"],
+                        text_esp = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["esp"],
+                        text_de = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["de"],
+                        text_fr = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["fr"],
+                        text_dk = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["dk"],
+                        text_pt = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pt"],
+                        text_ru = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["ru"],
+                        text_pl = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pl"],
+                        text_no = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["no"],
+                        text_se = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["se"],
+                        img = alarm_dict["lista_allarmi"][alarm_name]["media"]["img"]["path_file"],
+                        video = alarm_dict["lista_allarmi"][alarm_name]["media"]["video"]["path_file"]
+                        )
+                    #
+                except Exception as e:
+                    print(f"Upload from Json Except: [{e}]")
+            else:
+                print(f"Gia esiste: [{temp_obj}]")
+        #
+        '''
+        STESSA COSA SCRITTA SOPRA FORSE MEGLIO: 
 
-    print("HERE")
-
-    '''
-    # - get() restituisce un singolo oggetto o solleva un'eccezione
-    # - filter() restituisce sempre una QuerySet (lista di oggetti), anche vuota.
-    try:
-        # query filter logic
-        info_queryset = Informazioni.objects.get(
-            id_macchinario = machines_obj.id, 
-            id_allarme = alarms_obj.id
+        for alarm_name in alarm_set:
+            obj, created = AllarmiSoluzioni.objects.get_or_create(
+                titolo=alarm_name,
+                defaults={
+                    "text_it": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["it"],
+                    "text_eng": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["eng"],
+                    "text_esp": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["esp"],
+                    "text_de": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["de"],
+                    "text_fr": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["fr"],
+                    "text_dk": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["dk"],
+                    "text_pt": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pt"],
+                    "text_ru": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["ru"],
+                    "text_pl": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pl"],
+                    "text_no": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["no"],
+                    "text_se": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["se"],
+                    "img": alarm_dict["lista_allarmi"][alarm_name]["media"]["img"]["path_file"],
+                    "video": alarm_dict["lista_allarmi"][alarm_name]["media"]["video"]["path_file"]
+                }
             )
-    except Informazioni.DoesNotExist:
-        return {"ERROR":f"Non trovato Informazioni riguardo MachineID: [{machines_obj.id}] AllarmeID: [{alarms_obj.id}]"}'''
+            if created:
+                print(f"Creato nuovo allarme: [{obj.titolo}]")
+            else:
+                print(f"Gia esiste: [{obj.titolo}]")
+        '''          
 
-    # query filter logic
-    info_queryset = Informazioni.objects.filter(
-        id_macchinario = machines_obj.id, 
-        id_allarme = alarms_obj.id
-    )
-
-    print(f"info_queryset: \n [{info_queryset}]")
-
-    serializer = InformazioniSerializers(info_queryset, many=True)
-    
-    return {"status": "ok", "data": serializer.data}
