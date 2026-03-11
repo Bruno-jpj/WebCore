@@ -11,13 +11,13 @@
     <header>
         <div class="header">
             <nav>
-                <form action="{% url 'alarm_page' %}" method="post">
-                    {% csrf_token %}
-                    <select name="language" id="language">
-                        <option value="it">Italiano</option>
-                        <option value="en">English</option>
-                    </select>
-                </form>
+                <select name="language" id="language">
+                    {% for key, label in language_choices %}
+                        <option value="{{key}}" {% if request.GET.language == key %} selected {% endif %}>
+                            {{label}}
+                        </option>
+                    {% endfor %}
+                </select>
             </nav>
         </div>
     </header>
@@ -33,6 +33,26 @@
                 <input type="text" name="search_text" id="serch_text">
                 <button type="submit">Search</button>
             </form>
+            <div class="input_save">
+                <div class="input_area">
+                    <form action="{% url 'alarm_page' %}" method="post">
+                        {% csrf_token %}
+
+                        <input type="text" name="alarm_title" id="alarm_title" placeholder="Titolo dell'allarme">
+                        <input type="text" name="solution_text" id="solution_text" placeholder="Testo Soluzione">
+                        <input type="file" accept=".png, .gif, jpg, .jpeg" name="solution_img" id="solution_img" placeholder="Scegli una immagine">
+                        <input type="file" accept=".mp4" name="solution_video" id="solution_video" placeholder="Scegli un video">
+
+                        <button type="submit">Update Row Database</button>
+                        <button type="submit">Add Row Database</button>
+                        <button type="submit">Delete Row Database</button>
+                        <button type="submit">Download Database File</button>
+                    </form>
+                </div>
+                <div class="save_btn">
+                    <button type="submit">Save Actions</button>
+                </div>
+            </div>
             <table>
                 <tr>
                     <th>Allarme</th>
@@ -40,18 +60,26 @@
                     <th>Immagine</th>
                     <th>Video</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-
                 {% for alarm in alarms %}
                     <tr>
-                        <td>{{ alarm.titolo }}</td>
-                        <td>{{ alarm.text_it }}</td>
-
+                        <td>{{ alarm.0 }}</td>
+                        <td>{{ alarm.1 }}</td>
+                        <td>
+                            {% if alarm.2 %}
+                                <img src="{{ alarm.2.url }}" width="300">
+                            {% else %}
+                                <p>Nessuna Immagine trovata</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if alarm.3 %}
+                                <video width="640" controls>
+                                    <source src="{{ alarm.3.url }}" type="video/mp4">
+                                </video>
+                            {% else %}
+                                <p>Nessun Video trovato</p>
+                            {% endif %}
+                        </td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -60,21 +88,6 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="input_save">
-            <div class="input_area">
-                <form action="{% url 'alarm_page' %}" method="post">
-                    {% csrf_token %}
-
-                    <input type="text" name="alarm_title" id="alarm_title" placeholder="Titolo dell'allarme">
-                    <input type="text" name="solution_text" id="solution_text" placeholder="Testo Soluzione">
-                    <input type="file" accept=".png, .gif, jpg, .jpeg" name="solution_img" id="solution_img" placeholder="Scegli una immagine">
-                    <input type="file" accept=".mp4" name="solution_video" id="solution_video" placeholder="Scegli un video">
-
-                    <button type="submit">Update File</button>
-                </form>
-            </div>
-            <div class="save_btn"></div>
-        </div>
         {% if messages %}
             {% for message in messages %}
                 <p style="color: green;">{{message}}</p>
@@ -82,5 +95,6 @@
         {% endif %}
     </main>
     <footer></footer>
+    <script src="{% static 'js/filter_alarm_page.js' %}"></script>
 </body>
 </html>

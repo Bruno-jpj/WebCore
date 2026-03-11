@@ -27,6 +27,7 @@ from .models import (
     AllarmiSoluzioni,
     Componenti,
     Users,
+    LanguageModel
 )
 
 from api.serializers import InformazioniSerializers
@@ -86,7 +87,7 @@ def login(request: HttpRequest):
     request.session.cycle_key()
     #
     context = {
-        'form': form
+        'form': form,
     }
     return render(request, TEMPLATE.LOGIN.value, context)
 #
@@ -122,16 +123,18 @@ class AlarmPage(View):
 
     def get(self, request: HttpRequest):
 
+        # take the chosen language for the alarm-text
+        chosen_language = request.GET.get('language', 'text_it') # ('name select or btn', value passata) ==> valori del btn nell'html
+            
         # read the json files
         cfg_dict: dict = self.read_conf_json(request)
         alarm_dict: dict = self.read_alarm_json(request)
 
         # take all elements from the tabel -> return a QuerySet
-        alarm_solution = AllarmiSoluzioni.objects.all()
-
+        alarm_solution_queryset = AllarmiSoluzioni.objects.all()
         
         # check if found at least one element in the table
-        db_num_alarm = alarm_solution.count()
+        db_num_alarm = alarm_solution_queryset.count()
 
         # check found number of element in the JSON
         json_num_alarm = len(set(alarm_dict["lista_allarmi"]))
@@ -149,13 +152,28 @@ class AlarmPage(View):
             finally:
                 print("Finito...Controlla i risultati...")
         #
+        if chosen_language:
+            # values_list => tuple
+            # values => dict
+            alarm_solution_queryset = AllarmiSoluzioni.objects.values_list(
+                "titolo",
+                chosen_language,
+                "img",
+                "video"
+            )
+        else:
+            pass
+        #
+        print(chosen_language)
         context = {
-            'alarms': alarm_solution
+            'alarms': alarm_solution_queryset,
+            'language' : LanguageModel.LANGUAGE_CHOICE
         }
         
         return render(request, TEMPLATE.ALARM_PAGE.value, context)
     #
     def post(self, request: HttpRequest):
+        
         return HttpResponse("Btn non programmato ancora...")
     #
     def read_conf_json(self, request: HttpRequest) -> dict:

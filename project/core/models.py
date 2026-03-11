@@ -25,6 +25,8 @@ class AllarmiSoluzioni(models.Model):
     img = models.ImageField(upload_to="images/", max_length=255, blank=True, null=True)
     video = models.FileField(upload_to="videos/", max_length=255, blank=True, null=True)
 
+    # permette di personalizzare comportamenti che non riguardano i campi specifici, 
+    # ma la struttura della tabella nel database o la gestione dei dati.
     class Meta:
         managed = True
         db_table = 'allarmi_soluzioni'
@@ -236,3 +238,29 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+
+
+class LanguageModel(models.Model):
+    LANGUAGE_CHOICE = [
+        #(valore interno, valore esterno)
+        ('text_it','Italiano'),
+        ('text_eng','Inglese'),
+        ('text_esp','Spagnolo'),
+        ('text_de','Tedesco'),
+        ('text_fr','Francese'),
+        ('text_dk','Danese'),
+        ('text_pt','Portoghese'),
+        ('text_ru','Russo'),
+        ('text_pl','Polacco'),
+        ('text_no','Norvegese'),
+        ('text_se','Svedese'),
+    ]
+    
+    # serve a pulire la lista/dizionario, rimuovendo eventuali tuple vuote o incomplete.
+    LANGUAGE_CHOICE = [ c for c in LANGUAGE_CHOICE if all(c)]
+
+    language = models.CharField(max_length=64, choices=LANGUAGE_CHOICE)
+
+    class Meta:
+        managed = False
+        db_table = None
