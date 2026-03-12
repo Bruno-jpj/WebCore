@@ -144,7 +144,8 @@ class AlarmPage(View):
         search_form = SearchAlarmsForm(request.GET)
         if search_form.is_valid() and search_form.cleaned_data.get("search_text"):
             search_text = search_form.cleaned_data["search_text"]
-            alarm_solution_queryset = alarm_solution_queryset.filter(titolo__icontains=search_text)
+            # search the string is contained, it's case-insensitive and it performs a partial match
+            alarm_solution_queryset = alarm_solution_queryset.filter(titolo__icontains=search_text) 
         else:
             search_form = SearchAlarmsForm()
 
@@ -213,6 +214,8 @@ class AlarmPage(View):
         
         # set with only the alarm titles
         alarm_set = set(alarm_dict["lista_allarmi"])
+
+        # print(f"len: [{len(alarm_set)}]")
 
         for alarm_name in alarm_set:
             try: 
