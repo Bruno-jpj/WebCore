@@ -19,7 +19,12 @@ from django.urls import path, include
 from core.views import (
     IndexLogic,
     login,
-    AlarmPage
+    logout,
+    signup,
+    ManualLogic,
+    account,
+    contacts,
+    line
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -30,8 +35,13 @@ urlpatterns = [
     # Web-App routing
     path('', IndexLogic.as_view() , name="index"),
     path('login/', login, name="login"),
-    path('alarm-page/', AlarmPage.as_view() ,name="alarm_page"),
-    
+    path('signup/', signup, name="signup"),
+    path('logout/', logout, name="logout"),
+    path('manual/', ManualLogic.as_view(), name="manual"),
+    path('account/', account, name="account"),
+    path('contacts/', contacts, name="contacts"),
+    path('line/', line, name="line"),
+
     # API Routing
     path('request/', include("api.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

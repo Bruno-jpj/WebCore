@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Home Page</title>
 </head>
 <body>
-    
+    <header>
+        <div class="container">
+            <h1>FB Manager Service</h1>
+            <nav>
+                <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="submit" name="redirect" value="account">Account</button>
+                    <button type="submit" name="redirect" value="line">Linee Macchine</button>
+                    <button type="submit" name="redirect" value="contacts">Contatti</button>
+                    <button type="submit" name="redirect" value="manual">Manuale Allarmi</button>
+                    <button type="submit" name="redirect" value="log_out">Log Out</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+    <main></main>
+    <footer></footer>
 </body>
 </html>
