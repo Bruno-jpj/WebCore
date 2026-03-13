@@ -22,7 +22,7 @@
                 </div>
                 <form action="{% url 'manual' %}" method="get">
                     <select name="language" id="language" onchange="this.form.submit()">
-                        {% for key, label in language_list %}
+                        {% for key, label in language_dict %}
                             <option value="{{ key }}" {% if key == chosen_language %} selected {% endif %}>
                                 {{ label }}
                             </option>
@@ -42,6 +42,7 @@
                     {% endif %}
             </label>
         </div>
+        
         <div class="text_area">
             <!-- Form di ricerca -->
             <form action="{% url 'manual' %}" method="get">

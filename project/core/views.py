@@ -38,6 +38,10 @@ from .models import (
 )
 
 from reportlab.pdfgen import canvas, pdfimages
+from reportlab.lib.units import mm
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import Paragraph, Spacer, SimpleDocTemplate, Image
 
 from .utils.json_manager import JsonManager
 
@@ -49,6 +53,7 @@ import json
 import configparser
 import time
 import io
+import csv
 
 # Create your views here.
 
@@ -140,6 +145,8 @@ class ManualLogic(View):
 
     def get(self, request: HttpRequest):
 
+        
+
         # load JSON file
         cfg_file: dict = self.JM.read_conf()
         alarm_file: dict = self.JM.read_alarm_json()
@@ -152,8 +159,6 @@ class ManualLogic(View):
 
         # check the number of element of DB table and JSON key
         alarm_db_count = alarm_queryset.count()
-        print(alarm_db_count)
-
         alarm_json_count = len(alarm_json_set)
 
         # check the DB element with JSON file and in case upload: Sync JSON -> DB
@@ -215,15 +220,17 @@ class ManualLogic(View):
             search_form = SearchAlarmsForm()
 
          # Search all DB data - need a name in the html btn and a value to check
-         # request.GET.get("value")
         if request.GET.get("all") is not None:
             alarm_queryset_filtered = alarm_queryset
+
+        request.session['chosen_language'] = chosen_language
 
         # pass the context
         context = {
             'search_form': search_form,
             'alarms_filtered': alarm_queryset_filtered,
-            'chosen_language': chosen_language
+            'chosen_language': chosen_language,
+            'language_dict': LanguageModel.LANGUAGE_CHOICE.items()
         }
 
         return render(request, TEMPLATE.MANUAL_PAGE.value, context)
@@ -249,7 +256,6 @@ class ManualLogic(View):
             'img': img_checkBox,
             'video': video_checkBox
         }
-        # print(chk_list)
         #
         action = request.POST.get('action')        
         #
@@ -273,7 +279,11 @@ class ManualLogic(View):
                 del request.session['search_text']
 
             elif action == 'download':
-                self.download_alarm()
+                search_title = request.session.get('search_text')
+                chosen_language = request.session.get('chosen_language')
+
+                return self.create_download_pdf(request, search_title, chosen_language)
+                # del request.session['search_text']
             #
         except Exception as e:
             messages.error(request, f"ERROR: POST Exception [{e}]")
@@ -432,7 +442,7 @@ class ManualLogic(View):
         # TODO: CHECK SOLUTION
         # Criticità: 
         # 1) se non faccio prima la search con il nome giusto la session non mi passa il nome del titolo giusto 
-        # 2) questa riga << fields_to_update["text_it"] = solution_text >> funziona ma sotto la traduzione NO
+        # 2) questa riga << fields_to_update["text_it"] = solution_text >> funziona ma sotto la traduzione A VOLTE
         if chk_dict.get("solution") and solution_text:
             fields_to_update["text_it"] = solution_text
             
@@ -488,32 +498,70 @@ class ManualLogic(View):
                 messages.info(request, "Allarme eliminato sia nel DB e nel JSON")
         else:
             messages.info(request, "Allarme non presente sia nel DB che nel JSON")
-    #
-    def download_alarm(self):
+    # 
+    def create_download_pdf(self, request: HttpRequest, search_title, chosen_language: str):
+        # create ByteStrea Buffer
+        buffer = io.BytesIO()
+
+        # create the document
+        document = SimpleDocTemplate(buffer, pagesize=A4, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
         
-        response = FileResponse(self.create_pdf(), as_attachment=True, filename="hello_world.pdf")
+        alarms = AllarmiSoluzioni.objects.get(titolo = search_title)
+        
+        # list of the elements in the PDF
+        elements = []
+
+        # defined styles
+        styles = getSampleStyleSheet()
+
+        # custom styles
+        custom_styles = ParagraphStyle(
+            'CustomStyle',
+            parent=styles['Normal'],
+            fontName="Helvetica",
+            fontSize=12,
+            leading=16,
+            spaceAfter=10,
+            textColor='black'
+        )
+
+        # create paragraphs - support HTML tags
+        title = Paragraph("Soluzione Allarme", styles['Title'])
+        text_title = Paragraph(alarms.titolo, styles['Normal'])
+        text_solution = Paragraph(getattr(alarms, chosen_language), custom_styles) # pass chosen__language to obj dinamically
+        image = Image(f"project/media/{alarms.img.name}", width=200, height=150)
+
+        # add elements
+        elements.append(title)
+        elements.append(Spacer(1, 0.2 * mm)) # Aggiunge spazio verticale
+        elements.append(text_title)
+        elements.append(text_solution)
+        elements.append(image)
+
+        # Finish up
+        document.build(elements)
+        buffer.seek(0)
+
+        # Return
+        return FileResponse(buffer, as_attachment=True, filename="Allarme_Soluzioni.pdf")
+    # TODO: check why it doesn't work
+    def create_download_csv(self, request: HttpRequest, search_title):
+
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="alarms.csv"'
+
+        writer = csv.writer(response)
+
+        # header
+        writer.writerow(["title", "solution"])
+
+        alarms = AllarmiSoluzioni.objects.all()
+
+        for a in alarms:
+            writer.writerow([a.titolo, a.text_it])
 
         return response
     #
-    def create_pdf(self):
-        # create file-like buffer to receive PDF data
-        buffer = io.BytesIO()
-
-        # create the PDF object, using the buffer as its "file"
-        p = canvas.Canvas(buffer)
-
-        # here's where the PDF generation happens
-        p.drawString(100, 100, "Hello world.")
-
-        # close the PDF object
-        p.showPage()
-        p.save()
-
-        buffer.seek(0)
-
-        # FileResponse sets the Content-Disposition header so that browsers present the option to save the file
-        return buffer
-        
 #
 # Contacts Page Logic
 def contacts(request: HttpRequest):

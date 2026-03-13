@@ -7,7 +7,7 @@ class ChoseLanguage(forms.ModelForm):
         fields = [
             'language'
         ]
-
+    
 class SearchAlarmsForm(forms.Form):
     search_text = forms.CharField(max_length=128, required=False, label="Cerca Allarme")
 

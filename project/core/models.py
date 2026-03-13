@@ -244,23 +244,21 @@ class Users(models.Model):
 
 
 class LanguageModel(models.Model):
-    LANGUAGE_CHOICE = [
+
+    LANGUAGE_CHOICE: dict = {
         #(valore interno, valore esterno)
-        ('text_it','Italiano'),
-        ('text_eng','Inglese'),
-        ('text_esp','Spagnolo'),
-        ('text_de','Tedesco'),
-        ('text_fr','Francese'),
-        ('text_dk','Danese'),
-        ('text_pt','Portoghese'),
-        ('text_ru','Russo'),
-        ('text_pl','Polacco'),
-        ('text_no','Norvegese'),
-        ('text_se','Svedese'),
-    ]
-    
-    # serve a pulire la lista/dizionario, rimuovendo eventuali tuple vuote o incomplete.
-    LANGUAGE_CHOICE = [ c for c in LANGUAGE_CHOICE if all(c)]
+        'text_it': 'Italiano',
+        'text_eng': 'Inglese',
+        'text_esp': 'Spagnolo',
+        'text_de': 'Tedesco',
+        'text_fr': 'Francese',
+        'text_dk': 'Danese',
+        'text_pt': 'Portoghese',
+        'text_ru': 'Russo',
+        'text_pl': 'Polacco',
+        'text_no': 'Norvegese',
+        'text_se': 'Svedese',
+    } 
 
     language = models.CharField(max_length=64, choices=LANGUAGE_CHOICE)
 
