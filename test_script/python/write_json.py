@@ -5,6 +5,7 @@ path = r'C:\Users\loren\Desktop\GitHub\WebCore\script\json\test_overwrite.json'
 with open(path, 'r') as file:
     json_dict: dict = json.load(file)
 #
+'''
 update_key1 = 'json_update'
 update_key2 = 'db_update'
 
@@ -13,10 +14,10 @@ json_dict[update_key2] = 'false'
 
 with open(path,'w') as file:
     json_dict = json.dump(json_dict, file, indent=4)
-
+'''
 
 # aggiunta dati
-'''
+
 for i in range(1, 1001, 1):
 
     titolo_allarme = f"allarme{i}"
@@ -29,7 +30,7 @@ for i in range(1, 1001, 1):
                     },
                 "img":{
                     "nome_file":"sensore_laser",
-                    "path_file":"\\img\\sensore_laser.png"
+                    "path_file":"\\images\\sensore_laser.png"
                     }
                 },
             "testo_soluzione":{

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect, requires_csrf_token
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth import logout
+# from django.contrib.auth import logout
 from django.views import View
 from django.contrib import messages
 from django.utils.decorators import method_decorator
@@ -35,12 +35,15 @@ from .models import (
     LanguageModel
 )
 
+from .utils.json_manager import JsonManager
+
 from enum import Enum
 from collections import namedtuple
 from googletrans import Translator
 
 import json
 import configparser
+import time
 
 # Create your views here.
 
@@ -60,23 +63,6 @@ class IndexLogic(View):
         return render(request, TEMPLATE.INDEX.value)
     #
     def post(self, request: HttpRequest):
-        try:                
-            choice = request.POST.get('redirect')
-            if choice == 'account':
-                return redirect('account')
-            elif choice == 'line':
-                return redirect('line')
-            elif choice == 'contacts':
-                return redirect('contacts')
-            elif choice == 'manual':
-                return redirect('manual')
-            elif choice == 'logout':
-                return redirect('logout')
-            else:
-                messages.error(request, "Form Error. Please try again.")
-                return render(request, 'index')
-        except Exception as e:
-            messages.error(request, f"Error n. {e}")
         #
         return render(request, TEMPLATE.INDEX.value)
     #
@@ -135,34 +121,23 @@ def signup(request: HttpRequest):
     return render(request, TEMPLATE.SIGNUP.value)
 # Logout
 def logout(request: HttpRequest):
-    logout(request)
+    # logout(request)
     return redirect("login")
 #
 # Manual Page Logic
-class ManualLogic(View):
-    class LANGUAGE(Enum):
-        IT = 'it'
-        EN = 'en'
-        ESP = 'esp'
-        FR = 'fr'
-        DE = 'de'
-        PT = 'pt' # portoghese
-        FI = 'fi' # finlandese
-        SE = 'se' # svedese
-        NR = 'nr' # norvegese
-        PL = 'pl' # polacco
-        DK = 'dk' # danese
-        RU = 'ru'
-    
+class ManualLogic(View): 
+
     JSON_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\allarmi_soluzioni.json'
     CONF_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\conf.json'
 
-    def get(self, request: HttpRequest):
-        # load JSON file
-        cfg_file: dict = self.read_cfg_json()
-        alarm_file: dict = self.read_alarm_json()
+    JM = JsonManager(JSON_PATH, CONF_PATH)
 
-        json_key, db_key = 'json_update', 'db_update'
+    def get(self, request: HttpRequest):
+
+        # load JSON file
+        cfg_file: dict = self.JM.read_conf()
+        alarm_file: dict = self.JM.read_alarm_json()
+        
         chosen_language = request.GET.get('language', 'text_it')
 
         # take all element from the DB table and all JSON key alarm title
@@ -173,12 +148,11 @@ class ManualLogic(View):
         alarm_db_count = alarm_queryset.count()
         alarm_json_count = len(alarm_json_set)
 
-        # check the DB element with JSON file and in case upload: JSON -> DB
+        # check the DB element with JSON file and in case upload: Sync JSON -> DB
         if (alarm_db_count == alarm_json_count) and ((cfg_file["db_update"] == 'true') and (cfg_file["json_update"] == 'true')):
             
-            print(f"INFO: Trovato: [{alarm_db_count}] elementi nel DB...")
-
             messages.info(request, f"INFO: Trovato {alarm_db_count} elementi nel DB")
+        
         elif alarm_db_count < alarm_json_count:
             try:
                 self.upload_json(alarm_file)
@@ -186,38 +160,47 @@ class ManualLogic(View):
                 cfg_file['json_update'] = 'true'
                 cfg_file['db_update'] = 'true'
 
-                with open(self.CONF_PATH, 'w') as file:
-                    cfg_file = json.dump(cfg_file, file, indent=4)
+                self.JM.write_conf(cfg_file)
 
             except Exception as e:
-                print(f"Upload Func Error: [{e}]")
+                messages.error(request, f"Errore upload: {e}")
+                
             finally:
-                print("Finito...Ricarica la pagina e controlla i risultati...")
                 messages.info(request, "INFO: Finito...Ricarica la pagina e controlla i risultati...")
         else:
-            print("Condizione: [count(db_element==json_element) and (conf.json == true)] non rispettata delete di tutte le righe della tabella AlarmSolution")
-            print("Ricarica la pagina...\nVerrà eseguito un Upload dal JSON nel DB e cambiate le flag di conf.json.")
+            # caso incoerenza DB > JSON
             alarm_queryset.delete()
-        # take language from the page
 
+            cfg_file['json_update'] = 'false'
+            cfg_file['db_update'] = 'false'
 
-        # search alarm-title logic
-        ## Gestione form di ricerca separata
+            messages.warning(request, "DB resettato. Ricarica la pagina.")
+
+        # Search form
         search_form = SearchAlarmsForm(request.GET)
+
         alarm_queryset_filtered = None
-        if search_form.is_valid() and search_form.cleaned_data.get("search_text"):
-            search_text = search_form.cleaned_data["search_text"]
-            # search the string is contained, it's case-insensitive and it performs a partial match
-            alarm_queryset_filtered = alarm_queryset.filter(titolo__icontains=search_text) 
+
+        if search_form.is_valid():
+            search_text = search_form.cleaned_data.get("search_text")
+
+            if search_text:
+                # search the string is contained, it's case-insensitive and it performs a partial match
+                alarm_queryset_filtered = alarm_queryset.filter(
+                    titolo__icontains = search_text
+                    ) 
         else:
             search_form = SearchAlarmsForm()
 
+         # Search all DB data - need a name in the html btn and a value to check
+         # request.GET.get("value")
+        if request.GET.get("all") is not None:
+            alarm_queryset_filtered = alarm_queryset
+
         # pass the context
         context = {
-            'show_all': False,
             'search_form': search_form,
             'alarms_filtered': alarm_queryset_filtered,
-            'language_list': '',
             'chosen_language': chosen_language
         }
 
@@ -225,40 +208,39 @@ class ManualLogic(View):
     #
     def post(self, request: HttpRequest):
         # load JSON file
-        cfg_file: dict = self.read_cfg_json()
-        alarm_file: dict = self.read_alarm_json()
+        cfg_file: dict = self.JM.read_conf()
+        alarm_file: dict = self.JM.read_alarm_json()
         #
+        title = request.POST.get("alarm_title")
+        solution_text = request.POST.get("solution_text")
+        img = request.FILES.get("solution_img")
+        video = request.FILES.get("solution_video")
+        #        
+        action = request.POST.get('action')
+
         try:
-            title = request.POST.get("alarm_title")
-            solution_text = request.POST.get("solution_text")
-            img = request.FILES.get("solution_img")
-            video = request.FILES.get("solution_video")
-            #
-            if not all([title, solution_text, img, video]):
-                messages.info(request, "INFO: Tutti i campi devo essere riempiti")
-            else:
-                choice = request.POST.get('action')
-                if choice == 'update':
-                    return HttpResponse("DEVO FINIRE DI PROGRAMMARLO...MANCA LA LOGICA DI COSA VUOI CAMBIARE...")
-                elif choice == 'add':
+            if action == 'add':
+
+                if not all([title, solution_text, img, video]):
+
+                    messages.info(request, "INFO: Tutti i campi devo essere riempiti")
+                    return redirect(request.path)
+                else:
                     self.add_alarm(request, title, solution_text, img, video, alarm_file)
-                elif choice == 'delete':
-                    self.delete_alarm(request, title, alarm_file)
-                elif choice == 'download':
-                    return HttpResponse("Non Programmato")
+            
+            elif action == 'delete':
+                self.delete_alarm(request, title, alarm_file)
+            
+            elif action == 'update':
+                self.update_alarm(request, title, solution_text, img, video)
+            
+            elif action == 'download':
+                return HttpResponse("Download non implementato")
             #
         except Exception as e:
-            messages.error(request, f"ERROR: [{e}]")
-    #
-    def read_cfg_json(self) -> dict:
-        with open(self.CONF_PATH, 'r') as file:
-            cfg_dict = json.load(file)
-        return cfg_dict
-    #
-    def read_alarm_json(self) -> dict:
-        with open(self.JSON_PATH, 'r') as file:
-            alm_dict = json.load(file)
-        return alm_dict
+            messages.error(request, f"ERROR: POST Exception [{e}]")
+
+        return redirect(request.path)
     #
     def upload_json(self, alarm_file: dict):
         alarm_set = set(alarm_file["lista_allarmi"])
@@ -322,135 +304,118 @@ class ManualLogic(View):
         
         alarm_set = set(alarm_file["lista_allarmi"])
         
+        if AllarmiSoluzioni.objects.filter(titolo=title).exists() or title in alarm_set:
+            messages.info(request, "Allarme già presente nel DB / JSON")
+            return
+
         translator = Translator()
 
-        if title in alarm_set and AllarmiSoluzioni.objects.get(titolo = title):
-            messages.info(request, "Allarme già presente sia nel DB e nel JSON")
-        else:
-            try:
-                text_eng = translator.translate(solution_text, src='it', dest='en')
-                text_esp = translator.translate(solution_text, src='it', dest='es')
-                text_de = translator.translate(solution_text, src='it', dest='de')
-                text_fr = translator.translate(solution_text, src='it', dest='fr')
-                text_dk = translator.translate(solution_text, src='it', dest='dk')
-                text_pt = translator.translate(solution_text, src='it', dest='pt')
-                text_ru = translator.translate(solution_text, src='it', dest='ru')
-                text_pl = translator.translate(solution_text, src='it', dest='pl')
-                text_no = translator.translate(solution_text, src='it', dest='no')
-                text_se = translator.translate(solution_text, src='it', dest='se')
-            except Exception as e:
-                print("Error: Auto-translating")
-            finally:
-                print("Done Trying auto-translating")
-            #
-            try:
-                AllarmiSoluzioni.objects.create(
-                    titolo = title,
-                    text_it = solution_text,
-                    text_eng = text_eng,
-                    text_esp = text_esp,
-                    text_de = text_de,
-                    text_fr = text_fr,
-                    text_dk = text_dk,
-                    text_pt = text_pt,
-                    text_ru = text_ru,
-                    text_pl = text_pl,
-                    text_no = text_no,
-                    text_se = text_se,
-                    img = img,
-                    video = video
-                    )
-                print("INFO: Created AllarmiSoluzioni object")
-            except Exception as e:
-                print(f"Error creating new AllarmiSoluzioni object: [{e}]")
-                messages.error(request, "INFO: Errore nella traduzione automatica o creazione dell'allarme ")
-            finally:
-                print("Done Trying cretaing AllarmiSoluzioni object")
-            #
-            try:
-                alarm_file["lista_allarmi"][title] = {
-                    "media":{
-                        "video":{
-                            "nome_file":"aaaa",
-                            "path_file":video
-                        },
-                        "img":{
-                            "nome_file":"aaaa",
-                            "path_file":img
-                        }
-                    },
-                    "testo_soluzione":{
-                        "it": solution_text,
-                        "eng": text_eng,
-                        "esp": text_esp,
-                        "de": text_de,
-                        "fr": text_fr,
-                        "dk": text_dk,
-                        "pt": text_pt,
-                        "ru": text_ru,
-                        "pl": text_pl,
-                        "no": text_no,
-                        "se": text_se,
-                    }
-                }
-                with open(self.JSON_PATH, 'w+') as file:
-                    json.dump(alarm_file, file, indent=4)
-            except Exception as e:
-                print(f"Error creating new Alarm JSON object: [{e}]")
-                messages.error(request, "INFO: Errore nella traduzione automatica o creazione dell'allarme ")
-            finally:
-                print("Done Trying inserting into the conf.json")  
-    # TODO: DA FINIRE DI PROGRAMMARE UPDATE, MANCA LA LOGICA DI SCELTA DI COSA AGGIORNARE
+        translations: dict = {}
+
+        # lingue da tradurre
+        languages: dict = {
+            "eng": "en",
+            "esp": "es",
+            "de": "de",
+            "fr": "fr",
+            "dk": "da",
+            "pt": "pt",
+            "ru": "ru",
+            "pl": "pl",
+            "no": "no",
+            "se": "sv"
+        }
+
+        try:
+            for key, lang in languages.items():
+                translations[key] = translator.translate(
+                    solution_text,
+                    src='it',
+                    dest=lang
+                ).text
+        except Exception:
+            messages.warning(request, "Errore traduzione automatica")
+
+        # creazione DB-obj
+        obj = AllarmiSoluzioni.objects.create(
+            titolo=title,
+            text_it=solution_text,
+            img=img,
+            video=video,
+            **{f"text_{k}": v for k, v in translations.items()} 
+        )
+
+        # translations.items() => (key, value) -> (language, text) == (eng, hello)
+        # f"text_{k}" → crea la nuova chiave (text_eng)
+        '''
+        LA STESSA DI SCRIVERE:
+        new_dict = {}
+
+        for k, v in translations.items():
+            new_dict[f"text_{k}"] = v
+        '''
+
+        print(f"Creato allarme: {obj.titolo}")
+
+        # aggiornamento JSON
+        alarm_file["lista_allarmi"][title] = {
+            "media": {
+                "video": {
+                    "nome_file": "aaaa",
+                    "path_file": str(video)},
+                "img": {
+                    "nome_file": "aaaa",
+                    "path_file": str(img)}
+            },
+            "testo_soluzione": {
+                "it": solution_text,
+                **translations
+            }
+        }
+
+        self.JM.write_alarm_json(alarm_file)
+
+        messages.success(request, "Allarme creato correttamente")
+
+        
+    # TODO: DA PROGRAMMARE -> forse aggiungo una pagina
     def update_alarm(self, request: HttpRequest, title, solution_text, img, video, alarm_file):
         
         alarm_set = set(alarm_file["lista_allarmi"])
-        
-        if title in alarm_set and AllarmiSoluzioni.objects.get(titolo = title):
+
+        if title in alarm_set and AllarmiSoluzioni.objects.filter(titolo = title).exists():
+
             messages.info(request, "Allarme presente sia nel DB e nel JSON")
-            #
-            try:
-                translator = Translator()
-                # alter table
-                AllarmiSoluzioni.objects.update(
-                    titolo = title,
-                    text_it = solution_text,
-                    text_eng = translator.translate(solution_text, src='it', dest='en'),
-                    text_esp = translator.translate(solution_text, src='it', dest='es'),
-                    text_de = translator.translate(solution_text, src='it', dest='de'),
-                    text_fr = translator.translate(solution_text, src='it', dest='fr'),
-                    text_dk = translator.translate(solution_text, src='it', dest='dk'),
-                    text_pt = translator.translate(solution_text, src='it', dest='pt'),
-                    text_ru = translator.translate(solution_text, src='it', dest='ru'),
-                    text_pl = translator.translate(solution_text, src='it', dest='pl'),
-                    text_no = translator.translate(solution_text, src='it', dest='no'),
-                    text_se = translator.translate(solution_text, src='it', dest='se'),
-                    img = img,
-                    video = video
-                )
-            except Exception as e:
-                print(f"Error updating existing AllarmiSoluzioni object: [{e}]")
-                messages.error(request, "INFO: Errore nella traduzione automatica o aggiornamento dell'allarme ")
-            finally:
-                print("Done Trying cretaing AllarmiSoluzioni object")
-        else:
-            messages.info(request, "Allarme presente sia nel DB e nel JSON")
+            
+            alarm_obj = AllarmiSoluzioni.objects.get(titolo = title)
+
+            
+
     # 
     def delete_alarm(self, request: HttpRequest, title, alarm_file):
 
         alarm_set = set(alarm_file["lista_allarmi"])
 
-        if title in alarm_set and AllarmiSoluzioni.objects.get(titolo = title):
+        if title in alarm_set and AllarmiSoluzioni.objects.filter(titolo = title).exists():
+
             messages.info(request, "Allarme presente sia nel DB e nel JSON")
+
             try:
                 AllarmiSoluzioni.objects.get(titolo = title).delete()
-                removed_value = alarm_set.pop(title)
-                print(f"Removed value: [{removed_value}]")
-                with open(self.JSON_PATH, 'w') as file:
-                    json.dump(alarm_set, file, indent=4)
+
+                del alarm_file["lista_allarmi"][title]
+
+                self.JM.write_alarm_json(alarm_file)
             except AllarmiSoluzioni.DoesNotExist:
                 messages.info(request, "INFO: L'allarme che si vuole eliminare non è stato trovato nel DB")
             finally:
                 messages.info(request, "Allarme eliminato sia nel DB e nel JSON")
+        else:
+            messages.info(request, "Allarme non presente sia nel DB che nel JSON")
+    #
+    def download_alarm(self):
+        pass
+    #
 #
 # Contacts Page Logic
 def contacts(request: HttpRequest):

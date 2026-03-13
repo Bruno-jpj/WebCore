@@ -7,13 +7,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Manual Page</title>
-        <link rel="stylesheet" href="{% static 'css/alarm_page.css' %}">
+        <link rel="stylesheet" href="{% static 'css/manual.css' %}">
     </head>
     <body>
 
     <header>
         <div class="header">
             <nav>
+                <div>
+                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'line' %}">Linee Macchine</a>
+                    <a href="{% url 'contacts' %}">Contatti</a>
+                    <a href="{% url 'manual' %}">Manuale Allarmi</a>
+                    <a href="{% url 'logout' %}">Log out</a>
+                </div>
                 <form action="{% url 'manual' %}" method="get">
                     <select name="language" id="language" onchange="this.form.submit()">
                         {% for key, label in language_list %}
@@ -26,26 +33,23 @@
             </nav>
         </div>
     </header>
-
     <main>
         <div class="choose_action">
             <label for="#">
                 {% if messages %}
-                        {% for message in messages|slice:":2" %}
+                        {% for message in messages|slice:":3" %}
                             <p style="color: green;">{{ message }}</p>
                         {% endfor %}
                     {% endif %}
             </label>
         </div>
-
         <div class="text_area">
             <!-- Form di ricerca -->
             <form action="{% url 'manual' %}" method="get">
-                {% csrf_token %}
                 {{ search_form.search_text }}
-                <button type="submit">Search</button>
+                <button type="submit" value="search">Search</button>
+                <button type="submit" value="all" name="all">All</button>
             </form>
-
             <!-- Form di inserimento dati -->
             <div class="input_save">
                 <div class="input_area">
@@ -63,7 +67,6 @@
                         <button type="submit" name="action" value="download">Download Database File</button>
                     </form>
                 </div>
-
                 <!-- Tabella allarmi -->
                 <table>
                     <tr>
@@ -103,6 +106,6 @@
         </div>
     </main>
     <footer></footer>
-    <script src="{% static 'js/filter_alarm_page.js' %}"></script>
+    <script src="{% static 'js/manual.js' %}"></script>
     </body>
     </html>

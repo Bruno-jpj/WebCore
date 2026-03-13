@@ -115,177 +115,346 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 #
-class AlarmPage(View):
+
+# -----------------------------------------
+# -----------------------------------------
+# -----------------------------------------
+
+#
+class ManualLogic(View):
+
+    # Enum per gestire le lingue disponibili
     class LANGUAGE(Enum):
         IT = 'it'
         EN = 'en'
         ESP = 'esp'
         FR = 'fr'
         DE = 'de'
-        PT = 'pt' # portoghese
-        FI = 'fi' # finlandese
-        SE = 'se' # svedese
-        NR = 'nr' # norvegese
-        PL = 'pl' # polacco
-        DK = 'dk' # danese
+        PT = 'pt'
+        FI = 'fi'
+        SE = 'se'
+        NR = 'nr'
+        PL = 'pl'
+        DK = 'dk'
         RU = 'ru'
-    #
-    JSON_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\script\json\allarmi_soluzioni.json'
+
+    # Percorsi file JSON
+    JSON_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\allarmi_soluzioni.json'
     CONF_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\conf.json'
 
-    json_update = None
-    db_update = None
-
+    # ---------------------------
+    # GET
+    # ---------------------------
     def get(self, request: HttpRequest):
 
-        # read the json files
-        cfg_dict: dict = self.read_conf_json(request)
-        alarm_dict: dict = self.read_alarm_json(request)
+        # carico configurazioni
+        cfg_file = self.read_cfg_json()
+        alarm_file = self.read_alarm_json()
 
-        # take all elements from the tabel -> return a QuerySet
-        alarm_solution_queryset = AllarmiSoluzioni.objects.all()
-        
-        # check if found at least one element in the table
-        db_num_alarm = alarm_solution_queryset.count()
+        chosen_language = request.GET.get('language', 'text_it')
 
-        # check found number of element in the JSON
-        json_num_alarm = len(set(alarm_dict["lista_allarmi"]))     
+        alarm_queryset = AllarmiSoluzioni.objects.all()
+        alarm_json_set = set(alarm_file["lista_allarmi"])
 
-        # take the chosen language for the alarm-text
-        chosen_language = request.GET.get('language', '') # ('name select or btn', value passata) ==> valori del btn nell'html
+        alarm_db_count = alarm_queryset.count()
+        alarm_json_count = len(alarm_json_set)
 
-        # Search Form Logic - if search_text in the request get type (in the URL)
-        # Gestione form di ricerca separata
+        # ---------------------------
+        # Sync JSON -> DB
+        # ---------------------------
+        if alarm_db_count == alarm_json_count and \
+           cfg_file["db_update"] == 'true' and \
+           cfg_file["json_update"] == 'true':
+
+            messages.info(request, f"Trovati {alarm_db_count} elementi nel DB")
+
+        elif alarm_db_count < alarm_json_count:
+
+            try:
+                self.upload_json(alarm_file)
+
+                cfg_file['json_update'] = 'true'
+                cfg_file['db_update'] = 'true'
+
+                with open(self.CONF_PATH, 'w') as file:
+                    json.dump(cfg_file, file, indent=4)
+
+                messages.info(request, "Upload JSON -> DB completato")
+
+            except Exception as e:
+                messages.error(request, f"Errore upload: {e}")
+
+        else:
+            # caso incoerenza DB > JSON
+            alarm_queryset.delete()
+            messages.warning(request, "DB resettato. Ricarica la pagina.")
+
+        # ---------------------------
+        # Search form
+        # ---------------------------
         search_form = SearchAlarmsForm(request.GET)
-        if search_form.is_valid() and search_form.cleaned_data.get("search_text"):
-            search_text = search_form.cleaned_data["search_text"]
-            # search the string is contained, it's case-insensitive and it performs a partial match
-            alarm_solution_queryset = alarm_solution_queryset.filter(titolo__icontains=search_text) 
-        else:
-            search_form = SearchAlarmsForm()
 
+        alarm_queryset_filtered = None
 
-        if db_num_alarm >= json_num_alarm:
-            print(f"INFO: Trovato: [{db_num_alarm}] elementi nel DB...")
-            messages.info(request, f"INFO: Trovato {db_num_alarm} elementi nel DB")
-        else:
-            print(f"INFO: Trovato: [{db_num_alarm}] elementi nel DB...")
-            messages.info(request, "INFO: Nessun elemento trovato... Inizio Upload da file di configurazione...")
-            try:
-                self.upload_from_json(alarm_dict)
-            except Exception as e:
-                print(f"Upload Func Error: [{e}]")
-            finally:
-                print("Finito...Controlla i risultati...")
-        #
+        if search_form.is_valid():
+            search_text = search_form.cleaned_data.get("search_text")
+
+            if search_text:
+                alarm_queryset_filtered = alarm_queryset.filter(
+                    titolo__icontains=search_text
+                )
+
+        # context template
         context = {
-            'alarms': alarm_solution_queryset,
-            'language_list' : ChoseLanguage.Meta.fields,
-            'chosen_language': chosen_language,
-            'search_form': search_form
+            'show_all': False,
+            'search_form': search_form,
+            'alarms_filtered': alarm_queryset_filtered,
+            'chosen_language': chosen_language
         }
-        
-        return render(request, TEMPLATE.ALARM_PAGE.value, context)
-    #
+
+        return render(request, TEMPLATE.MANUAL_PAGE.value, context)
+
+    # ---------------------------
+    # POST
+    # ---------------------------
     def post(self, request: HttpRequest):
-        
+
+        alarm_file = self.read_alarm_json()
+
+        title = request.POST.get("alarm_title")
+        solution_text = request.POST.get("solution_text")
+        img = request.FILES.get("solution_img")
+        video = request.FILES.get("solution_video")
+
+        if not all([title, solution_text, img, video]):
+            messages.info(request, "Tutti i campi devono essere compilati")
+            return redirect(request.path)
+
+        action = request.POST.get('action')
+
         try:
-            alarm_title = request.POST.get("alarm_title")
-            solution_text = request.POST.get("solution_text")
-            img_file = request.FILES.get("solution_img")
-            video_file = request.FILES.get("solution_video")
-            #
-            if not all([alarm_title, solution_text, img_file, video_file]):
-                messages.info(request, "INFO: Tutti i campi devono essere compilati...")
-                return redirect('alarm_page')
-            #
-            if AllarmiSoluzioni.objects.filter(titolo = alarm_title).exists():
-                messages.info(request, "INFO: Allarme già esistente")
-                return redirect('alarm_page')
-            #
-            try:
-                pass
-            except Exception as e:
-                pass
-            #            
-        except Exception as e:    
-            return HttpResponse(f"Btn non programmato ancora...{e}")
-    #
-    def read_conf_json(self, request: HttpRequest) -> dict:
+
+            if action == 'add':
+                self.add_alarm(request, title, solution_text, img, video, alarm_file)
+
+            elif action == 'delete':
+                self.delete_alarm(request, title, alarm_file)
+
+            elif action == 'update':
+                return HttpResponse("Logica update non implementata")
+
+            elif action == 'download':
+                return HttpResponse("Download non implementato")
+
+        except Exception as e:
+            messages.error(request, f"Errore: {e}")
+
+        return redirect(request.path)
+
+    # ---------------------------
+    # READ CONFIG JSON
+    # ---------------------------
+    def read_cfg_json(self) -> dict:
         with open(self.CONF_PATH, 'r') as file:
-            cfg_dict: dict = json.load(file)
+            return json.load(file)
 
-        return cfg_dict
-    #
-    def read_alarm_json(self, request: HttpRequest) -> dict:
-
-        # read and transform to python dict
+    # ---------------------------
+    # READ ALARM JSON
+    # ---------------------------
+    def read_alarm_json(self) -> dict:
         with open(self.JSON_PATH, 'r') as file:
-            alarm_dict: dict = json.load(file)
+            return json.load(file)
 
-        return alarm_dict
-    #
-    def upload_from_json(self, alarm_dict: dict):
-        
-        # set with only the alarm titles
-        alarm_set = set(alarm_dict["lista_allarmi"])
+    # ---------------------------
+    # UPLOAD JSON -> DB
+    # ---------------------------
+    def upload_json(self, alarm_file: dict):
 
-        # print(f"len: [{len(alarm_set)}]")
+        alarm_set = set(alarm_file["lista_allarmi"])
 
         for alarm_name in alarm_set:
-            try: 
-                temp_obj = AllarmiSoluzioni.objects.get(titolo = alarm_name)
-                print(f"Già esiste: [{temp_obj}]")
-            except AllarmiSoluzioni.DoesNotExist:
-                try:
-                    # create the object and auto-save it
-                    AllarmiSoluzioni.objects.create(
-                        titolo = alarm_name,
-                        text_it = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["it"],
-                        text_eng = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["eng"],
-                        text_esp = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["esp"],
-                        text_de = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["de"],
-                        text_fr = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["fr"],
-                        text_dk = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["dk"],
-                        text_pt = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pt"],
-                        text_ru = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["ru"],
-                        text_pl = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pl"],
-                        text_no = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["no"],
-                        text_se = alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["se"],
-                        img = alarm_dict["lista_allarmi"][alarm_name]["media"]["img"]["path_file"],
-                        video = alarm_dict["lista_allarmi"][alarm_name]["media"]["video"]["path_file"]
-                        )
-                    #
-                except Exception as e:
-                    print(f"Upload from Json Except: [{e}]")
-            else:
-                print(f"Gia esiste: [{temp_obj}]")
-        #
-        '''
-        STESSA COSA SCRITTA SOPRA FORSE MEGLIO: 
 
-        for alarm_name in alarm_set:
+            data = alarm_file["lista_allarmi"][alarm_name]
+
             obj, created = AllarmiSoluzioni.objects.get_or_create(
                 titolo=alarm_name,
                 defaults={
-                    "text_it": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["it"],
-                    "text_eng": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["eng"],
-                    "text_esp": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["esp"],
-                    "text_de": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["de"],
-                    "text_fr": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["fr"],
-                    "text_dk": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["dk"],
-                    "text_pt": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pt"],
-                    "text_ru": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["ru"],
-                    "text_pl": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["pl"],
-                    "text_no": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["no"],
-                    "text_se": alarm_dict["lista_allarmi"][alarm_name]["testo_soluzione"]["se"],
-                    "img": alarm_dict["lista_allarmi"][alarm_name]["media"]["img"]["path_file"],
-                    "video": alarm_dict["lista_allarmi"][alarm_name]["media"]["video"]["path_file"]
+                    "text_it": data["testo_soluzione"]["it"],
+                    "text_eng": data["testo_soluzione"]["eng"],
+                    "text_esp": data["testo_soluzione"]["esp"],
+                    "text_de": data["testo_soluzione"]["de"],
+                    "text_fr": data["testo_soluzione"]["fr"],
+                    "text_dk": data["testo_soluzione"]["dk"],
+                    "text_pt": data["testo_soluzione"]["pt"],
+                    "text_ru": data["testo_soluzione"]["ru"],
+                    "text_pl": data["testo_soluzione"]["pl"],
+                    "text_no": data["testo_soluzione"]["no"],
+                    "text_se": data["testo_soluzione"]["se"],
+                    "img": data["media"]["img"]["path_file"],
+                    "video": data["media"]["video"]["path_file"],
                 }
             )
-            if created:
-                print(f"Creato nuovo allarme: [{obj.titolo}]")
-            else:
-                print(f"Gia esiste: [{obj.titolo}]")
-        '''          
 
+            if created:
+                print(f"Creato nuovo allarme: {obj.titolo}")
+            else:
+                print(f"Allarme già esistente: {obj.titolo}")
+
+    # ---------------------------
+    # ADD ALARM
+    # ---------------------------
+    def add_alarm(self, request, title, solution_text, img, video, alarm_file):
+
+        if AllarmiSoluzioni.objects.filter(titolo=title).exists():
+            messages.info(request, "Allarme già presente nel DB")
+            return
+
+        translator = Translator()
+
+        # lingue da tradurre
+        languages = {
+            "eng": "en",
+            "esp": "es",
+            "de": "de",
+            "fr": "fr",
+            "dk": "da",
+            "pt": "pt",
+            "ru": "ru",
+            "pl": "pl",
+            "no": "no",
+            "se": "sv"
+        }
+
+        translations = {}
+
+        try:
+            for key, lang in languages.items():
+                translations[key] = translator.translate(
+                    solution_text,
+                    src='it',
+                    dest=lang
+                ).text
+        except Exception:
+            messages.warning(request, "Errore traduzione automatica")
+
+        # creazione DB
+        obj = AllarmiSoluzioni.objects.create(
+            titolo=title,
+            text_it=solution_text,
+            img=img,
+            video=video,
+            **{f"text_{k}": v for k, v in translations.items()}
+        )
+
+        print(f"Creato allarme: {obj.titolo}")
+
+        # aggiornamento JSON
+        alarm_file["lista_allarmi"][title] = {
+            "media": {
+                "video": {"path_file": str(video)},
+                "img": {"path_file": str(img)}
+            },
+            "testo_soluzione": {
+                "it": solution_text,
+                **translations
+            }
+        }
+
+        with open(self.JSON_PATH, 'w') as file:
+            json.dump(alarm_file, file, indent=4)
+
+        messages.success(request, "Allarme creato correttamente")
+
+
+# ---------------------------------
+#
+# ----------------------------------
+
+from django.views import View
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+from utils.json_manager import JsonManager
+from services.alarm_service import AlarmService
+
+
+class ManualLogic(View):
+
+    JSON_PATH = r"C:\project\allarmi_soluzioni.json"
+    CONF_PATH = r"C:\project\conf.json"
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.json_manager = JsonManager(self.JSON_PATH, self.CONF_PATH)
+        self.alarm_service = AlarmService()
+
+    # -------------------------
+    # GET
+    # -------------------------
+    def get(self, request):
+
+        alarm_file = self.json_manager.read_alarm_json()
+
+        queryset = AllarmiSoluzioni.objects.all()
+
+        search_form = SearchAlarmsForm(request.GET)
+
+        filtered = None
+
+        if search_form.is_valid():
+            text = search_form.cleaned_data.get("search_text")
+
+            if text:
+                filtered = queryset.filter(titolo__icontains=text)
+
+        context = {
+            "search_form": search_form,
+            "alarms_filtered": filtered,
+        }
+
+        return render(request, TEMPLATE.MANUAL_PAGE.value, context)
+
+    # -------------------------
+    # POST
+    # -------------------------
+    def post(self, request):
+
+        title = request.POST.get("alarm_title")
+        solution_text = request.POST.get("solution_text")
+        img = request.FILES.get("solution_img")
+        video = request.FILES.get("solution_video")
+
+        if not all([title, solution_text, img, video]):
+            messages.error(request, "Campi mancanti")
+            return redirect(request.path)
+
+        try:
+
+            obj, translations = self.alarm_service.create_alarm(
+                title,
+                solution_text,
+                img,
+                video
+            )
+
+            alarm_file = self.json_manager.read_alarm_json()
+
+            alarm_file["lista_allarmi"][title] = {
+                "media": {
+                    "video": {"path_file": str(video)},
+                    "img": {"path_file": str(img)}
+                },
+                "testo_soluzione": {
+                    "it": solution_text,
+                    **translations
+                }
+            }
+
+            self.json_manager.write_alarm_json(alarm_file)
+
+            messages.success(request, "Allarme creato")
+
+        except Exception as e:
+            messages.error(request, str(e))
+
+        return redirect(request.path)

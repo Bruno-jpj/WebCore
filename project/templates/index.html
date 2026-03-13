@@ -7,18 +7,12 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>FB Manager Service</h1>
-            <nav>
-                <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <button type="submit" name="redirect" value="account">Account</button>
-                    <button type="submit" name="redirect" value="line">Linee Macchine</button>
-                    <button type="submit" name="redirect" value="contacts">Contatti</button>
-                    <button type="submit" name="redirect" value="manual">Manuale Allarmi</button>
-                    <button type="submit" name="redirect" value="log_out">Log Out</button>
-                </form>
-            </nav>
+        <div>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'line' %}">Linee Macchine</a>
+            <a href="{% url 'contacts' %}">Contatti</a>
+            <a href="{% url 'manual' %}">Manuale Allarmi</a>
+            <a href="{% url 'logout' %}">Log out</a>
         </div>
     </header>
     <main></main>
