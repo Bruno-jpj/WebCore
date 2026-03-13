@@ -1,7 +1,7 @@
 import json
 
 #path = r'C:\Users\loren\Desktop\GitHub\WebCore\project\script\json\test_scrittura.json'
-path = r'C:\Users\loren\Desktop\GitHub\WebCore\script\json\test_overwrite.json'
+path = r'C:\Users\loren\Desktop\GitHub\WebCore\project\allarmi_soluzioni_backup.json'
 with open(path, 'r') as file:
     json_dict: dict = json.load(file)
 #

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 from django.http import (
     Http404,
     HttpRequest,
@@ -14,7 +15,8 @@ from django.http import (
     HttpResponseRedirect,
     StreamingHttpResponse,
     HttpResponseBadRequest,
-    JsonResponse
+    JsonResponse,
+    FileResponse
 )
 
 # to decorate a def() just apply it
@@ -35,6 +37,8 @@ from .models import (
     LanguageModel
 )
 
+from reportlab.pdfgen import canvas, pdfimages
+
 from .utils.json_manager import JsonManager
 
 from enum import Enum
@@ -44,6 +48,7 @@ from googletrans import Translator
 import json
 import configparser
 import time
+import io
 
 # Create your views here.
 
@@ -129,8 +134,9 @@ class ManualLogic(View):
 
     JSON_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\allarmi_soluzioni.json'
     CONF_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\conf.json'
+    JSON_BACK_PATH = r'C:\Users\loren\Desktop\GitHub\WebCore\project\allarmi_soluzioni_backup.json'
 
-    JM = JsonManager(JSON_PATH, CONF_PATH)
+    JM = JsonManager(JSON_PATH, CONF_PATH, JSON_BACK_PATH)
 
     def get(self, request: HttpRequest):
 
@@ -146,13 +152,26 @@ class ManualLogic(View):
 
         # check the number of element of DB table and JSON key
         alarm_db_count = alarm_queryset.count()
+        print(alarm_db_count)
+
         alarm_json_count = len(alarm_json_set)
 
         # check the DB element with JSON file and in case upload: Sync JSON -> DB
         if (alarm_db_count == alarm_json_count) and ((cfg_file["db_update"] == 'true') and (cfg_file["json_update"] == 'true')):
             
             messages.info(request, f"INFO: Trovato {alarm_db_count} elementi nel DB")
-        
+
+            if (alarm_db_count == 0 or alarm_json_count == 0):
+                messages.info(request, "INFO: Nessun elemento sia nel DB che nel JSON")
+                messages.info(request, "INFO: Inizio procedura di recupero")
+
+                cfg_file["db_update"] == 'false'
+                cfg_file["json_update"] == 'false'
+
+                alarm_file: dict = self.JM.read_backup_json()
+                alarm_file: dict = self.JM.write_alarm_json(alarm_file)
+
+            #
         elif alarm_db_count < alarm_json_count:
             try:
                 self.upload_json(alarm_file)
@@ -185,6 +204,9 @@ class ManualLogic(View):
             search_text = search_form.cleaned_data.get("search_text")
 
             if search_text:
+
+                request.session['search_text'] = search_text
+
                 # search the string is contained, it's case-insensitive and it performs a partial match
                 alarm_queryset_filtered = alarm_queryset.filter(
                     titolo__icontains = search_text
@@ -215,9 +237,22 @@ class ManualLogic(View):
         solution_text = request.POST.get("solution_text")
         img = request.FILES.get("solution_img")
         video = request.FILES.get("solution_video")
-        #        
-        action = request.POST.get('action')
-
+        #
+        alarm_checkBox = request.POST.get("chk_alarm")
+        solution_checkBox = request.POST.get("chk_solution")
+        img_checkBox = request.POST.get("chk_img")
+        video_checkBox = request.POST.get("chk_video")
+        #
+        chk_dict = {
+            'alarm': alarm_checkBox,
+            'solution': solution_checkBox,
+            'img': img_checkBox,
+            'video': video_checkBox
+        }
+        # print(chk_list)
+        #
+        action = request.POST.get('action')        
+        #
         try:
             if action == 'add':
 
@@ -231,11 +266,14 @@ class ManualLogic(View):
             elif action == 'delete':
                 self.delete_alarm(request, title, alarm_file)
             
-            elif action == 'update':
-                self.update_alarm(request, title, solution_text, img, video)
-            
+            elif action == 'update': 
+                search_title = request.session.get('search_text')
+
+                self.update_alarm(request, search_title, title, solution_text, img, video, chk_dict)
+                del request.session['search_text']
+
             elif action == 'download':
-                return HttpResponse("Download non implementato")
+                self.download_alarm()
             #
         except Exception as e:
             messages.error(request, f"ERROR: POST Exception [{e}]")
@@ -361,10 +399,10 @@ class ManualLogic(View):
         alarm_file["lista_allarmi"][title] = {
             "media": {
                 "video": {
-                    "nome_file": "aaaa",
+                    "nome_file": video,
                     "path_file": str(video)},
                 "img": {
-                    "nome_file": "aaaa",
+                    "nome_file": img,
                     "path_file": str(img)}
             },
             "testo_soluzione": {
@@ -376,21 +414,59 @@ class ManualLogic(View):
         self.JM.write_alarm_json(alarm_file)
 
         messages.success(request, "Allarme creato correttamente")
-
+    #
+    def update_alarm(self, request: HttpRequest, search_title, title, solution_text, img, video, chk_dict: dict):
         
-    # TODO: DA PROGRAMMARE -> forse aggiungo una pagina
-    def update_alarm(self, request: HttpRequest, title, solution_text, img, video, alarm_file):
+        qs = AllarmiSoluzioni.objects.filter(titolo=search_title)
+
+        if not qs.exists():
+            messages.info(request, "L'allarme selezionato non esiste nel DB")
+            return
+
+        fields_to_update = {}
         
-        alarm_set = set(alarm_file["lista_allarmi"])
+        # CHECK TITLE - Funziona
+        if chk_dict.get("alarm") and title:
+            fields_to_update["titolo"] = title
 
-        if title in alarm_set and AllarmiSoluzioni.objects.filter(titolo = title).exists():
-
-            messages.info(request, "Allarme presente sia nel DB e nel JSON")
+        # TODO: CHECK SOLUTION
+        # Criticità: 
+        # 1) se non faccio prima la search con il nome giusto la session non mi passa il nome del titolo giusto 
+        # 2) questa riga << fields_to_update["text_it"] = solution_text >> funziona ma sotto la traduzione NO
+        if chk_dict.get("solution") and solution_text:
+            fields_to_update["text_it"] = solution_text
             
-            alarm_obj = AllarmiSoluzioni.objects.get(titolo = title)
+            # Traduzioni
+            translator = Translator()
+            languages = {
+                "eng": "en", "esp": "es", "de": "de", "fr": "fr",
+                "dk": "da", "pt": "pt", "ru": "ru", "pl": "pl",
+                "no": "no", "se": "sv"
+            }
 
-            
+            translations = {}
 
+            try:
+                for key, lang in languages.items():
+                    translations[key] = translator.translate(solution_text, src='it', dest=lang).text
+                fields_to_update.update({f"text_{k}": v for k, v in translations.items()})
+            except Exception:
+                messages.warning(request, "Errore traduzione automatica")
+
+        # CHECK IMG - Funziona
+        if chk_dict.get("img") and img:
+            fields_to_update["img"] = img
+
+        # CHECK VIDEO - FUnziona
+        if chk_dict.get("video") and video:
+            fields_to_update["video"] = video
+
+        # Esegui update solo se ci sono campi da aggiornare
+        if fields_to_update:
+            qs.update(**fields_to_update)
+            messages.success(request, "Allarme aggiornato correttamente")
+        else:
+            messages.info(request, "Nessun campo selezionato o fornito da aggiornare")
     # 
     def delete_alarm(self, request: HttpRequest, title, alarm_file):
 
@@ -414,8 +490,30 @@ class ManualLogic(View):
             messages.info(request, "Allarme non presente sia nel DB che nel JSON")
     #
     def download_alarm(self):
-        pass
+        
+        response = FileResponse(self.create_pdf(), as_attachment=True, filename="hello_world.pdf")
+
+        return response
     #
+    def create_pdf(self):
+        # create file-like buffer to receive PDF data
+        buffer = io.BytesIO()
+
+        # create the PDF object, using the buffer as its "file"
+        p = canvas.Canvas(buffer)
+
+        # here's where the PDF generation happens
+        p.drawString(100, 100, "Hello world.")
+
+        # close the PDF object
+        p.showPage()
+        p.save()
+
+        buffer.seek(0)
+
+        # FileResponse sets the Content-Disposition header so that browsers present the option to save the file
+        return buffer
+        
 #
 # Contacts Page Logic
 def contacts(request: HttpRequest):

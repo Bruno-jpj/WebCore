@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="{% static 'css/manual.css' %}">
     </head>
     <body>
-
     <header>
         <div class="header">
             <nav>
@@ -65,43 +64,45 @@
                         <button type="submit" name="action" value="add">Add Row Database</button>
                         <button type="submit" name="action" value="delete">Delete Row Database</button>
                         <button type="submit" name="action" value="download">Download Database File</button>
+                </div>
+                <div>
+                        <!-- Tabella allarmi -->
+                        <table>
+                            <tr>
+                                <th>Allarme <input type="checkbox" name="chk_alarm" id="alarm" value="alarm"></th>
+                                <th>Soluzione <input type="checkbox" name="chk_solution" id="solution" value="solution"></th>
+                                <th>Immagine <input type="checkbox" name="chk_img" id="img" value="img"></th>
+                                <th>Video <input type="checkbox" name="chk_video" id="video" value="video"></th>
+                            </tr>
+                            {% for alarm in alarms_filtered %}
+                            <tr>
+                                <td>{{ alarm.titolo }}</td>
+                                <td>{{ alarm|getattr_field:chosen_language }}</td>
+                                <td>
+                                    {% if alarm.img %}
+                                        <img src="{{ alarm.img.url }}" width="300">
+                                    {% else %}
+                                        Nessuna Immagine trovata
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if alarm.video %}
+                                        <video width="400" controls>
+                                            <source src="{{ alarm.video.url }}" type="video/mp4">
+                                        </video>
+                                    {% else %}
+                                        Nessun Video trovato
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">Nessun Allarme Trovato</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
                     </form>
                 </div>
-                <!-- Tabella allarmi -->
-                <table>
-                    <tr>
-                        <th>Allarme</th>
-                        <th>Soluzione</th>
-                        <th>Immagine</th>
-                        <th>Video</th>
-                    </tr>
-                    {% for alarm in alarms_filtered %}
-                    <tr>
-                        <td>{{ alarm.titolo }}</td>
-                        <td>{{ alarm|getattr_field:chosen_language }}</td>
-                        <td>
-                            {% if alarm.img %}
-                                <img src="{{ alarm.img.url }}" width="300">
-                            {% else %}
-                                Nessuna Immagine trovata
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if alarm.video %}
-                                <video width="400" controls>
-                                    <source src="{{ alarm.video.url }}" type="video/mp4">
-                                </video>
-                            {% else %}
-                                Nessun Video trovato
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4">Nessun Allarme Trovato</td>
-                    </tr>
-                    {% endfor %}
-                </table>
             </div>
         </div>
     </main>
