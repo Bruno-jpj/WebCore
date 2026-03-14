@@ -19,7 +19,7 @@ from django.urls import path, include
 from core.views import (
     IndexLogic,
     login,
-    logout,
+    logout_view,
     signup,
     ManualLogic,
     account,
@@ -29,14 +29,18 @@ from core.views import (
 from django.conf import settings
 from django.conf.urls.static import static
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(settings.ADMIN_PATH, admin.site.urls),
 
     # Web-App routing
     path('', IndexLogic.as_view() , name="index"),
     path('login/', login, name="login"),
     path('signup/', signup, name="signup"),
-    path('logout/', logout, name="logout"),
+    path('logout/', logout_view, name="logout_view"),
     path('manual/', ManualLogic.as_view(), name="manual"),
     path('account/', account, name="account"),
     path('contacts/', contacts, name="contacts"),

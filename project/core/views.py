@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect, requires_csrf_token
 from django.contrib.auth.hashers import make_password, check_password
-# from django.contrib.auth import logout
+from django.contrib.auth import logout
 from django.views import View
 from django.contrib import messages
 from django.utils.decorators import method_decorator
@@ -68,6 +68,7 @@ class TEMPLATE(Enum):
     LINE = 'line.html'
 #
 # Index Page Logic
+@check_log_in
 class IndexLogic(View):
     def get(self, request: HttpRequest):
         return render(request, TEMPLATE.INDEX.value)
@@ -130,8 +131,8 @@ def signup(request: HttpRequest):
         messages.error(request, "INFO: Errore nella creazione dell'utente, riprovare più tardi")
     return render(request, TEMPLATE.SIGNUP.value)
 # Logout
-def logout(request: HttpRequest):
-    # logout(request)
+def logout_view(request: HttpRequest):
+    logout(request)
     return redirect("login")
 #
 # Manual Page Logic
@@ -442,7 +443,6 @@ class ManualLogic(View):
         # TODO: CHECK SOLUTION
         # Criticità: 
         # 1) se non faccio prima la search con il nome giusto la session non mi passa il nome del titolo giusto 
-        # 2) questa riga << fields_to_update["text_it"] = solution_text >> funziona ma sotto la traduzione A VOLTE
         if chk_dict.get("solution") and solution_text:
             fields_to_update["text_it"] = solution_text
             
