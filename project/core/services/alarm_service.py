@@ -1,6 +1,8 @@
 from googletrans import Translator
 from core.models import AllarmiSoluzioni
 
+# this file was an idea of decentralizing the logic 
+# but in the end I didn't like so I didn't use and left it here
 
 class AlarmService:
 

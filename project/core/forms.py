@@ -1,6 +1,8 @@
 from django import forms
 from .models import LanguageModel
 
+# here I can create python forms and pass it to the HTML without using HTML tags
+
 class ChoseLanguage(forms.ModelForm):
     class Meta:
         model = LanguageModel

@@ -31,10 +31,10 @@ def check_log_in(func):
 
 def check_log_in(view):
     """
-    Decoratore universale: può essere usato su funzioni o CBV.
-    Se è una CBV, intercetta il metodo dispatch.
+    Decorator universal: can be used on func or CBV.
+    if a CBV, intercept dispatch method.
     """
-    if isinstance(view, type):  # se è una classe (CBV)
+    if isinstance(view, type):  # if a Class-Based-View
         original_dispatch = view.dispatch
 
         @wraps(original_dispatch)
@@ -51,7 +51,7 @@ def check_log_in(view):
         view.dispatch = new_dispatch
         return view
 
-    else:  # se è una funzione-based view
+    else:  # if a def-view
         @wraps(view)
         def wrapper(request: HttpRequest, *args, **kwargs):
             user_id = request.session.get('user_id')

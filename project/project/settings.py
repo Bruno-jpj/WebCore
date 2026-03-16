@@ -29,12 +29,12 @@ load_dotenv(override=True)
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True
 
 # if debug = false, must have allowed_hosts on
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "192.168.93.128"
+    "127.0.0.1"
 ]
 
 ADMIN_PATH = 'user-bruno/'

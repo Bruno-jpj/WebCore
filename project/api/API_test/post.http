@@ -1,0 +1,12 @@
+# Testing the API Endpoint 
+
+# POST request with REST-Client extension
+
+POST 127.0.0.1:8000/requests/info HTTP/1.1
+Content-Type: : application/json
+
+{
+    "machine_code": "pp23240",
+    "machine_type": "600",
+    "machine_alarm": "temperatura"
+}

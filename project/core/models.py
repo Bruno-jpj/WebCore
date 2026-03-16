@@ -25,11 +25,19 @@ class AllarmiSoluzioni(models.Model):
     img = models.ImageField(upload_to="images/", max_length=255, blank=True, null=True)
     video = models.FileField(upload_to="videos/", max_length=255, blank=True, null=True)
 
-    # permette di personalizzare comportamenti che non riguardano i campi specifici, 
-    # ma la struttura della tabella nel database o la gestione dei dati.
+    # is an inner class to configure metadata - extra options with the model
+    # it does not define databses fiels, instead, it controls things like table names, ordering, permission and etc.
     class Meta:
-        managed = True
-        db_table = 'allarmi_soluzioni'
+        managed = True # management of DB table [ False = Django can't create or modify it]
+        db_table = 'allarmi_soluzioni' # DB table name personalized, but if you a personal DB must be the same name
+        # unique_together = ("titolo") # unique constraint like MySQL
+        '''
+        - add a costraint like in MySQL
+        constraint = [
+            models.UniqueConstraint(fields=["titolo"], name="titolo_allarme_unico"),
+            models.CheckConstraint(check=models.Q(titolo__length__gt=5), name="titolo_min_8_caratteri")
+        ]
+        '''
     
     def get_text_by_lang(self, lang_code):
         return getattr(self, lang_code, "")

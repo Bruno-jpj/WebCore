@@ -18,6 +18,10 @@ class ApiKeys(models.Model):
     class Meta:
         managed = False
         db_table = 'api_keys'
+        # abstract = False - abstarct model, if True doens't create the table
+    
+    def __str__(self):
+        return f"KEY: {self.header} - ID: {self.id}"
 
 
 class ApiRequestLogs(models.Model):
@@ -31,6 +35,9 @@ class ApiRequestLogs(models.Model):
     class Meta:
         managed = False
         db_table = 'api_request_logs'
+        permissions = [
+            ("puo_accedere","Puo archiviare i dati e fare richieste")
+        ]
 
 
 class CoreRequestLogs(models.Model):
@@ -44,3 +51,9 @@ class CoreRequestLogs(models.Model):
     class Meta:
         managed = False
         db_table = 'core_request_logs'
+        ordering = ["-created_at","endpoint"] # predefined order (first desc date, after by endpoint)
+        '''
+        indexes = [
+            models.Index(fields=["created_at"])
+        ]
+        '''

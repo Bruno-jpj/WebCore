@@ -1,3 +1,7 @@
+# TEST VIEWS WHERE I PASTE WHAT I THINK CAN BE RE/USED OR NEW LOGIC
+
+# NOT THE OFFICIAL VIEW, PLEASE DON'T USE IT
+
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect, requires_csrf_token
 from django.contrib.auth.hashers import make_password, check_password
@@ -39,6 +43,7 @@ from api.serializers import InformazioniSerializers
 
 from enum import Enum
 from collections import namedtuple
+from googletrans import Translator
 
 import json
 import configparser

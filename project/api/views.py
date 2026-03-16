@@ -26,7 +26,7 @@ from core.models import (
 from enum import Enum
 import json
 
-# Create your views here.
+# here there is all the logic 
 
 '''
 ex. received JSON: {
@@ -36,42 +36,45 @@ ex. received JSON: {
 }
 '''
 class RequestEvent(APIView):
-    # uso una def post perchè nel mentre che il client invia i dati al server; 
-    # il server li rimanda indietro nello stesso endpoint
+    # I use a def POST because the client send data to the server
+    # the server work with them, return a response and send it back
     def post(self, request: Request):
         try:
+            # see if the API received any data by printing it
             received_data = request.data
             print(f"API Received Data: [{received_data}]")
 
             '''
-            Devo fare il migrate delle tabelle di log
-
             api_log = ApiRequestLog.objects.create(
-                endpoint = "info/",
+                endpoint = URL_Request,
                 payload = received_data,
                 response_status = 200
+                header = Client_API_Key
             )
 
             api_log.save()
             '''
-
+            # pass the data to the logic and retrieve it
             result = handle_api_call(received_data)
 
-            return Response(result) # send away JSON serialized data
+            # send away JSON serialized data
+            return Response(result) 
         except Exception as e:
+            # in case of exception I throw an error and HTTP status code 500[Server Error]
             print(f"Server Error: {e}")
             return Response({"error": str(e)}, status=500)
     #
 #
 def handle_api_call(api_data: dict):
+    # receive data from the API, trying to unpack it [ key: value ]
     machine_code = api_data.get("machine_code")
     machine_type = api_data.get("machine_type")
     machine_alarm = api_data.get("machine_alarm")
 
-    # logic 
+    # print what I received
     print(f"Data Received: \n {machine_code} \n {machine_type} \n {machine_alarm}")
 
-    # get data from DB
+    # filter / get data from the DB, like a SQL query and creating 2 obj with the result
     try:
         machines_obj = Macchinari.objects.get(piano_produzione = machine_code)
         alarms_obj = AllarmiSoluzioni.objects.get(titolo = machine_alarm)
@@ -92,15 +95,18 @@ def handle_api_call(api_data: dict):
     except Informazioni.DoesNotExist:
         return {"ERROR":f"Non trovato Informazioni riguardo MachineID: [{machines_obj.id}] AllarmeID: [{alarms_obj.id}]"}'''
 
-    # query filter logic
+    # another filter like select with joins on foreign key
     info_queryset = Informazioni.objects.filter(
         id_macchinario = machines_obj.id, 
         id_allarme = alarms_obj.id
     )
 
+    # print the result of the query
     print(f"info_queryset: \n [{info_queryset}]")
-
+    
+    # init a serializer to transform data in a JSON likeformat
     serializer = InformazioniSerializers(info_queryset, many=True)
     
+    # send the result to the API
     return {"status": "ok", "data": serializer.data}    
 #
