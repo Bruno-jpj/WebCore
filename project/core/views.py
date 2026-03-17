@@ -598,8 +598,7 @@ class ManualLogic(View):
                 messages.info(request, "Allarme eliminato sia nel DB e nel JSON")
         else:
             messages.info(request, "Allarme non presente sia nel DB che nel JSON")
-    
-    # TODO: CHECK logica
+    # 
     def create_download_pdf(self, request: HttpRequest, alarm_list: list, chosen_language):
         
         alarms_data = []
@@ -634,26 +633,7 @@ class ManualLogic(View):
             pdf_file,
             content_type="application/pdf",
             headers={'Content-Dispostion': 'attachment; filename="allarmi_soluzioni.pdf" '}
-        )
-        
-    # TODO: check why it doesn't work 
-    def create_download_csv(self, request: HttpRequest, search_title):
-
-        response = HttpResponse(content_type="text/csv")
-        response["Content-Disposition"] = 'attachment; filename="alarms.csv"'
-
-        writer = csv.writer(response)
-
-        # header
-        writer.writerow(["title", "solution"])
-
-        alarms = AllarmiSoluzioni.objects.all()
-
-        for a in alarms:
-            writer.writerow([a.titolo, a.text_it])
-
-        return response
-    #
+        )   
 #
 # Contacts Page Logic
 def contacts(request: HttpRequest):
