@@ -26,15 +26,34 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 load_dotenv(override=True)
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+# SECURITY - IN PRODUZIONE METTI A TRUE, LEVA I COMMENTI E LASCIA DEBUGA A FALSE:
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# this key is used for csrf_token protection
+SECRET_KEY = os.getenv("SECRET_KEY", "x2+-ry!mo65p2jq-^i+2acrgf7$ex&g@6x%jf+n6tkp!bb$59f")
+
+SECURE_SSL_REDIRECT = False # if is True all the HTTP request will be automatically converted in HTTPS
+SECURE_SESSION_COOCKIE=False # Il cookie della sessione viene inviato solo su HTTPS.
+CSRF_COOKIE_SECURE = False # il coockie CSRF viene inviato solo su HTTPS
+
+# previene l'accesso ai coockie via JS (protezione contro XSS)
+SESSION_COOKIE_HTTPONLY = False
+CSRF_COOKIE_HTTPONLY = False
+
+SECURE_BROWSER_XSS_FILTER = False # abilità filtro XSS nel browser
+# X_FRAME_OPTIONS = 'DENY' # impedisce che il sito sia incorporato in iframe -> clickjacking
+
+SECURE_HSTS_SECONDS = 0 # valore in secondi per cui il browser ricorderà di usare solo HTTPS per il sito
+SECURE_HSTS_INCLUDE_SUBDOMAIN = False # opz. per includere i subdomain
+SECURE_HSTS_PRELOAD = False # opz. preload dei browser
+
 # DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = True
+DEBUG = False
 
 # if debug = false, must have allowed_hosts on
+# solo i domini elencati posso accedere al sito
 ALLOWED_HOSTS = [
-    "*"
+    "*", # all
+    "192.168.93.128"
 ]
 
 ADMIN_PATH = 'user-bruno/'
@@ -71,6 +90,7 @@ if DEBUG:
     )
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,11 +179,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+#'''
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR/'static'
 ]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+'''
+STATIC_URL = 'staticfiles/'
+STATICFILES_DIRS = [
+    BASE_DIR/'staticfiles'
+]
+#'''
+
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Static files serving without Ngingx
+STORAGES = {
+    "staticfiles":{
+        "BACKEND":"whitenoise.storage.CompressedManifestStaticFilesStorage"
+    }
+}
