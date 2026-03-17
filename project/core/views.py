@@ -48,6 +48,7 @@ from enum import Enum
 from collections import namedtuple
 from googletrans import Translator 
 from weasyprint import HTML
+from pathlib import Path
 
 import json
 import os
@@ -174,9 +175,9 @@ def logout_view(request: HttpRequest):
 class ManualLogic(View): 
 
     # define the JSON file path - it doesn't like relative path - 
-    JSON_PATH = r'static\json\allarmi_soluzioni.json'
-    CONF_PATH = r'static\json\conf.json'
-    JSON_BACK_PATH = r'static\json\allarmi_soluzioni_backup.json'
+    JSON_PATH = settings.DATA_ROOT / "allarmi_soluzioni.json"
+    CONF_PATH = settings.DATA_ROOT / "conf.json"
+    JSON_BACK_PATH = settings.DATA_ROOT / "allarmi_soluzioni_backup.json"
     
     JM = JsonManager(JSON_PATH, CONF_PATH, JSON_BACK_PATH)
 
@@ -311,7 +312,6 @@ class ManualLogic(View):
         
         # alarm check_box when updating / deleting
         alarm_list: list = request.POST.getlist("aa_checkBox") # taking the entire list
-        alarm_list_value = alarm_list[0]
         
         # created a dict with the values taken from the chekbox
         chk_dict = {
@@ -340,14 +340,14 @@ class ManualLogic(View):
             elif action == 'delete':
                 
                 # call delete func
-                self.delete_alarm(request, title, alarm_file, alarm_list_value)
+                self.delete_alarm(request, title, alarm_file, alarm_list)
             elif action == 'update': 
                 
                 # take from the session the value from the GET def
                 search_title = request.session.get('search_text')
 
                 # call the update
-                self.update_alarm(request, search_title, title, solution_text, img, video, chk_dict, alarm_list_value)
+                self.update_alarm(request, search_title, title, solution_text, img, video, chk_dict, alarm_list)
                 
                 # after updating flush the session
                 del request.session['search_text']
@@ -516,9 +516,11 @@ class ManualLogic(View):
             
         messages.success(request, "Allarme creato correttamente")
     #
-    def update_alarm(self, request: HttpRequest, search_title, title, solution_text, img, video, chk_dict: dict, alarm_list_value):
+    def update_alarm(self, request: HttpRequest, search_title, title, solution_text, img, video, chk_dict: dict, alarm_list):
         
         # IN ANY CASE YOU WANT THE USER TO UPDATE THE ALARMS WITH THE SEARCH-TITLE BAR JUST CHANGE 'aa_checkBox' WITH 'search_title'
+        
+        alarm_list_value = alarm_list[0]
         
         qs = AllarmiSoluzioni.objects.filter(titolo=alarm_list_value)
 
@@ -572,11 +574,13 @@ class ManualLogic(View):
         else:
             messages.info(request, "Nessun campo selezionato o fornito da aggiornare")
     # 
-    def delete_alarm(self, request: HttpRequest, title, alarm_file, alarm_list_value):
+    def delete_alarm(self, request: HttpRequest, title, alarm_file, alarm_list):
         
         # IN ANY CASE YOU WANT THE USER TO DELETE THE ALARMS WITH THE INSERT-TITLE BAR JUST CHANGE 'aa_checkBox' WITH 'title'
 
         alarm_set = set(alarm_file["lista_allarmi"])
+        
+        alarm_list_value = alarm_list[0]
 
         if alarm_list_value in alarm_set and AllarmiSoluzioni.objects.filter(titolo = alarm_list_value).exists():
 
@@ -595,7 +599,7 @@ class ManualLogic(View):
         else:
             messages.info(request, "Allarme non presente sia nel DB che nel JSON")
     
-    # TODO: ORA checkBox è una lista rifare la logica
+    # TODO: CHECK logica
     def create_download_pdf(self, request: HttpRequest, alarm_list: list, chosen_language):
         
         alarms_data = []
@@ -609,8 +613,11 @@ class ManualLogic(View):
             alarms_data.append({
                 "titolo": alarm.titolo,
                 "solution": getattr(alarm, chosen_language),
-                "img": alarm.img
+                "img": request.build_absolute_uri(alarm.img.url) if alarm.img else None
             })
+            
+            # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
+            # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
             
         html_string = render_to_string(
             TEMPLATE.PDF_TEMPLATE.value,
@@ -619,13 +626,14 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        HTML(string=html_string).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
         return FileResponse(
             pdf_file,
-            content_type="application/pdf"
+            content_type="application/pdf",
+            headers={'Content-Dispostion': 'attachment; filename="allarmi_soluzioni.pdf" '}
         )
         
     # TODO: check why it doesn't work 

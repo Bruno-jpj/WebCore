@@ -34,7 +34,7 @@ DEBUG = True
 
 # if debug = false, must have allowed_hosts on
 ALLOWED_HOSTS = [
-    "127.0.0.1"
+    "*"
 ]
 
 ADMIN_PATH = 'user-bruno/'
@@ -122,6 +122,7 @@ DATABASES = {
     }
 }
 
+DATA_ROOT = BASE_DIR / "database" / "json"
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
