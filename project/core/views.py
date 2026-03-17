@@ -518,7 +518,7 @@ class ManualLogic(View):
     #
     def update_alarm(self, request: HttpRequest, search_title, title, solution_text, img, video, chk_dict: dict, alarm_list):
         
-        # IN ANY CASE YOU WANT THE USER TO UPDATE THE ALARMS WITH THE SEARCH-TITLE BAR JUST CHANGE 'aa_checkBox' WITH 'search_title'
+        # IN ANY CASE YOU WANT THE USER TO UPDATE THE ALARMS WITH THE SEARCH-TITLE BAR JUST CHANGE 'alarm_list_value' WITH 'search_title'
         
         alarm_list_value = alarm_list[0]
         
@@ -535,8 +535,6 @@ class ManualLogic(View):
             fields_to_update["titolo"] = title
 
         # CHECK SOLUTION - OK
-        # Problem:
-        ### if you don't do the search with the correct name the session pass the wrong allarm name and it doesn't work
         if chk_dict.get("solution") and solution_text:
             fields_to_update["text_it"] = solution_text
             
