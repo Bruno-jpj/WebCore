@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Page</title>
+        <style>
+            body{
+                font-family: Arial;
+            }
+
+            .title{
+                font-size: 28px;
+                margin-bottom:20px;
+            }
+
+            .alarm{
+                margin-bottom:40px;
+            }
+
+            img{
+                width:300px;
+                margin-top:10px;
+            }
+        </style>
+    </head>
+    <body>
+        {% for alarm in alarms %}
+            <div>
+                <h2> {{alarm.titolo}} </h2>
+                <p>
+                    {{alarm.solution}}
+                </p>
+                {% if alarm.img %}
+                    <img src="{{alarm.img.path}}"
+                {% endif %}
+            </div>
+        {% endfor %}
+    </body>
+</html>

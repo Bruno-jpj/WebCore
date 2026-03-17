@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
+from django.template.loader import render_to_string
 
 from django.http import (
     Http404,
@@ -45,7 +46,8 @@ from .utils.json_manager import JsonManager
 
 from enum import Enum
 from collections import namedtuple
-from googletrans import Translator
+from googletrans import Translator 
+from weasyprint import HTML
 
 import json
 import os
@@ -65,6 +67,7 @@ class TEMPLATE(Enum):
     CONTACTS = 'contacts.html'
     ACCOUNT = 'account.html'
     LINE = 'line.html'
+    PDF_TEMPLATE = 'alarm_solution_pdf_template.html'
 #
 # Index Page Logic
 @check_log_in
@@ -355,7 +358,7 @@ class ManualLogic(View):
                 chosen_language = request.session.get('chosen_language')
 
                 # call the func and return the result
-                return self.create_download_pdf(request, search_title, chosen_language, alarm_list_value)
+                return self.create_download_pdf(request, alarm_list, chosen_language)
                 # del request.session['search_text']
             #
         except Exception as e:
@@ -593,64 +596,38 @@ class ManualLogic(View):
             messages.info(request, "Allarme non presente sia nel DB che nel JSON")
     
     # TODO: ORA checkBox è una lista rifare la logica
-    def create_download_pdf(self, request: HttpRequest, search_title, chosen_language: str, alarm_list: list):
+    def create_download_pdf(self, request: HttpRequest, alarm_list: list, chosen_language):
         
-        # create ByteStream Buffer
-        buffer = io.BytesIO()
-        
-        # list of the elements in the PDF
-        elements: list = []
-
-        # create the document
-        document = SimpleDocTemplate(buffer, pagesize=A4, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
+        alarms_data = []
         
         for t in alarm_list:
+            alarm = AllarmiSoluzioni.objects.filter(titolo = t).first()
             
-            # .first() is a metod which is used with the queryset to return the first obj who correspondto the query, or None if there isn't any.
-            alarms = AllarmiSoluzioni.objects.filter(titolo=t).first()
+            if not alarm:
+                continue
             
-            if not alarms:
-                continue  # alarm not found jump to the next one
+            alarms_data.append({
+                "titolo": alarm.titolo,
+                "solution": getattr(alarm, chosen_language),
+                "img": alarm.img
+            })
             
-            # defined styles
-            styles = getSampleStyleSheet()
-
-            # custom styles
-            custom_styles = ParagraphStyle(
-                'CustomStyle',
-                parent=styles['Normal'],
-                fontName="Helvetica",
-                fontSize=12,
-                leading=16,
-                spaceAfter=10,
-                textColor='black'
-            )
-            
-            # create paragraphs - support HTML tags
-            title = Paragraph("Soluzione Allarme", styles['Title'])
-            text_title = Paragraph(alarms.titolo, styles['Normal'])
-            text_solution = Paragraph(getattr(alarms, chosen_language), custom_styles) # pass chosen__language to obj dinamically
-
-
-            # add elements
-            elements.append(title)
-            elements.append(Spacer(1, 0.2 * mm)) # add vertical space
-            elements.append(text_title)
-            elements.append(text_solution)
-            
-            if alarms.img:
-                # joinig MEDIA_ROOT [ BASE_DIR / "media" ] with alarms.img.name [ images/fotocellula.png ] => 
-                image_path = os.path.join(settings.MEDIA_ROOT, alarms.img.name.lstrip("\\/"))
-                image = Image(image_path, width=200, height=150)
-                elements.append(image)
-
-        # Finish up
-        document.build(elements)
-        buffer.seek(0)
-
-        # Return
-        return FileResponse(buffer, as_attachment=True, filename="Allarme_Soluzioni.pdf")
-    
+        html_string = render_to_string(
+            TEMPLATE.PDF_TEMPLATE.value,
+            {"alarms": alarms_data}
+        )
+        
+        pdf_file = io.BytesIO()
+        
+        HTML(string=html_string).write_pdf(pdf_file)
+        
+        pdf_file.seek(0)
+        
+        return FileResponse(
+            pdf_file,
+            content_type="application/pdf"
+        )
+        
     # TODO: check why it doesn't work 
     def create_download_csv(self, request: HttpRequest, search_title):
 
