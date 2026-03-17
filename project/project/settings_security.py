@@ -31,8 +31,23 @@ load_dotenv(override=True)
 # this key is used for csrf_token protection
 SECRET_KEY = os.getenv("SECRET_KEY", "x2+-ry!mo65p2jq-^i+2acrgf7$ex&g@6x%jf+n6tkp!bb$59f")
 
+SECURE_SSL_REDIRECT = False # if is True all the HTTP request will be automatically converted in HTTPS
+SECURE_SESSION_COOCKIE=False # Il cookie della sessione viene inviato solo su HTTPS.
+CSRF_COOKIE_SECURE = False # il coockie CSRF viene inviato solo su HTTPS
+
+# previene l'accesso ai coockie via JS (protezione contro XSS)
+SESSION_COOKIE_HTTPONLY = False
+CSRF_COOKIE_HTTPONLY = False
+
+SECURE_BROWSER_XSS_FILTER = False # abilità filtro XSS nel browser
+# X_FRAME_OPTIONS = 'DENY' # impedisce che il sito sia incorporato in iframe -> clickjacking
+
+SECURE_HSTS_SECONDS = 0 # valore in secondi per cui il browser ricorderà di usare solo HTTPS per il sito
+SECURE_HSTS_INCLUDE_SUBDOMAIN = False # opz. per includere i subdomain
+SECURE_HSTS_PRELOAD = False # opz. preload dei browser
+
 # DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = True
+DEBUG = False
 
 # if debug = false, must have allowed_hosts on
 # solo i domini elencati posso accedere al sito
