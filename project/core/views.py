@@ -44,7 +44,7 @@ from .utils.json_manager import JsonManager
 from enum import Enum
 from collections import namedtuple
 from googletrans import Translator 
-# from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
+from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
 from pathlib import Path
 
 import json
@@ -621,7 +621,7 @@ class ManualAdminLogic(View):
         
         pdf_file = io.BytesIO()
         
-        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
@@ -850,7 +850,7 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        # HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
