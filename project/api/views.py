@@ -86,13 +86,12 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         machine_code = api_data.get("machine_code") # pp23240
         machine_type = api_data.get("machine_type") # 600
         machine_alarm = api_data.get("machine_alarm") # ALM_Temperaura_1000
+        
     except Exception as e:
         print(f"valori non trovati nella request: [{e}]")
         
-    print(f"\nData 12 Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
-    
+    print(f"\nData Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
 
-    
     # filter / get data from the DB, like a SQL query and creating 2 obj with the result
     try:
         machine_obj = Macchinari.objects.get(piano_produzione = machine_code)
