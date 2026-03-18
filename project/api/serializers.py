@@ -3,7 +3,6 @@
 from core.models import (
     Macchinari,
     AllarmiSoluzioni,
-    Componenti,
     Informazioni
 )
 
@@ -13,26 +12,25 @@ class MacchinariSerializers(serializers.ModelSerializer):
     class Meta:
         model = Macchinari
 
-        fields = ["piano_produzione","categoria","tipo"]
+        fields = "__all__"
 #
-class ComponentiSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Componenti
-
-        fields = ["descrizione_pezzo"]
 #
 class AllarmiSerializers(serializers.ModelSerializer):
     class Meta:
         model = AllarmiSoluzioni
 
-        fields = ["titolo"]
+        fields = "__all__"
 #
 class InformazioniSerializers(serializers.ModelSerializer):
+    
+    id_macchinario = MacchinariSerializers(read_only=True)
+    id_allarme = AllarmiSerializers(read_only=True)
+    
     class Meta:
         # reference to the model
         model = Informazioni
 
         # info to serialize and return
-        # fields = ["id_macchinario","id_allarme","id_componente","soluzione_problema","path_img","path_video"]
-        fields = "__all__"
+        # fields = ["id_macchinario","id_allarme"]
+        fields = ['id', 'id_macchinario', 'id_allarme']
 #

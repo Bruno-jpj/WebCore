@@ -110,57 +110,6 @@ class AuthUserUserPermissions(models.Model):
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
 
-
-class Componenti(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    nome = models.CharField(max_length=255)
-    chiave_componente = models.CharField(unique=True, max_length=255)
-    codice_fb = models.CharField(unique=True, max_length=255)
-    cod_gestionale = models.CharField(unique=True, max_length=255)
-    descrizione = models.CharField(max_length=255)
-    tipo = models.CharField(max_length=128)
-
-    class Meta:
-        managed = False
-        db_table = 'componenti'
-
-class DatiCilindri(models.Model):
-    id = models.BigAutoField(primary_key=True)
-
-    class Meta:
-        managed = False
-        db_table = 'dati_cilindri'
-
-
-class DatiManutenzione(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    id_motore = models.ForeignKey('DatiMotori', models.DO_NOTHING, db_column='id_motore')
-    id_cilindro = models.ForeignKey(DatiCilindri, models.DO_NOTHING, db_column='id_cilindro')
-    id_riduttore = models.ForeignKey('DatiRiduttori', models.DO_NOTHING, db_column='id_riduttore')
-    id_macchinario = models.ForeignKey('Macchinari', models.DO_NOTHING, db_column='id_macchinario')
-    id_manutenzione = models.ForeignKey('Manutenzioni', models.DO_NOTHING, db_column='id_manutenzione')
-
-    class Meta:
-        managed = False
-        db_table = 'dati_manutenzione'
-
-
-class DatiMotori(models.Model):
-    id = models.BigAutoField(primary_key=True)
-
-    class Meta:
-        managed = False
-        db_table = 'dati_motori'
-
-
-class DatiRiduttori(models.Model):
-    id = models.BigAutoField(primary_key=True)
-
-    class Meta:
-        managed = False
-        db_table = 'dati_riduttori'
-
-
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -205,41 +154,27 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-
-class Informazioni(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    id_macchinario = models.ForeignKey('Macchinari', models.DO_NOTHING, db_column='id_macchinario')
-    id_allarme = models.ForeignKey(AllarmiSoluzioni, models.DO_NOTHING, db_column='id_allarme')
-    id_componente = models.ForeignKey(Componenti, models.DO_NOTHING, db_column='id_componente')
-
-    class Meta:
-        managed = False
-        db_table = 'informazioni'
-
-
 class Macchinari(models.Model):
     id = models.BigAutoField(primary_key=True)
     piano_produzione = models.CharField(unique=True, max_length=128)
     categoria = models.CharField(max_length=128)
     tipo = models.CharField(max_length=128)
     tipo_plc = models.CharField(max_length=64, blank=True, null=True)
-    id_manutenzione = models.ForeignKey('Manutenzioni', models.DO_NOTHING, db_column='id_manutenzione')
+    
 
     class Meta:
         managed = False
         db_table = 'macchinari'
 
-
-class Manutenzioni(models.Model):
+class Informazioni(models.Model):
     id = models.BigAutoField(primary_key=True)
-    codice_manutenzione = models.CharField(unique=True, max_length=128)
-    tipo = models.CharField(max_length=128)
-    priorita = models.CharField(max_length=32)
+    id_macchinario = models.ForeignKey(Macchinari, on_delete=models.CASCADE, db_column='id_macchinario')
+    id_allarme = models.ForeignKey(AllarmiSoluzioni, on_delete=models.CASCADE, db_column='id_allarme')
+    
 
     class Meta:
         managed = False
-        db_table = 'manutenzioni'
-
+        db_table = 'informazioni'
 
 class Users(models.Model):
     id = models.BigAutoField(primary_key=True)

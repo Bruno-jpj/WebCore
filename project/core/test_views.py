@@ -34,7 +34,6 @@ from .models import (
     Macchinari,
     Informazioni,
     AllarmiSoluzioni,
-    Componenti,
     Users,
     LanguageModel
 )
@@ -464,7 +463,7 @@ class ManualLogic(View):
 
         return redirect(request.path)
     
-    
+    '''
  def create_download_csv(self, request: HttpRequest, search_title):
     # create ByteStream Buffer
     buffer = io.BytesIO()
@@ -522,4 +521,4 @@ class ManualLogic(View):
     buffer.seek(0)
 
     # Return - as_attachment=False [if False tells to not download but to open inside the browser]
-    return FileResponse(buffer, as_attachment=False, filename="Allarme_Soluzioni.pdf")
+    return FileResponse(buffer, as_attachment=False, filename="Allarme_Soluzioni.pdf")'''

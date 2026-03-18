@@ -180,13 +180,8 @@ A cosa servono le views in MySQL:
 create view complete_info as
 select informazioni.id as id_risposta,
 macchinari.piano_produzione as piano_produzione, 
-allarmi.titolo as titolo_allarme, 
-allarmi.descrizione as descrizione_allarme,
-componenti.nome as nome_componente,
-componenti.codiceFB as codice_fb,
-manutenzioni.codice_manutenzione as codice_manutenzione,
-manutenzioni.priorita as priorita_manutenzione,
-manutenzioni.tipo as tipo_manutenzione
+allarmi_soluzioni.titolo as titolo_allarme, 
+allarmi_soluzioni.descrtext_it as soluzione,
 from informazioni join macchinari on informazioni.id_macchinario = macchinari.id
 join componenti on informazioni.id_componente = componenti.id
 join allarmi on informazioni.id_allarme = allarmi.id

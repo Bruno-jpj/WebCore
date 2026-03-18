@@ -8,10 +8,12 @@ import time
 url = "http://127.0.0.1:8000/request/info/"
 
 # dati da inviare
-post_data = {
-    "machine_code": "pp23240",
-    "machine_type": "600",
-    "machine_alarm": "temperatura"
+post_data ={
+    "client_key": "api-key-test0",
+    "language": "text_it",
+    "machine_code": "pp23274",
+    "machine_type": "1200",
+    "machine_alarm": "allarme908"
 }
 
 try:

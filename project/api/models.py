@@ -29,8 +29,8 @@ class ApiRequestLogs(models.Model):
     endpoint = models.CharField(max_length=255)
     payload = models.JSONField()
     response_status = models.IntegerField()
-    created_at = models.DateTimeField()
-    api = models.ForeignKey(ApiKeys, models.DO_NOTHING)
+    created_at = models.DateTimeField(auto_now=True)
+    api = models.ForeignKey(ApiKeys, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -46,7 +46,7 @@ class CoreRequestLogs(models.Model):
     payload = models.JSONField()
     response_status = models.IntegerField()
     created_at = models.DateTimeField()
-    api = models.ForeignKey(ApiKeys, models.DO_NOTHING)
+    api = models.ForeignKey(ApiKeys, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
