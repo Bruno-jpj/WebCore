@@ -22,6 +22,7 @@ from core.views import (
     logout_view,
     signup,
     ManualLogic,
+    ManualAdminLogic,
     account,
     contacts,
     line
@@ -42,6 +43,7 @@ urlpatterns = [
     path('signup/', signup, name="signup"),
     path('logout/', logout_view, name="logout_view"),
     path('manual/', ManualLogic.as_view(), name="manual"),
+    path('manual-admin/', ManualAdminLogic.as_view(), name="manual_admin"),
     path('account/', account, name="account"),
     path('contacts/', contacts, name="contacts"),
     path('line/', line, name="line"),

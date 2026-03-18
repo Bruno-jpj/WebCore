@@ -62,6 +62,7 @@ class TEMPLATE(Enum):
     LOGIN = 'log_in.html'
     SIGNUP = 'sign_up.html'
     MANUAL_PAGE = 'manual.html'
+    MANUAL_ADMIN_LOGIC = 'manual_admin.html'
     CONTACTS = 'contacts.html'
     ACCOUNT = 'account.html'
     LINE = 'line.html'
@@ -169,7 +170,7 @@ def logout_view(request: HttpRequest):
     return redirect("login")
 #
 # Manual Page Logic
-class ManualLogic(View): 
+class ManualAdminLogic(View): 
 
     # define the JSON file path - it doesn't like relative path - 
     JSON_PATH = settings.DATA_ROOT / "allarmi_soluzioni.json"
@@ -287,7 +288,7 @@ class ManualLogic(View):
             'language_dict': LanguageModel.LANGUAGE_CHOICE.items()
         }
 
-        return render(request, TEMPLATE.MANUAL_PAGE.value, context)
+        return render(request, TEMPLATE.MANUAL_ADMIN_LOGIC.value, context)
     #
     def post(self, request: HttpRequest):
         
@@ -620,7 +621,7 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        # HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
@@ -639,3 +640,224 @@ def account(request: HttpRequest):
 # Line Page Logic
 def line(request: HttpRequest):
     return render(request, TEMPLATE.LINE.value)
+#
+class ManualLogic(View):
+    
+    # define the JSON file path - it doesn't like relative path - 
+    JSON_PATH = settings.DATA_ROOT / "allarmi_soluzioni.json"
+    CONF_PATH = settings.DATA_ROOT / "conf.json"
+    JSON_BACK_PATH = settings.DATA_ROOT / "allarmi_soluzioni_backup.json"
+    
+    JM = JsonManager(JSON_PATH, CONF_PATH, JSON_BACK_PATH)
+    
+    def get(self, request: HttpRequest):
+        
+        # load JSON file
+        cfg_file: dict = self.JM.read_conf()
+        alarm_file: dict = self.JM.read_alarm_json()
+        
+        # give a default language 
+        chosen_language = request.GET.get('language', 'text_it')
+
+        # take all element from the DB table and all JSON key alarm title
+        alarm_queryset = AllarmiSoluzioni.objects.all()
+        alarm_json_set = set(alarm_file["lista_allarmi"])
+
+        # check the number of element of DB table and JSON key
+        alarm_db_count = alarm_queryset.count()
+        alarm_json_count = len(alarm_json_set)
+        
+        print(f"Database: {alarm_db_count} | JSON: {alarm_json_count}")
+
+        # check the DB element with JSON file and in case upload: Sync JSON -> DB
+        if (alarm_db_count == alarm_json_count) and ((cfg_file["db_update"] == 'true') and (cfg_file["json_update"] == 'true')):
+            
+            messages.info(request, f"INFO: Trovato {alarm_db_count} elementi nel DB")
+
+            # if one of the 2 is 0 - try to load them
+            if (alarm_db_count == 0 or alarm_json_count == 0):
+                messages.info(request, f"INFO: Elementi nel DB {alarm_db_count} | nel JSON {alarm_json_count}")
+                messages.info(request, "INFO: Inizio procedura di recupero")
+                
+                # set conf var to false so it doens't pass the first if-check
+                cfg_file["db_update"] == 'false'
+                cfg_file["json_update"] == 'false'
+                
+                # read + load backup JSON file 
+                alarm_file: dict = self.JM.read_backup_json()
+                
+                # pass the backup JSON file to the alarm_JSON and pass the dict to the local-var
+                alarm_file: dict = self.JM.write_alarm_json(alarm_file)
+        #
+        # check if the key in the JSON are more than the KEY in the DB
+        elif alarm_db_count < alarm_json_count:
+            try:
+                # upload JSON data into the DB
+                self.upload_json(alarm_file)
+
+                # pass the conf var to True
+                cfg_file['json_update'] = 'true'
+                cfg_file['db_update'] = 'true'
+                
+                self.JM.write_conf(cfg_file)
+
+            except Exception as e:
+                messages.error(request, f"Errore upload: {e}")
+                
+            finally:
+                messages.info(request, "INFO: Finito...Ricarica la pagina e controlla i risultati...")
+        else:
+            # caso incoerenza DB > JSON
+            
+            # delete all the element in the table
+            alarm_queryset.delete()
+
+            cfg_file['json_update'] = 'false'
+            cfg_file['db_update'] = 'false'
+
+            messages.warning(request, "DB resettato. Ricarica la pagina.")
+
+        # init search form
+        search_form = SearchAlarmsForm(request.GET)
+
+        # declare the dict to pass it to the context
+        alarm_queryset_filtered = None
+
+        # check if the form return no errors
+        if search_form.is_valid():
+            
+            # Is a dictionary that contains the validated and converted values from a submitted form after it has passed validation.
+            # It is only available after you call form.is_valid() — otherwise it will not exist or will be empty.
+            search_text = search_form.cleaned_data.get("search_text")
+
+            if search_text:
+                
+                # put into the session the search_text from the search-bar
+                # in this case is not a table but a value which exists only in the session
+                request.session['search_text'] = search_text
+
+                # search the string is contained, it's case-insensitive and it performs a partial match
+                alarm_queryset_filtered = alarm_queryset.filter(
+                    titolo__icontains = search_text
+                    ) 
+        else:
+            # reset the form
+            search_form = SearchAlarmsForm()
+
+        # Search all DB data - need a name in the HTML btn and a value to check
+        if request.GET.get("all") is not None:
+            alarm_queryset_filtered = alarm_queryset
+
+        # put into the session the chosen language from the drop-down menu in the manual.html
+        request.session['chosen_language'] = chosen_language
+
+        # pass the context to the page
+        context = {
+            'search_form': search_form,
+            'alarms_filtered': alarm_queryset_filtered,
+            'chosen_language': chosen_language,
+            'language_dict': LanguageModel.LANGUAGE_CHOICE.items()
+        }
+
+        return render(request, TEMPLATE.MANUAL_PAGE.value, context)
+    #
+    def post(self, request: HttpRequest):
+        
+        # load JSON file
+        cfg_file: dict = self.JM.read_conf()
+        alarm_file: dict = self.JM.read_alarm_json()
+        
+        # alarm check_box when updating / deleting
+        alarm_list: list = request.POST.getlist("aa_checkBox") # taking the entire list
+        
+        # take the request name from the button in the form
+        # if is not 'action' it will return error in the code below
+        action = request.POST.get('action')        
+        
+        try:
+            if action == 'download':
+                
+                # take the values from the session from the GET def
+                search_title = request.session.get('search_text')
+                chosen_language = request.session.get('chosen_language')
+
+                # call the func and return the result
+                return self.create_download_pdf(request, alarm_list, chosen_language)
+            #
+        except Exception as e:
+            messages.error(request, f"ERROR: POST Exception [{e}]")
+
+        return redirect(request.path)
+    #
+    def upload_json(self, alarm_file: dict):
+        
+        # create a set of the key of the JSON dict
+        alarm_set = set(alarm_file["lista_allarmi"])
+
+        for alarm_name in alarm_set:
+            try: 
+                # search if the alarm exists in the DB
+                temp_obj = AllarmiSoluzioni.objects.get(titolo = alarm_name)
+                print(f"Già esiste: [{temp_obj}]")
+
+            except AllarmiSoluzioni.DoesNotExist:
+                try:
+                    # create the object and auto-save it
+                    AllarmiSoluzioni.objects.create(
+                        titolo = alarm_name,
+                        text_it = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["it"],
+                        text_eng = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["eng"],
+                        text_esp = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["esp"],
+                        text_de = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["de"],
+                        text_fr = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["fr"],
+                        text_dk = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["dk"],
+                        text_pt = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["pt"],
+                        text_ru = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["ru"],
+                        text_pl = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["pl"],
+                        text_no = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["no"],
+                        text_se = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["se"],
+                        img = alarm_file["lista_allarmi"][alarm_name]["media"]["img"]["path_file"],
+                        video = alarm_file["lista_allarmi"][alarm_name]["media"]["video"]["path_file"]
+                        )
+                    #
+                except Exception as e:
+                    print(f"Upload from Json Except: [{e}]")
+        #
+    #
+    def create_download_pdf(self, request: HttpRequest, alarm_list: list, chosen_language):
+        
+        alarms_data = []
+        
+        for t in alarm_list:
+            alarm = AllarmiSoluzioni.objects.filter(titolo = t).first()
+            
+            if not alarm:
+                continue
+            
+            alarms_data.append({
+                "titolo": alarm.titolo,
+                "solution": getattr(alarm, chosen_language),
+                "img": request.build_absolute_uri(alarm.img.url) if alarm.img else None
+            })
+            
+            # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
+            # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
+            
+        html_string = render_to_string(
+            TEMPLATE.PDF_TEMPLATE.value,
+            {"alarms": alarms_data}
+        )
+        
+        pdf_file = io.BytesIO()
+        
+        # HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        
+        pdf_file.seek(0)
+        
+        return FileResponse(
+            pdf_file,
+            content_type="application/pdf",
+            headers={'Content-Dispostion': 'attachment; filename="allarmi_soluzioni.pdf" '}
+        )   
+    #
+#
