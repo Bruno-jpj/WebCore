@@ -54,11 +54,11 @@ import time, datetime
 import io
 import csv
 
-def logger_view(var):
+def logger_view(var, msg):
     path = '/var/www/webcore/project/debug.log'
     
     with open(path, 'a') as f:  # 'a' = append
-        f.write(f"[{var}]---[{datetime.datetime.now()}]\n")
+        f.write(f"[{msg} \n {var} \n {datetime.datetime.now()}]\n ####################### \n")
 #
 
 
@@ -162,11 +162,13 @@ def signup(request: HttpRequest):
                 return redirect('login')
             except Exception as e:
                 
-                print(f"ERRORE: Utente-Create non riuscito: [{e}]")
+                # print(f"ERRORE: Utente-Create non riuscito: [{e}]")
+                logger_view(e, "ERRORE: Creazioen dell'utente, non riuscita.")
                 messages.error(request, "INFO: Errore nella creazione dell'utente, riprovare più tardi")
     except Exception as e:
         
-        print(f"ERRORE: Utente-SignUp non riuscito: [{e}]")
+        # print(f"ERRORE: Utente-SignUp non riuscito: [{e}]")
+        logger_view(e, "ERRORE: Catturata eccezzione nella view: signup.")
         messages.error(request, "INFO: Errore nella creazione dell'utente, riprovare più tardi")
     
     return render(request, TEMPLATE.SIGNUP.value)
@@ -204,7 +206,9 @@ class ManualAdminLogic(View):
         alarm_db_count = alarm_queryset.count()
         alarm_json_count = len(alarm_json_set)
         
-        print(f"Database: {alarm_db_count} | JSON: {alarm_json_count}")
+        # print(f"Database: {alarm_db_count} | JSON: {alarm_json_count}")
+        logger_view(alarm_db_count, "Numero elementi DB")
+        logger_view(alarm_json_count, "Numero elementi JSON")
 
         # check the DB element with JSON file and in case upload: Sync JSON -> DB
         if (alarm_db_count == alarm_json_count) and ((cfg_file["db_update"] == 'true') and (cfg_file["json_update"] == 'true')):
@@ -381,7 +385,8 @@ class ManualAdminLogic(View):
             try: 
                 # search if the alarm exists in the DB
                 temp_obj = AllarmiSoluzioni.objects.get(titolo = alarm_name)
-                print(f"Già esiste: [{temp_obj}]")
+                #print(f"Già esiste: [{temp_obj}]")
+                logger_view(temp_obj, "Già esiste questo allarme")
 
             except AllarmiSoluzioni.DoesNotExist:
                 try:
@@ -404,7 +409,8 @@ class ManualAdminLogic(View):
                         )
                     #
                 except Exception as e:
-                    print(f"Upload from Json Except: [{e}]")
+                    #print(f"Upload from Json Except: [{e}]")
+                    logger_view(e, "Upload from Json Except")
         #
         '''
         STESSA COSA SCRITTA SOPRA FORSE MEGLIO: 
@@ -496,7 +502,8 @@ class ManualAdminLogic(View):
             new_dict[f"text_{k}"] = v
         '''
 
-        print(f"Creato allarme: {obj.titolo}")
+        # print(f"Creato allarme: {obj.titolo}")
+        logger_view(obj.title, "Creato allarme")
         try:
             # Updating JSON file...
             alarm_file["lista_allarmi"][title] = {
@@ -518,7 +525,8 @@ class ManualAdminLogic(View):
             # ...and pushing 
             self.JM.write_alarm_json(alarm_file)
         except Exception as e:
-            print(f"Nooooooooooooo: {e}")
+            #print(f"Nooooooooooooo: {e}")
+            logger_view(e, "Catturata eccezzione try-except inserimento allarme nel JSON")
             
         messages.success(request, "Allarme creato correttamente")
     #
@@ -622,6 +630,8 @@ class ManualAdminLogic(View):
             # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
             # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
             
+            logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual-admin/")
+            
         html_string = render_to_string(
             TEMPLATE.PDF_TEMPLATE.value,
             {"alarms": alarms_data}
@@ -675,7 +685,9 @@ class ManualLogic(View):
         alarm_db_count = alarm_queryset.count()
         alarm_json_count = len(alarm_json_set)
         
-        print(f"Database: {alarm_db_count} | JSON: {alarm_json_count}")
+        # print(f"Database: {alarm_db_count} | JSON: {alarm_json_count}")
+        logger_view(alarm_db_count, "MANUAL: Numero elementi DB")
+        logger_view(alarm_json_count, "MANUAL: Numero elementi JSON")
 
         # check the DB element with JSON file and in case upload: Sync JSON -> DB
         if (alarm_db_count == alarm_json_count) and ((cfg_file["db_update"] == 'true') and (cfg_file["json_update"] == 'true')):
@@ -806,7 +818,8 @@ class ManualLogic(View):
             try: 
                 # search if the alarm exists in the DB
                 temp_obj = AllarmiSoluzioni.objects.get(titolo = alarm_name)
-                print(f"Già esiste: [{temp_obj}]")
+                # print(f"Già esiste: [{temp_obj}]")
+                logger_view(temp_obj, "MANUAL: Già esiste questo allarme")
 
             except AllarmiSoluzioni.DoesNotExist:
                 try:
@@ -829,7 +842,8 @@ class ManualLogic(View):
                         )
                     #
                 except Exception as e:
-                    print(f"Upload from Json Except: [{e}]")
+                    #print(f"Upload from Json Except: [{e}]")
+                    logger_view(e, "MANUAL: Upload from Json Except")
         #
     #
     def create_download_pdf(self, request: HttpRequest, alarm_list: list, chosen_language):
@@ -851,7 +865,7 @@ class ManualLogic(View):
             # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
             # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
             
-            logger_view(request.build_absolute_uri(alarm.img.url))
+            logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual/")
             
         html_string = render_to_string(
             TEMPLATE.PDF_TEMPLATE.value,
