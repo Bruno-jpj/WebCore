@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.decorators.csrf import csrf_exempt
 from core.views import (
     IndexLogic,
     login,
@@ -42,8 +43,8 @@ urlpatterns = [
     path('login/', login, name="login"),
     path('signup/', signup, name="signup"),
     path('logout/', logout_view, name="logout_view"),
-    path('manual/', ManualLogic.as_view(), name="manual"),
-    path('manual-admin/', ManualAdminLogic.as_view(), name="manual_admin"),
+    path('manual/', csrf_exempt(ManualLogic.as_view()), name="manual"),
+    path('manual-admin/', csrf_exempt(ManualAdminLogic.as_view()), name="manual_admin"),
     path('account/', account, name="account"),
     path('contacts/', contacts, name="contacts"),
     path('line/', line, name="line"),

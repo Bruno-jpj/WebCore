@@ -77,8 +77,6 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         "text_se": "text_se",
     }
     
-    
-    
     # process data from the API, trying to unpack [key: value]
     try:
         client_key = api_data.get("client_key") # de!fwD!ef@LFJ2434JII@
@@ -92,6 +90,8 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         
     print(f"\nData Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
 
+    api_key = None
+    
     # filter / get data from the DB, like a SQL query and creating 2 obj with the result
     try:
         machine_obj = Macchinari.objects.get(piano_produzione = machine_code)
@@ -116,7 +116,8 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         create_api_log(request, client_key, language, machine_code, machine_type, machine_alarm, status.HTTP_404_NOT_FOUND, api_key)
         
         return {"ERROR": f"Chiave cliente non trovata..."}
-    #
+    except Exception as e:
+        print(f"generico...{e}")
     
     if not (languages.get(language) and language):
         

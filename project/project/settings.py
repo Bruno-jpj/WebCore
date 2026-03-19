@@ -32,7 +32,7 @@ load_dotenv(override=True)
 SECRET_KEY = os.getenv("SECRET_KEY", "x2+-ry!mo65p2jq-^i+2acrgf7$ex&g@6x%jf+n6tkp!bb$59f")
 
 # DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = True
+DEBUG = False
 
 # if debug = false, must have allowed_hosts on
 # solo i domini elencati posso accedere al sito
@@ -164,9 +164,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 #'''
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR/'static'
+    BASE_DIR / 'static'
 ]
 '''
 STATIC_URL = 'staticfiles/'
@@ -175,18 +175,14 @@ STATICFILES_DIRS = [
 ]
 #'''
 
-# STATIC_ROOT = BASE_DIR / "staticfiles"
+#STATIC_ROOT = "/var/www/webcore/project/staticfiles/"
+#STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# URL Pubblico
 MEDIA_URL = "/media/"
+
+# Percorso sul disco
 # MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-'''
-# Static files serving without Ngingx
-STORAGES = {
-    "staticfiles":{
-        "BACKEND":"whitenoise.storage.CompressedManifestStaticFilesStorage"
-    }
-}
-'''
+#MEDIA_ROOT = "/var/www/webcore/project/media/"
