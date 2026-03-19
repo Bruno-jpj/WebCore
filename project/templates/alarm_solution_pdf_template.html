@@ -33,6 +33,8 @@
                 </p>
                 {% if alarm.img %}
                     <img src="{{ alarm.img }}" style="width: 200px;">
+                {% else %}
+                    <p style="color: red;">Nessuna Foto Disponibile</p>
                 {% endif %}
             </div>
         {% endfor %}

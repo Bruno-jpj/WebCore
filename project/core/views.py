@@ -50,9 +50,17 @@ from pathlib import Path
 import json
 import os
 import configparser
-import time
+import time, datetime
 import io
 import csv
+
+def logger_view(var):
+    path = '/var/www/webcore/project/debug.log'
+    
+    with open(path, 'a') as f:  # 'a' = append
+        f.write(f"[{var}]---[{datetime.datetime.now()}]\n")
+#
+
 
 # Create your views here.
 
@@ -842,6 +850,8 @@ class ManualLogic(View):
             
             # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
             # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
+            
+            logger_view(request.build_absolute_uri(alarm.img.url))
             
         html_string = render_to_string(
             TEMPLATE.PDF_TEMPLATE.value,
