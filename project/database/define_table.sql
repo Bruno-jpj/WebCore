@@ -40,7 +40,7 @@ endpoint varchar(255) not null,
 payload json not null,
 response_status integer not null,
 created_at datetime not null,
-api_id bigint not null,
+api_id bigint,
 foreign key(api_id) references api_keys(id) on update cascade on delete cascade
 );
 
@@ -50,7 +50,7 @@ endpoint varchar(255) not null,
 payload json not null,
 response_status integer not null,
 created_at datetime not null,
-api_id bigint not null,
+api_id bigint,
 foreign key(api_id) references api_keys(id) on update cascade on delete cascade
 );
 
