@@ -2,11 +2,13 @@
 
 # POST request with REST-Client extension
 
-POST 127.0.0.1:8000/requests/info HTTP/1.1
+POST 192.168.77.55/requests/info HTTP/1.1
 Content-Type: : application/json
 
 {
-    "machine_code": "pp23240",
-    "machine_type": "600",
-    "machine_alarm": "temperatura"
+    "client_key": "api-key-test0",
+    "language": "text_esp",
+    "machine_code": "29430",
+    "machine_type": "1200",
+    "machine_alarm": "dio____"
 }
