@@ -38,21 +38,36 @@ from deep_translator import GoogleTranslator
 
 from enum import Enum
 from collections import namedtuple
+<<<<<<< HEAD
 from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
+=======
+from googletrans import Translator 
+# from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
+>>>>>>> ac8008ea66ca6dfcf12477504f1a5360604e4e5d
 from pathlib import Path
+from datetime import datetime, timezone
 
 import json
 import os
 import configparser
-import time, datetime
+import time
 import io
 import csv
 
 def logger_view(var, msg):
-    path = '/var/www/webcore/project/debug.log'
     
-    with open(path, 'a') as f:  # 'a' = append
-        f.write(f"[{msg} \n {var} \n {datetime.datetime.now()}]\n ####################### \n")
+    path = '/var/www/webcore/project/debug.log'
+    directory = os.path.dirname(path)
+    
+    try:
+        # check if the dir exists
+        os.makedirs(directory, exist_ok=True) 
+        
+        # 'a' = append and create in case if file not exists
+        with open(path, 'a') as f:  
+            f.write(f"[{msg} \n {var} \n {datetime.now(timezone.utc)}]\n ####################### \n")
+    except Exception as e:
+        print(f"Logger Error: {e}")
 #
 
 
@@ -630,7 +645,7 @@ class ManualAdminLogic(View):
         
         pdf_file = io.BytesIO()
         
-        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
@@ -865,7 +880,7 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
