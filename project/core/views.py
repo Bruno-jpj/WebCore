@@ -454,16 +454,16 @@ class ManualAdminLogic(View):
             return
 
         try:
-            eng=GoogleTranslator(source='it', target='en').translate(solution_text),
-            esp=GoogleTranslator(source='it', target='es').translate(solution_text),
-            de=GoogleTranslator(source='it', target='de').translate(solution_text),
-            fr=GoogleTranslator(source='it', target='fr').translate(solution_text),
-            dk=GoogleTranslator(source='it', target='da').translate(solution_text),
-            pt=GoogleTranslator(source='it', target='pt').translate(solution_text),
-            ru=GoogleTranslator(source='it', target='ru').translate(solution_text),
-            pl=GoogleTranslator(source='it', target='pl').translate(solution_text),
-            no=GoogleTranslator(source='it', target='no').translate(solution_text),
-            se=GoogleTranslator(source='it', target='sv').translate(solution_text),
+            eng=GoogleTranslator(source='it', target='en').translate(solution_text)
+            esp=GoogleTranslator(source='it', target='es').translate(solution_text)
+            de=GoogleTranslator(source='it', target='de').translate(solution_text)
+            fr=GoogleTranslator(source='it', target='fr').translate(solution_text)
+            dk=GoogleTranslator(source='it', target='da').translate(solution_text)
+            pt=GoogleTranslator(source='it', target='pt').translate(solution_text)
+            ru=GoogleTranslator(source='it', target='ru').translate(solution_text)
+            pl=GoogleTranslator(source='it', target='pl').translate(solution_text)
+            no=GoogleTranslator(source='it', target='no').translate(solution_text)
+            se=GoogleTranslator(source='it', target='sv').translate(solution_text)
         except TranslationNotFound as t:
             logger_view(t, "ERROR: Traduzione automatica nel add_alarm")
         
@@ -495,12 +495,12 @@ class ManualAdminLogic(View):
             alarm_file["lista_allarmi"][title] = {
                 "media": {
                     "video": {
-                        "nome_file": obj.video.name,
-                        "path_file": obj.video.path if obj.video.path else " None File"
+                        "nome_file": getattr(obj.video, 'name', "None File") if obj.video else "None File",
+                        "path_file": getattr(obj.video, 'path', "None File") if obj.video else "None File"
                         },
                     "img": {
-                        "nome_file": obj.img.name,
-                        "path_file": obj.img.path if obj.img.path else "None File"
+                        "nome_file": getattr(obj.img, 'name', "None File") if obj.img else "None File",
+                        "path_file": getattr(obj.img, 'path', "None File") if obj.img else "None File"
                         }
                 },
                 "testo_soluzione": {
