@@ -22,7 +22,10 @@ from .models import(
 
 from django.http import HttpRequest
 
+
+from datetime import datetime, timezone
 from enum import Enum
+
 import json
 
 # here there is all the logic 
@@ -31,7 +34,7 @@ def logger_view(var, msg):
     path = '/var/www/webcore/project/debug.log'
     
     with open(path, 'a') as f:  # 'a' = append
-        f.write(f"[{msg} \n {var} \n {datetime.datetime.now()}]\n ####################### \n")
+        f.write(f"[{msg} \n {var} \n {datetime.now(timezone.utc)}]\n ####################### \n")
 #
 
 '''
