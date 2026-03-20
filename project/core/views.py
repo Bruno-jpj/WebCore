@@ -38,12 +38,8 @@ from deep_translator import GoogleTranslator
 
 from enum import Enum
 from collections import namedtuple
-<<<<<<< HEAD
-from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
-=======
-from googletrans import Translator 
+
 # from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
->>>>>>> ac8008ea66ca6dfcf12477504f1a5360604e4e5d
 from pathlib import Path
 from datetime import datetime, timezone
 
