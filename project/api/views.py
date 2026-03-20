@@ -30,11 +30,21 @@ import json
 
 # here there is all the logic 
 
-def logger_view(var, msg):
-    path = '/var/www/webcore/project/debug.log'
+def api_logger_view(var, msg):
     
-    with open(path, 'a') as f:  # 'a' = append
-        f.write(f"[{msg} \n {var} \n {datetime.now(timezone.utc)}]\n ####################### \n")
+    path = '/var/www/webcore/project/api_debug.log'
+    # directory = os.path.dirname(path)
+    
+    try:
+        # check if the dir exists
+        # os.makedirs(directory, exist_ok=True) 
+        
+        # 'a' = append and create in case if file not exists
+        with open(path, 'a') as f:  
+            f.write(f"[{msg} \n {var} \n {datetime.now(timezone.utc)}]\n ####################### \n")
+    except Exception as e:
+        #print(f"Logger Error: {e}")
+        return Response(f"Eccezzione Log api logger: {e}")
 #
 
 '''
@@ -62,11 +72,11 @@ class RequestEvent(APIView):
             if received_data is not None:
                 
                 #print(f"API received Data [{received_data}]")
-                logger_view(received_data, "ERRORE: Catturata eccezzione nella view: signup.")
+                api_logger_view(received_data, "ERRORE: Catturata eccezzione nell'API POST")
                 
                 result = handle_post_call(received_data, request)
                 
-                logger_view(result, "Result of POST API call")
+                api_logger_view(result, "Result of POST API call")
                 
                 return Response(result)
                 
@@ -74,14 +84,8 @@ class RequestEvent(APIView):
                 return Response({"Error":"None data received"}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             #print(f"API Server Error [{e}]")
-            logger_view(e, "Catch Except of POST-RequestEvent")
+            api_logger_view(e, "Catch Except of POST-RequestEvent")
             return Response({"Error" : str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    #
-    def put(self, request: Request):
-        pass
-    #
-    def delete(self, request: Request):
-        pass
     #
 #
 def handle_post_call(api_data: dict, request: HttpRequest):
@@ -109,10 +113,12 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         machine_alarm = api_data.get("machine_alarm") # ALM_Temperaura_1000
         
     except Exception as e:
-        logger_view(e, "Valori non trovati nella request")
+        api_logger_view(e, "Valori non trovati nella request")
         # print(f"valori non trovati nella request: [{e}]")
         
     # print(f"\nData Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
+    
+    api_key = None
     
     # filter / get data from the DB, like a SQL query and creating 2 obj with the result
     try:
@@ -140,7 +146,7 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         return {"ERROR": f"Chiave cliente non trovata..."}
     except Exception as e:
         #print(f"generico...{e}")
-        logger_view(e, "API Caught try-except while searching machine, alarm, api OBJ")
+        api_logger_view(e, "API Caught try-except while searching machine, alarm, api OBJ")
     
     if not (languages.get(language) and language):
         
@@ -167,6 +173,9 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         'id_allarme__img',
         'id_allarme__video'
     )
+    
+    api_logger_view(info_qs, "questa è una lista/dict")
+    
     '''
     print("infoqs")
     print(info_qs)

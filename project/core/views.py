@@ -167,7 +167,7 @@ def signup(request: HttpRequest):
             except Exception as e:
                 
                 # print(f"ERRORE: Utente-Create non riuscito: [{e}]")
-                logger_view(e, "ERRORE: Creazioen dell'utente, non riuscita.")
+                logger_view(e, "ERRORE: Creazione dell'utente, non riuscita.")
                 messages.error(request, "INFO: Errore nella creazione dell'utente, riprovare più tardi")
     except Exception as e:
         
