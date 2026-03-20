@@ -33,17 +33,11 @@ from .models import (
     LanguageModel
 )
 
-from reportlab.pdfgen import canvas, pdfimages
-from reportlab.lib.units import mm
-from reportlab.lib.pagesizes import letter, A4
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import Paragraph, Spacer, SimpleDocTemplate, Image
-
 from .utils.json_manager import JsonManager
+from deep_translator import GoogleTranslator
 
 from enum import Enum
 from collections import namedtuple
-from googletrans import Translator 
 from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
 from pathlib import Path
 
@@ -449,9 +443,6 @@ class ManualAdminLogic(View):
             messages.info(request, "Allarme già presente nel DB / JSON")
             return
 
-        # define google translator
-        translator = Translator()
-
         translations: dict = {}
 
         # dict with the languages
@@ -474,11 +465,10 @@ class ManualAdminLogic(View):
                 
                 # populate the dict with the key:value 
                 # value => solution_text will be translated in every language from the languages dict
-                translations[key] = translator.translate(
-                    solution_text,
+                translations[key] = GoogleTranslator(
                     src='it',
                     dest=lang
-                ).text
+                ).translate(solution_text)
         except Exception:
             messages.warning(request, "Errore traduzione automatica")
 
@@ -503,7 +493,7 @@ class ManualAdminLogic(View):
         '''
 
         # print(f"Creato allarme: {obj.titolo}")
-        logger_view(obj.title, "Creato allarme")
+        logger_view(obj.titolo, "Creato allarme")
         try:
             # Updating JSON file...
             alarm_file["lista_allarmi"][title] = {
@@ -552,8 +542,6 @@ class ManualAdminLogic(View):
         if chk_dict.get("solution") and solution_text:
             fields_to_update["text_it"] = solution_text
             
-            # Traduzioni
-            translator = Translator()
             languages = {
                 "eng": "en", "esp": "es", "de": "de", "fr": "fr",
                 "dk": "da", "pt": "pt", "ru": "ru", "pl": "pl",
@@ -565,7 +553,10 @@ class ManualAdminLogic(View):
             try:
                 for key, lang in languages.items():
                     
-                    translations[key] = translator.translate(solution_text, src='it', dest=lang).text
+                    translations[key] = GoogleTranslator(
+                        src='it', 
+                        dest=lang
+                    ).translate(solution_text)
                     
                 fields_to_update.update({f"text_{k}": v for k, v in translations.items()})
             except Exception:

@@ -27,6 +27,13 @@ import json
 
 # here there is all the logic 
 
+def logger_view(var, msg):
+    path = '/var/www/webcore/project/debug.log'
+    
+    with open(path, 'a') as f:  # 'a' = append
+        f.write(f"[{msg} \n {var} \n {datetime.datetime.now()}]\n ####################### \n")
+#
+
 '''
 URL: request/info/
 
@@ -49,16 +56,20 @@ class RequestEvent(APIView):
             
             if received_data is not None:
                 
-                print(f"API received Data [{received_data}]")
+                #print(f"API received Data [{received_data}]")
+                logger_view(received_data, "ERRORE: Catturata eccezzione nella view: signup.")
                 
                 result = handle_post_call(received_data, request)
+                
+                logger_view(result, "Result of POST API call")
                 
                 return Response(result)
                 
             else:
                 return Response({"Error":"None data received"}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            print(f"API Server Error [{e}]")
+            #print(f"API Server Error [{e}]")
+            logger_view(e, "Catch Except of POST-RequestEvent")
             return Response({"Error" : str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 #
 def handle_post_call(api_data: dict, request: HttpRequest):
@@ -86,11 +97,12 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         machine_alarm = api_data.get("machine_alarm") # ALM_Temperaura_1000
         
     except Exception as e:
-        print(f"valori non trovati nella request: [{e}]")
+        logger_view(e, "Valori non trovati nella request")
+        # print(f"valori non trovati nella request: [{e}]")
         
-    print(f"\nData Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
+    # print(f"\nData Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
 
-    api_key = None
+    api_key = 1
     
     # filter / get data from the DB, like a SQL query and creating 2 obj with the result
     try:
