@@ -66,8 +66,6 @@ def logger_view(var, msg):
     except Exception as e:
         print(f"Logger Error: {e}")
 #
-
-
 # Create your views here.
 
 # HTML Template list
@@ -455,22 +453,34 @@ class ManualAdminLogic(View):
             messages.info(request, "Allarme già presente nel DB / JSON")
             return
 
-        translations: dict = {}
-
+        try:
+            eng=GoogleTranslator(source='it', target='en').translate(solution_text),
+            esp=GoogleTranslator(source='it', target='es').translate(solution_text),
+            de=GoogleTranslator(source='it', target='de').translate(solution_text),
+            fr=GoogleTranslator(source='it', target='fr').translate(solution_text),
+            dk=GoogleTranslator(source='it', target='da').translate(solution_text),
+            pt=GoogleTranslator(source='it', target='pt').translate(solution_text),
+            ru=GoogleTranslator(source='it', target='ru').translate(solution_text),
+            pl=GoogleTranslator(source='it', target='pl').translate(solution_text),
+            no=GoogleTranslator(source='it', target='no').translate(solution_text),
+            se=GoogleTranslator(source='it', target='sv').translate(solution_text),
+        except TranslationNotFound as t:
+            logger_view(t, "ERROR: Traduzione automatica nel add_alarm")
+        
         # insert into DB and creation of an obj to do logic later
         obj = AllarmiSoluzioni.objects.create(
             titolo=title,
             text_it=solution_text,
-            text_eng=GoogleTranslator(source='it', target='en').translate(solution_text),
-            text_esp=GoogleTranslator(source='it', target='es').translate(solution_text),
-            text_de=GoogleTranslator(source='it', target='de').translate(solution_text),
-            text_fr=GoogleTranslator(source='it', target='fr').translate(solution_text),
-            text_dk=GoogleTranslator(source='it', target='da').translate(solution_text),
-            text_pt=GoogleTranslator(source='it', target='pt').translate(solution_text),
-            text_ru=GoogleTranslator(source='it', target='ru').translate(solution_text),
-            text_pl=GoogleTranslator(source='it', target='pl').translate(solution_text),
-            text_no=GoogleTranslator(source='it', target='no').translate(solution_text),
-            text_se=GoogleTranslator(source='it', target='sv').translate(solution_text),
+            text_eng=eng,
+            text_esp=esp,
+            text_de=de,
+            text_fr=fr,
+            text_dk=dk,
+            text_pt=pt,
+            text_ru=ru,
+            text_pl=pl,
+            text_no=no,
+            text_se=se,
             img=img,
             video=video,
         )
@@ -479,27 +489,39 @@ class ManualAdminLogic(View):
         # f"text_{k}" → crea la nuova chiave (text_eng)
 
         # print(f"Creato allarme: {obj.titolo}")
-        logger_view(obj.titolo, "Creato allarme")
+        
         try:
             # Updating JSON file...
             alarm_file["lista_allarmi"][title] = {
                 "media": {
                     "video": {
                         "nome_file": obj.video.name,
-                        "path_file": obj.video.path
+                        "path_file": obj.video.path if obj.video.path else " None File"
                         },
                     "img": {
                         "nome_file": obj.img.name,
-                        "path_file": obj.img.path
+                        "path_file": obj.img.path if obj.img.path else "None File"
                         }
                 },
                 "testo_soluzione": {
                     "it": solution_text,
-                    **translations
+                    "eng": eng,
+                    "esp": esp,
+                    "de": de,
+                    "fr": fr,
+                    "dk": dk,
+                    "pt": pt,
+                    "ru": ru,
+                    "pl": pl,
+                    "no": no,
+                    "se": se
                 }
             }
+            
             # ...and pushing 
             self.JM.write_alarm_json(alarm_file)
+            
+            logger_view(obj.titolo, "Creato allarme")
         except Exception as e:
             #print(f"Nooooooooooooo: {e}")
             logger_view(e, "Catturata eccezzione try-except inserimento allarme nel JSON")
