@@ -29,6 +29,7 @@ class UserModelTest(TestCase):
 example procedure:
 
 > python manage.py test myapp
+
 -- with this commando will excecute all just the tests.py or every test_*.py in your tests/ subdir; 
 -- this appens because 'myapp' is the app name you give it to him when you created the app
 -- when you execute the test command he knows where to search and what to do [only if you named the dir and files correctly].

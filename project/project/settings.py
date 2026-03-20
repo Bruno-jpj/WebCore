@@ -115,10 +115,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME','macchine'), 
-        'USER': os.getenv('DB_USERNAME'), 
+        'USER': os.getenv('DB_USERNAME','lore'), 
         'PASSWORD': os.getenv('DB_PASSWORD','kl!1574FTG'), 
         'HOST': os.getenv('DB_IP','127.0.0.1'),
-        'PORT': os.getenv('DB_PORT'),
+        'PORT': os.getenv('DB_PORT','3306'),
         "OPTIONS": {
             # resolve data validation problems
             "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",

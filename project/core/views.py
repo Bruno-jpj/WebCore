@@ -33,14 +33,14 @@ from .models import (
     LanguageModel
 )
 
-from .utils.json_manager import JsonManager
+from .services.json_manager import JsonManager
 from deep_translator import GoogleTranslator
 from deep_translator.exceptions import TranslationNotFound
 
 from enum import Enum
 from collections import namedtuple
 
-from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
+#from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -346,9 +346,9 @@ class ManualAdminLogic(View):
             if action == 'add':
                 
                 # check if all fields aren't empty
-                if not all([title, solution_text, img, video]):
+                if not all([title, solution_text]):
 
-                    messages.info(request, "INFO: Tutti i campi devo essere riempiti")
+                    messages.info(request, "INFO: Almeno Titolo e Soluzione devono essere riempiti")
                     return redirect(request.path)
                 else:
                     # call add func
@@ -457,54 +457,26 @@ class ManualAdminLogic(View):
 
         translations: dict = {}
 
-        # dict with the languages
-        languages: dict = {
-            "eng": "en",
-            "esp": "es",
-            "de": "de",
-            "fr": "fr",
-            "dk": "da",
-            "pt": "pt",
-            "ru": "ru",
-            "pl": "pl",
-            "no": "no",
-            "se": "sv"
-        }
-
-        try:
-            # cycle for every key:value pair
-            for key, lang in languages.items():
-                
-                # populate the dict with the key:value 
-                # value => solution_text will be translated in every language from the languages dict
-                translations[key] = GoogleTranslator(
-                    src='it',
-                    dest=lang
-                ).translate(solution_text)
-        except  TranslationNotFound:
-            messages.warning(request, "Translation could not be found. Check language code or text.")
-        except Exception as e:
-            messages.warning(request, f"Errore traduzione automatica: {e}")
-
         # insert into DB and creation of an obj to do logic later
         obj = AllarmiSoluzioni.objects.create(
             titolo=title,
             text_it=solution_text,
+            text_eng=GoogleTranslator(source='it', target='en').translate(solution_text),
+            text_esp=GoogleTranslator(source='it', target='es').translate(solution_text),
+            text_de=GoogleTranslator(source='it', target='de').translate(solution_text),
+            text_fr=GoogleTranslator(source='it', target='fr').translate(solution_text),
+            text_dk=GoogleTranslator(source='it', target='da').translate(solution_text),
+            text_pt=GoogleTranslator(source='it', target='pt').translate(solution_text),
+            text_ru=GoogleTranslator(source='it', target='ru').translate(solution_text),
+            text_pl=GoogleTranslator(source='it', target='pl').translate(solution_text),
+            text_no=GoogleTranslator(source='it', target='no').translate(solution_text),
+            text_se=GoogleTranslator(source='it', target='sv').translate(solution_text),
             img=img,
             video=video,
-            **{f"text_{key}": lang for key, lang in translations.items()} 
         )
 
         # translations.items() => (key, value) -> (language, text) == (eng, hello)
         # f"text_{k}" → crea la nuova chiave (text_eng)
-        '''
-        SAME THING OF WRITING:
-        
-        new_dict = {}
-
-        for k, v in translations.items():
-            new_dict[f"text_{k}"] = v
-        '''
 
         # print(f"Creato allarme: {obj.titolo}")
         logger_view(obj.titolo, "Creato allarme")
@@ -556,25 +528,21 @@ class ManualAdminLogic(View):
         if chk_dict.get("solution") and solution_text:
             fields_to_update["text_it"] = solution_text
             
-            languages = {
-                "eng": "en", "esp": "es", "de": "de", "fr": "fr",
-                "dk": "da", "pt": "pt", "ru": "ru", "pl": "pl",
-                "no": "no", "se": "sv"
-            }
-
-            translations = {}
-
             try:
-                for key, lang in languages.items():
-                    
-                    translations[key] = GoogleTranslator(
-                        src='it', 
-                        dest=lang
-                    ).translate(solution_text)
-                    
-                fields_to_update.update({f"text_{k}": v for k, v in translations.items()})
-            except Exception:
-                messages.warning(request, "Errore traduzione automatica")
+                fields_to_update["text_eng"]=GoogleTranslator(source='it', target='en').translate(solution_text)
+                fields_to_update["text_esp"]=GoogleTranslator(source='it', target='es').translate(solution_text)
+                fields_to_update["text_de"]=GoogleTranslator(source='it', target='de').translate(solution_text)
+                fields_to_update["text_fr"]=GoogleTranslator(source='it', target='fr').translate(solution_text)
+                fields_to_update["text_dk"]=GoogleTranslator(source='it', target='da').translate(solution_text)
+                fields_to_update["text_pt"]=GoogleTranslator(source='it', target='pt').translate(solution_text)
+                fields_to_update["text_ru"]=GoogleTranslator(source='it', target='ru').translate(solution_text)
+                fields_to_update["text_pl"]=GoogleTranslator(source='it', target='pl').translate(solution_text)
+                fields_to_update["text_no"]=GoogleTranslator(source='it', target='no').translate(solution_text)
+                fields_to_update["text_se"]=GoogleTranslator(source='it', target='sv').translate(solution_text)
+  
+                # fields_to_update.update({f"text_{k}": v for k, v in translations.items()})
+            except Exception as e:
+                messages.warning(request, f"Errore traduzione automatica: [{e}]")
 
         # CHECK IMG - OK
         if chk_dict.get("img") and img:
@@ -644,7 +612,7 @@ class ManualAdminLogic(View):
         
         pdf_file = io.BytesIO()
         
-        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
@@ -879,7 +847,7 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
