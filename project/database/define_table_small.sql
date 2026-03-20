@@ -67,8 +67,8 @@ text_ru mediumtext,
 text_pl mediumtext,
 text_no mediumtext, -- norvegia
 text_se mediumtext, -- svezia
-img varchar(255) not null,
-video varchar(255) not null
+img varchar(255),
+video varchar(255)
 );
 
 create table if not exists macchinari(

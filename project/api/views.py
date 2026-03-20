@@ -41,6 +41,8 @@ def logger_view(var, msg):
 URL: request/info/
 
 ex. received JSON: {
+    "UUID + Username" => hash + salt ???
+    
     "api_key": "client_key", # header
     "language": "text_it",
     "machine_code": "pp23240",
@@ -74,6 +76,13 @@ class RequestEvent(APIView):
             #print(f"API Server Error [{e}]")
             logger_view(e, "Catch Except of POST-RequestEvent")
             return Response({"Error" : str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    #
+    def put(self, request: Request):
+        pass
+    #
+    def delete(self, request: Request):
+        pass
+    #
 #
 def handle_post_call(api_data: dict, request: HttpRequest):
     
@@ -104,8 +113,6 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         # print(f"valori non trovati nella request: [{e}]")
         
     # print(f"\nData Received: \n{client_key}\n{language}\n{machine_code}\n{machine_type}\n{machine_alarm}")
-
-    api_key = 1
     
     # filter / get data from the DB, like a SQL query and creating 2 obj with the result
     try:
@@ -132,7 +139,8 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         
         return {"ERROR": f"Chiave cliente non trovata..."}
     except Exception as e:
-        print(f"generico...{e}")
+        #print(f"generico...{e}")
+        logger_view(e, "API Caught try-except while searching machine, alarm, api OBJ")
     
     if not (languages.get(language) and language):
         
@@ -159,9 +167,10 @@ def handle_post_call(api_data: dict, request: HttpRequest):
         'id_allarme__img',
         'id_allarme__video'
     )
-    
+    '''
     print("infoqs")
     print(info_qs)
+    '''
     
     # I don't use the serializers because I can't build the JSON reponse to pass it back so I did manually
     # info_qs is a list with inside a dictionary
@@ -174,7 +183,7 @@ def handle_post_call(api_data: dict, request: HttpRequest):
     }
     
     if serializer is None:
-        return {"status": status.HTTP_204_NO_CONTENT, "data": serializer} # return only the ID: 14
+        return {"status": status.HTTP_204_NO_CONTENT, "data": serializer} # return only the ID
     else:
         
         # status code 201 because with this I know the serializer is not empty and it was sent back in the response

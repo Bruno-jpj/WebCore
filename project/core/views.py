@@ -35,11 +35,12 @@ from .models import (
 
 from .utils.json_manager import JsonManager
 from deep_translator import GoogleTranslator
+from deep_translator.exceptions import TranslationNotFound
 
 from enum import Enum
 from collections import namedtuple
 
-# from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
+from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -480,8 +481,10 @@ class ManualAdminLogic(View):
                     src='it',
                     dest=lang
                 ).translate(solution_text)
-        except Exception:
-            messages.warning(request, "Errore traduzione automatica")
+        except  TranslationNotFound:
+            messages.warning(request, "Translation could not be found. Check language code or text.")
+        except Exception as e:
+            messages.warning(request, f"Errore traduzione automatica: {e}")
 
         # insert into DB and creation of an obj to do logic later
         obj = AllarmiSoluzioni.objects.create(
@@ -489,7 +492,7 @@ class ManualAdminLogic(View):
             text_it=solution_text,
             img=img,
             video=video,
-            **{f"text_{k}": v for k, v in translations.items()} 
+            **{f"text_{key}": lang for key, lang in translations.items()} 
         )
 
         # translations.items() => (key, value) -> (language, text) == (eng, hello)
@@ -641,7 +644,7 @@ class ManualAdminLogic(View):
         
         pdf_file = io.BytesIO()
         
-        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
@@ -876,7 +879,7 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
