@@ -176,20 +176,23 @@ def handle_post_call(api_data: dict, request: HttpRequest):
     
     api_logger_view(info_qs, "questa è una lista/dict")
     
-    '''
+    #'''
     print("infoqs")
-    print(info_qs)
-    '''
+    print(info_qs.count())
+    #'''
     
     # I don't use the serializers because I can't build the JSON reponse to pass it back so I did manually
     # info_qs is a list with inside a dictionary
-    serializer = {
-        "id": info_qs[0].get('id'),
-        "allarme": info_qs[0].get('id_allarme__titolo'),
-        "soluzione": info_qs[0].get(f'id_allarme__{language}'),
-        "img": info_qs[0].get('id_allarme__img'),
-        "video":info_qs[0].get('id_allarme__video')
-    }
+    try:
+        serializer = {
+            "id": info_qs[0].get('id'),
+            "allarme": info_qs[0].get('id_allarme__titolo'),
+            "soluzione": info_qs[0].get(f'id_allarme__{language}'),
+            "img": info_qs[0].get('id_allarme__img'),
+            "video":info_qs[0].get('id_allarme__video')
+        }
+    except exceptions as e:
+        return{"status": status.HTTP_404_NOT_FOUND, "data": "dio porto"}
     
     if serializer is None:
         return {"status": status.HTTP_204_NO_CONTENT, "data": serializer} # return only the ID
