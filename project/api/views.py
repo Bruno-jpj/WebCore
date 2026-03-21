@@ -106,6 +106,9 @@ def handle_post_call(api_data: dict, request: HttpRequest):
     
     # process data from the API, trying to unpack [key: value]
     try:
+        # aggiungi tipo macchina: avvolgitore, robot, accumulatore,
+        # modifica da piano_produzione a categoria 
+        # chiave non serve
         client_key = api_data.get("client_key") # de!fwD!ef@LFJ2434JII@
         language = api_data.get("language") # language for the texts
         machine_code = api_data.get("machine_code") # pp23240

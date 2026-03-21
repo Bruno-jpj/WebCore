@@ -84,6 +84,7 @@ create table if not exists informazioni(
 id bigint primary key auto_increment,
 id_macchinario bigint not null,
 id_allarme bigint not null,
+unique(id_macchinario, id_allarme)
 foreign key(id_macchinario) references macchinari(id) on update cascade on delete cascade,
 foreign key(id_allarme) references allarmi_soluzioni(id) on update cascade on delete cascade
 );
@@ -96,3 +97,4 @@ create index idx_core_request_logs on core_request_logs(api_id, created_at, endp
 
 -- research specifics of all machine allarms
 create index idx_info_machine_alarm on informazioni(id_macchinario, id_allarme);
+CREATE INDEX idx_allarme ON informazioni(id_allarme);
