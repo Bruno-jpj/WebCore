@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.db import transaction
 
 from django.http import (
     Http404,
@@ -40,7 +41,7 @@ from deep_translator.exceptions import TranslationNotFound
 from enum import Enum
 from collections import namedtuple
 
-# from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
+from weasyprint import HTML # questa libreria funziona solo sotto OS linux su windows bisogna installare 'gtk3.exe' ed installare poi la lib weasyprint
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -411,7 +412,7 @@ class ManualAdminLogic(View):
                         text_se = alarm_file["lista_allarmi"][alarm_name]["testo_soluzione"]["se"],
                         img = alarm_file["lista_allarmi"][alarm_name]["media"]["img"]["path_file"],
                         video = alarm_file["lista_allarmi"][alarm_name]["media"]["video"]["path_file"]
-                        )
+                    )
                     #
                 except Exception as e:
                     #print(f"Upload from Json Except: [{e}]")
@@ -533,54 +534,148 @@ class ManualAdminLogic(View):
         
         # IN ANY CASE YOU WANT THE USER TO UPDATE THE ALARMS WITH THE SEARCH-TITLE BAR JUST CHANGE 'alarm_list_value' WITH 'search_title'
         
+        # read the file
+        with open(self.JSON_PATH) as file:
+            alarm_json_file = json.load(file)
+        
+        if not alarm_list:
+            messages.warning(request, "Nessun allarme selezionato")
+            return
+        
+        updated = False
+        
+        # alarm_title
         alarm_list_value = alarm_list[0]
         
-        qs = AllarmiSoluzioni.objects.filter(titolo=alarm_list_value)
-
-        if not qs.exists():
-            messages.info(request, "L'allarme selezionato non esiste nel DB")
-            return
-
-        fields_to_update = {}
+        try:
+            # check only the inserted in the DB - not  the JSON
+            with transaction.atomic():
+                
+                # qs = AllarmiSoluzioni.objects.filter(titolo=alarm_list_value)
+                qs = AllarmiSoluzioni.objects.get(titolo=alarm_list_value)
         
-        # CHECK TITLE - OK
-        if chk_dict.get("alarm") and title:
-            fields_to_update["titolo"] = title
+                # if qs.exists() -> in case of .filter()
+                try:
+                    qs = AllarmiSoluzioni.objects.get(titolo=alarm_list_value)
+                except AllarmiSoluzioni.DoesNotExist:
+                    messages.info(request, "L'allarme selezionato non esiste nel DB")
+                    return
+                
+                # fields_to_update = {}
+                
+                # CHECK TITLE - OK
+                if chk_dict.get("alarm") and title:
+                    # fields_to_update["titolo"] = title
+                    qs.titolo = title
+                    alarm_json_file["lista_allarmi"][alarm_list_value] = title
+                    
+                    updated = True
+                #
+                # CHECK SOLUTION - OK
+                if chk_dict.get("solution") and solution_text:
+                    
+                    trans_eng=GoogleTranslator(source='it', target='en').translate(solution_text)
+                    trans_esp=GoogleTranslator(source='it', target='es').translate(solution_text)
+                    trans_de=GoogleTranslator(source='it', target='de').translate(solution_text)
+                    trans_fr=GoogleTranslator(source='it', target='fr').translate(solution_text)
+                    trans_dk=GoogleTranslator(source='it', target='da').translate(solution_text)
+                    trans_pt=GoogleTranslator(source='it', target='pt').translate(solution_text)
+                    trans_ru=GoogleTranslator(source='it', target='ru').translate(solution_text)
+                    trans_pl=GoogleTranslator(source='it', target='pl').translate(solution_text)
+                    trans_no=GoogleTranslator(source='it', target='no').translate(solution_text)
+                    trans_se=GoogleTranslator(source='it', target='sv').translate(solution_text)
+                    
+                    logger_view(alarm_list_value, "Titolo Allarme")
+                    
+                    alarm_json_file["lista_allarmi"][alarm_list_value]["testo_soluzione"] = {
+                        "it" : solution_text,
+                        "eng" : trans_eng,
+                        "esp" : trans_esp,
+                        "de" : trans_de,
+                        "fr" : trans_fr,
+                        "dk" : trans_dk,
+                        "pt" : trans_pt,
+                        "ru" : trans_ru,
+                        "pl" : trans_pl,
+                        "no" : trans_no,
+                        "se" : trans_se
+                    }
+                    
+                    try:
+                        qs.text_it = solution_text
+                        qs.text_eng = trans_eng
+                        qs.text_esp = trans_esp
+                        qs.text_de = trans_de
+                        qs.text_fr = trans_fr
+                        qs.text_dk = trans_dk
+                        qs.text_pt = trans_pt
+                        qs.text_ru = trans_ru
+                        qs.text_pl = trans_pl
+                        qs.text_no = trans_no
+                        qs.text_se = trans_se
+                        
+                        '''
+                        in case of .filter()
+                        fields_to_update["text_it"] = solution_text
+                        fields_to_update["text_eng"]=trans_eng
+                        fields_to_update["text_esp"]=trans_esp
+                        fields_to_update["text_de"]=trans_de
+                        fields_to_update["text_fr"]=trans_fr
+                        fields_to_update["text_dk"]=trans_dk
+                        fields_to_update["text_pt"]=trans_pt
+                        fields_to_update["text_ru"]=trans_ru
+                        fields_to_update["text_pl"]=trans_pl
+                        fields_to_update["text_no"]=trans_no
+                        fields_to_update["text_se"]=trans_se
+                        '''
+                        updated = True
+                        
+                        # fields_to_update.update({f"text_{k}": v for k, v in translations.items()})
+                    except Exception as e:
+                        messages.warning(request, f"Errore traduzione automatica: [{e}]")
 
-        # CHECK SOLUTION - OK
-        if chk_dict.get("solution") and solution_text:
-            fields_to_update["text_it"] = solution_text
+                # CHECK IMG - OK
+                if chk_dict.get("img") and img:
+                    # fields_to_update["img"] = img
+                    qs.img = img
+                    alarm_json_file["lista_allarmi"][alarm_list_value]["media"]["img"] = {
+                        "nome_file": img if img else "None File",
+                        "path_file": img if img else "None File"
+                    }
+                    
+                    updated = True
+                #
+                # CHECK VIDEO - OK
+                if chk_dict.get("video") and video:
+                    # fields_to_update["video"] = video
+                    qs.video = video
+                    alarm_json_file["lista_allarmi"][alarm_list_value]["media"]["video"] = {
+                        "nome_file": video if qs.video else "None File",
+                        "path_file": video if qs.video else "None File"
+                    }
+                    updated = True
+        except Exception as e:
+            messages.error(request, f"Errore durante update: {e}")
+        #
+        if updated:
             
-            try:
-                fields_to_update["text_eng"]=GoogleTranslator(source='it', target='en').translate(solution_text)
-                fields_to_update["text_esp"]=GoogleTranslator(source='it', target='es').translate(solution_text)
-                fields_to_update["text_de"]=GoogleTranslator(source='it', target='de').translate(solution_text)
-                fields_to_update["text_fr"]=GoogleTranslator(source='it', target='fr').translate(solution_text)
-                fields_to_update["text_dk"]=GoogleTranslator(source='it', target='da').translate(solution_text)
-                fields_to_update["text_pt"]=GoogleTranslator(source='it', target='pt').translate(solution_text)
-                fields_to_update["text_ru"]=GoogleTranslator(source='it', target='ru').translate(solution_text)
-                fields_to_update["text_pl"]=GoogleTranslator(source='it', target='pl').translate(solution_text)
-                fields_to_update["text_no"]=GoogleTranslator(source='it', target='no').translate(solution_text)
-                fields_to_update["text_se"]=GoogleTranslator(source='it', target='sv').translate(solution_text)
-  
-                # fields_to_update.update({f"text_{k}": v for k, v in translations.items()})
-            except Exception as e:
-                messages.warning(request, f"Errore traduzione automatica: [{e}]")
-
-        # CHECK IMG - OK
-        if chk_dict.get("img") and img:
-            fields_to_update["img"] = img
-
-        # CHECK VIDEO - OK
-        if chk_dict.get("video") and video:
-            fields_to_update["video"] = video
-
+            qs.save()
+            
+            with open(self.JSON_PATH,'w+') as file:
+                alarm_json_file = json.dump(alarm_json_file, file, indent=4)
+                
+            messages.success(request, "Allarme aggiornato correttamente")
+        else:
+            messages.info(request, "Nessun campo aggiornato")
+        
+        '''
         # Execute update only if there are fields to update
         if fields_to_update:
             qs.update(**fields_to_update)
             messages.success(request, "Allarme aggiornato correttamente")
         else:
             messages.info(request, "Nessun campo selezionato o fornito da aggiornare")
+        '''
     # 
     def delete_alarm(self, request: HttpRequest, title, alarm_file, alarm_list):
         
@@ -635,7 +730,7 @@ class ManualAdminLogic(View):
         
         pdf_file = io.BytesIO()
         
-        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         
@@ -874,7 +969,7 @@ class ManualLogic(View):
         
         pdf_file = io.BytesIO()
         
-        #HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
+        HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(pdf_file)
         
         pdf_file.seek(0)
         

@@ -1,0 +1,1657 @@
+{
+  "testi": {
+    "HMB_ALM_A1_ChiusuraS0": {
+      "media": {
+        "file": "ControlloMovimentoAspo.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "it": "Dopo un espulsione o un eventuale apertura dell'aspo, per proseguire la produzione bisogna chiudere l'aspoSi consiglia di controllare come prima cosa che la meccanica non abbia problemi, provando manualmente la sua movimentazione"
+      }
+    },
+    "HMB_ALM_A1_ChiusuraS1": {
+      "media": {
+        "file": "CentraggioFlangia_2.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "it": "E' possibile che la flangia fissa non sia nella corretta posizione, verificare fisicamente se il centraggio non è corretto, per poi procedere con l'eventuale correzione del problema"
+      }
+    },
+    "HMB_ALM_A1_ChiusuraS2": {
+      "media": {
+        "file": "ControlloPattiniGuide.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "it": "La chiusura dell'aspo viene effettuata da un cilindro, il quale muove tutto l'aspo mobile avanti e indietroQuesto moviemento è permesso grazie a dei pattini e delle guide poste sotto l'aspo, verificare quindi che non ci siano impedimenti o scarti che ne impediscano lo scorrimento, e controllare che non ci siano parti difeytose"
+      }
+    },
+    "HMB_ALM_A1_ChiusuraS3": {
+      "media": {
+        "file": "ControlloDeceleratoreChiusura.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "it": "Al momento della chiusura è presente, oltre alla battuta meccanica, un decelleratore per l'assorbimento dell'urtoSe questo si danneggia o la sua regolazione non è piu fissa al livello impostato, è possibile che la sua funzione venga corrotta e non sia piu possibile comprimerlo, causando un blocco dell'aspo in una posizione errata, verifcare il corretto funionamento"
+      }
+    },
+    "HMB_ALM_A1_ChiusuraS4": {
+      "media": {
+        "file": "ControlloAbbattimenti.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "it": "Al contatto tra la flangia fissa e l'aspo, i mantelli entrato in contatto con essa e se gli abbattimenti non lavorando correttamente, si crea un blocco da parte di essi che impedisce la corretta chiusuraControllare tutti gli abbattimenti in modo da essere sicuri che si muovano correttamente permettendo ai mantelli di salire e l'aspo di chiudersi"
+      }
+    },
+    "HMB_ALM_A1_ChiusuraS5": {
+      "media": {
+        "file": "PosizioneSensoreChiusura.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il sensore nel cilindro che garantisce la chiusura dell'aspo, è spento- Controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plcSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi."
+      }
+    },
+    "HMB_ALM_A1_ChiusuraS6": {
+      "media": {
+        "file": "RegolazioneSensoreREED.mp4",
+        "type": "video"
+      },
+      "testo": {
+        "en": "Accertarsi che il sensore sia fissato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzione."
+      }
+    },
+    "HMB_ALM_L2_TermicaMotoreLancio": {
+      "media": {
+        "file": "HMB_ALM_L2_TermicaMotoreLancio.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_TermicaMotoreLancio": {
+      "media": {
+        "file": "HMB_ALM_L1_TermicaMotoreLancio.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L2_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_L2_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_L1_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L2_CoppiaMotoreLancio": {
+      "media": {
+        "file": "HMB_ALM_L2_CoppiaMotoreLancio.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_CoppiaMotoreLancio": {
+      "media": {
+        "file": "HMB_ALM_L1_CoppiaMotoreLancio.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_BarriereUscita": {
+      "media": {
+        "file": "HMB_ALM_BarriereUscita.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Per ripristinare le barriere premere il pulsante appositamente collocato sull'avvolgitore. Nel caso in cui il pulsante non esegue il ripristino delle barriere, verificare che non ci siano oggetti davanti alle stesse oppure che siano bene allineate.",
+        "en": "To restore the barriers, press the button specifically located on the winder. If the button does not restore the barriers, check for objects in front of them or that they are properly aligned."
+      }
+    },
+    "HMB_ALM_AX_TermicaSpatole": {
+      "media": {
+        "file": "HMB_ALM_AX_TermicaSpatole.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_A2_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_A1_TermicaMotore.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Quando un Drive oppure un Inverter si trova in uno stato di errore occorre risalire al nome dell'azionamento del quale stiamo verificando il problema ed il rispettivo codice. Il tipo di azionamento lo possiamo trovare nello schema elettrico, mentre il codice di errore lo possiamo trovare nella pagina delle informazioni dedicata ai motori. A questo punto occorre procurarci il manuale dell'azionamento per avere la descrizione dell'allarme che si stà presentandoIn alternativa chiedere a personale esperto di aprire il quadro elettrico dove sul display dell'azionamento è possibile verificare il tipo ed il codice di allarme.",
+        "en": "When a Drive or an Inverter is in error, it is necessary to find the name of the faulty drive and the respective code. The type of drive can be found in the wiring diagram, while the error code can be found in the info page dedicated to the motors. Now obtain the drive manual for a description of the alarm. Alternatively, ask expert personnel to open the electrical panel where you can verify the alarm type and code on the drive display."
+      }
+    },
+    "HMB_ALM_A2_SpatolaErrata": {
+      "media": {
+        "file": "HMB_ALM_A2_SpatolaErrata.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_SpatolaErrata": {
+      "media": {
+        "file": "HMB_ALM_A1_SpatolaErrata.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "I casi per il quale questo allarme si presenta sono due- La spatola attualmente montata risulta più grande della larghezza flangia del formato. Sostituire la spatola e modificare di conseguenza i parametri dedicati alle spatole- La spatola scelta nel pannello all'interno della sezione Parametri Lavoro (Blu) non corrisponde con quelle che si trovano nelle pagine Info (Verdi) appositamente inserite come controllo aggiuntivo per assicurarsi di aver montato la stessa spatola che è impostata da pannello.",
+        "en": "The cases for which this alarm is present are two: - The currently mounted paddle is larger than the width of the format flange. Replace the paddle and change the parameters of the paddles accordingly. - The paddle chosen in the panel inside the Work Parameter section (Blue) does not correspond to those in the Info pages (Green) specifically included as additional control to ensure that the same paddle set on the panel has been mounted."
+      }
+    },
+    "HMB_ALM_A1_ScivoloPosteriore": {
+      "media": {
+        "file": "HMB_ALM_A1_ScivoloPosteriore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_ScivoloPosteriore": {
+      "media": {
+        "file": "HMB_ALM_A2_ScivoloPosteriore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_FtcControlloFormato": {
+      "media": {
+        "file": "HMB_ALM_A2_FtcControlloFormato.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_FtcControlloFormato": {
+      "media": {
+        "file": "HMB_ALM_A1_FtcControlloFormato.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_EncoderScivolo": {
+      "media": {
+        "file": "HMB_ALM_A2_EncoderScivolo.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_EncoderSpatole": {
+      "media": {
+        "file": "HMB_ALM_A2_EncoderSpatole.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_EncoderScivolo": {
+      "media": {
+        "file": "HMB_ALM_A1_EncoderScivolo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "- Probabili ostacoli sul movimento dello scivolo- Probabile difetto di funzionamento del sensore- Probabile difetto di funzionamento dell'encoder dello scivolo.",
+        "en": "- Probable obstacles on the slide movement. - Probable sensor malfunction. - Probable slide encoder malfunction."
+      }
+    },
+    "HMB_ALM_A1_EncoderSpatole": {
+      "media": {
+        "file": "HMB_ALM_A1_EncoderSpatole.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Controllare il funzionamento dell'encoder delle spatole. Controllare eventuali ostacoli sulla traslazione motorizzata delle spatole.",
+        "en": "Check the operation of the paddle encoder. Check for any obstacles on the motorised translation of the paddles."
+      }
+    },
+    "HMB_ALM_A2_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_A2_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_A1_CoppiaMotore.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Quando un motore Supera la coppia massima impostata indica che meccanicamente per eseguire una determinata azione viene richiesto uno sforzo superiore rispetto ai limiti decisi per lo stesso- Verificare possibili ostacoli e impedimenti meccanici nel movimento- Verificare il corretto movimento meccanico dell'asse trascinato dal motore.",
+        "en": "When a motor exceeds the maximum torque set it means that, mechanically, to perform a certain action, a greater effort is required with respect to the limits decided for the same. Check for possible obstacles and mechanical impediments in the movement and Check the correct mechanical movement of the axis dragged by the motor."
+      }
+    },
+    "HMB_ALM_TrainoCoppiaMotoreAvv": {
+      "media": {
+        "file": "HMB_ALM_TrainoCoppiaMotoreAvv.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_TrainoTermicaMotoreAvv": {
+      "media": {
+        "file": "HMB_ALM_TrainoTermicaMotoreAvv.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_RulliAperti": {
+      "media": {
+        "file": "HMB_ALM_L1_RulliAperti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "I Rulli che tengono e lanciano la reggia risultano aperti, verificare in base al modello di legatore la chiusura dei rulli.",
+        "en": "The Rollers that hold and launch the strap are open, check the closure of the rollers according to the strapper model."
+      }
+    },
+    "HMB_ALM_L2_RulliAperti": {
+      "media": {
+        "file": "HMB_ALM_L2_RulliAperti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "I Rulli che tengono e lanciano la reggia risultano aperti, verificare in base al modello di legatore la chiusura dei rulli.",
+        "en": "The Rollers that hold and launch the strap are open, check the closure of the rollers according to the strapper model."
+      }
+    },
+    "HMB_ALM_L2_TermicaMotoreTrasla": {
+      "media": {
+        "file": "HMB_ALM_L2_TermicaMotoreTrasla.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L2_TermicaMotoreAvanza": {
+      "media": {
+        "file": "HMB_ALM_L2_TermicaMotoreAvanza.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L2_CoppiaMotoreTrasla": {
+      "media": {
+        "file": "HMB_ALM_L2_CoppiaMotoreTrasla.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L2_CoppiaMotoreAvanza": {
+      "media": {
+        "file": "HMB_ALM_L2_CoppiaMotoreAvanza.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_TermicaMotoreTrasla": {
+      "media": {
+        "file": "HMB_ALM_L1_TermicaMotoreTrasla.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_TermicaMotoreAvanza": {
+      "media": {
+        "file": "HMB_ALM_L1_TermicaMotoreAvanza.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_CoppiaMotoreTrasla": {
+      "media": {
+        "file": "HMB_ALM_L1_CoppiaMotoreTrasla.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_CoppiaMotoreAvanza": {
+      "media": {
+        "file": "HMB_ALM_L1_CoppiaMotoreAvanza.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_FusibileBordoMacchina": {
+      "media": {
+        "file": "HMB_ALM_FusibileBordoMacchina.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Mancanza di alimentazione, Controllare il Fusibile che alimenta tutto il bordo macchina",
+        "en": "No power supply, Check the Fuse that feeds everything on the machine"
+      }
+    },
+    "HMB_ALM_FusibileDrive": {
+      "media": {
+        "file": "HMB_ALM_FusibileDrive.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Mancanza di alimentazione, Controllare il Fusibile che alimenta la bassa tensione dei Drive",
+        "en": "No power supply, Check the Fuse that feeds the low voltage of the Drives"
+      }
+    },
+    "HMB_ALM_FusibileInput": {
+      "media": {
+        "file": "HMB_ALM_FusibileInput.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Mancanza di alimentazione, Controllare il Fusibile che alimenta gli Input della macchina",
+        "en": "No power supply, Check the Fuse that feeds the machine Inputs"
+      }
+    },
+    "HMB_ALM_FusibileOutput": {
+      "media": {
+        "file": "HMB_ALM_FusibileOutput.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Mancanza di alimentazione, Controllare il Fusibile che alimenta gli Output della macchina",
+        "en": "No power supply, Check the Fuse that feeds the machine Outputs"
+      }
+    },
+    "HMB_ALM_FusibileQuadro": {
+      "media": {
+        "file": "HMB_ALM_FusibileQuadro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Mancanza di alimentazione, Controllare il Fusibile che alimenta i componenti elettrici interni alla macchina",
+        "en": "No power supply, Check the Fuse that feeds the electrical components into the machine"
+      }
+    },
+    "HMB_ALM_FusibileValvole": {
+      "media": {
+        "file": "HMB_ALM_FusibileValvole.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Mancanza di alimentazione, Controllare il Fusibile che alimenta le Valvole pneumatiche della macchina",
+        "en": "No power supply, Check the Fuse that feeds the Pneumatic valves of the machine"
+      }
+    },
+    "HMB_ALM_GT1X_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_GT1X_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1X_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_GT1X_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1Y_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_GT1Y_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1Y_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_GT1Y_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1Z_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_GT1Z_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1Z_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_GT1Z_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1_MatriceDestra": {
+      "media": {
+        "file": "HMB_ALM_GT1_MatriceDestra.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La matrice destra del GuidaTubo 1 non si chiude correttamente.Per verificare questa condizione utilizziamo un sensore posto sul cilindro che regola la chiusura di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The right matrix of the Pipe Guide 1 does not close correctlyTo verify this condition we use a sensor placed on the cylinder that ensures the closure of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_BasamentoSuA1": {
+      "media": {
+        "file": "HMB_ALM_BasamentoSuA1.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il basamento ha la possibiltà di traslare sui due aspi a seconda di dove si ha la necessità di confezionare la bobina e dell'aspo che si vuole aprire per scaricare la bobinaQuesto allarme viene generato da un errore del posizionamento del basamento mobile dell’avvolgitore.Per verificare la posizione del basamento ci serviamo di sensori posti sotto il carter situato sotto il legatore, quindi verificare che- I sensori siano fissati bene ed alla giusta altezza in modo da essere in grado di leggere perfettamente la posizione del basamento- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione , è possibile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzione- Il basamento sia libero da impedimenti che ne ostruiscano la corretta movimentazione.",
+        "en": "The basament has the possibility of moving on the two reels depending on where you need to pack the coil and the reel you want to open to unload the coilThis alarm is generated by an error in the positioning of the mobile basament of the coilerTo check the position of the base we use sensors located under the casing located under the knotter, then check that- Make sure that the sensors are fixed well and at the correct height in order to be able to perfectly read the position of the base- If the LED is impossible to light up in any position when fixing the sensor, it is possible that it is defective or that the wiring has been damaged, we recommend replacing it- The base is free from obstacles that obstruct its correct movement."
+      }
+    },
+    "HMB_ALM_BasamentoSuA2": {
+      "media": {
+        "file": "HMB_ALM_BasamentoSuA2.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il basamento ha la possibiltà di traslare sui due aspi a seconda di dove si ha la necessità di confezionare la bobina e dell'aspo che si vuole aprire per scaricare la bobinaQuesto allarme viene generato da un errore del posizionamento del basamento mobile dell’avvolgitore.Per verificare la posizione del basamento ci serviamo di sensori posti sotto il carter situato sotto il legatore, quindi verificare che- Accertarsi che i sensori siano fissati bene ed alla giusta altezza in ,modo da essere in grado di leggere perfettamente la posizione del basamento- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione , è possibile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzione- Il basamento sia libero da impedimenti che ne ostruiscano la corretta movimentazione.",
+        "en": "The basament has the possibility of moving on the two reels depending on where you need to pack the coil and the reel you want to open to unload the coilThis alarm is generated by an error in the positioning of the mobile basament of the coilerTo check the position of the base we use sensors located under the casing located under the knotter, then check that- Make sure that the sensors are fixed well and at the correct height in order to be able to perfectly read the position of the base- If the LED is impossible to light up in any position when fixing the sensor, it is possible that it is defective or that the wiring has been damaged, we recommend replacing it- The base is free from obstacles that obstruct its correct movement."
+      }
+    },
+    "HMB_ALM_A2_PreApertura": {
+      "media": {
+        "file": "HMB_ALM_A2_PreApertura.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF2_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF2_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF2_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF2_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_CF_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF2_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_CF_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF2_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_PreApertura": {
+      "media": {
+        "file": "HMB_ALM_A1_PreApertura.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "In caso di aggancio interno o dal tipo di macchina è presente la pre aperturaQuesto allarme si verifica quando il sensore che conferma la sua pre apertura non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che le battute siano a contatto tra di loroSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "In case of internal hooking or by the type of machine there is pre-openingThis alarm occurs when the sensor confirming its pre-opening does not turn onIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the stops are in contact with each otherThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_CF1_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF1_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_CF_CoppiaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF1_CoppiaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF1_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF1_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_CF_TermicaMotore": {
+      "media": {
+        "file": "HMB_ALM_CF1_TermicaMotore.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_TraslSpatolaAltaIndietro": {
+      "media": {
+        "file": "HMB_ALM_AX_TraslSpatolaAltaIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La spatola ha la possibilità di traslare nell'asse x, La spatola alta dell’aspo in questione viene comandata di posizionarsi fuori dall’aspo ed il sensore di riferimento non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che la spatola sia libera di traslare e che lo faccia correttamente, arrivando perfettamente in battutaIn caso non sia cosi controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "The paddle has the ability to move in the x axis. The high paddle of the reel in question is commanded to position itself outside the reel and the reference sensor does not turn onIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the paddle is free to move and that it does it correctly, arriving perfectly in brakeIn case it is not check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, as a last thing there is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A2_TraslSpatolaAltaIndietro": {
+      "media": {
+        "file": "HMB_ALM_AX_TraslSpatolaAltaIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La spatola ha la possibilità di traslare nell'asse x, La spatola alta dell’aspo in questione viene comandata di posizionarsi fuori dall’aspo ed il sensore di riferimento non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che la spatola sia libera di traslare e che lo faccia correttamente, arrivando perfettamente in battutaIn caso non sia cosi controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "The paddle has the ability to move in the x axis. The high paddle of the reel in question is commanded to position itself outside the reel and the reference sensor does not turn onIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the paddle is free to move and that it does it correctly, arriving perfectly in contactIn case it is not so check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, as a last thing there is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A1_TraslSpatolaAltaAvanti": {
+      "media": {
+        "file": "HMB_ALM_AX_TraslSpatolaAltaAvanti.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_TraslSpatolaAltaAvanti": {
+      "media": {
+        "file": "HMB_ALM_AX_TraslSpatolaAltaAvanti.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L2_AusiliariSirenaComunicationValvole": {
+      "media": {
+        "file": "HMB_ALM_L2_AusiliariSirenaComunicationValvole.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non rileva nella rete il nodo del Gruppo Valvole del Legatore- controllare il cavo di comunicazione dati.",
+        "en": "The PLC does not detect the node of the strapper Valve Unit in the network- check the data communication cable."
+      }
+    },
+    "HMB_ALM_A2_DiametroMaxSuperato": {
+      "media": {
+        "file": "HMB_ALM_A2_DiametroMaxSuperato.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_DiametroMaxSuperato": {
+      "media": {
+        "file": "HMB_ALM_A1_DiametroMaxSuperato.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF2_Avanzamento": {
+      "media": {
+        "file": "HMB_ALM_CF2_Avanzamento.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF1_Avanzamento": {
+      "media": {
+        "file": "HMB_ALM_CF1_Avanzamento.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "A seconda dell'azione che deve fare, il cilindro del cambio formati si deve spostare avanti o indietroQuest'allarme avviene quando il sensore che definisce il suo avanzamento non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il cilindro sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "Depending on the action it has to do, the format change cylinder move forward or backwardThis alarm occurs when the sensor that defines its progress does not turn onIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the cylinder is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A2_CF_Avanzamento": {
+      "media": {
+        "file": "HMB_ALM_CF2_Avanzamento.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_CF_Avanzamento": {
+      "media": {
+        "file": "HMB_ALM_CF1_Avanzamento.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_Piastrone": {
+      "media": {
+        "file": "HMB_ALM_L1_Piastrone.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il sensore del piastrone, posizione basso, non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "This alarm occurs when the sensor of the big plate, low position, does not turn onWe recommend that you first check for any obstacles that compromise its total movement- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, replacement is recommendedIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_L2_Piastrone": {
+      "media": {
+        "file": "HMB_ALM_L2_Piastrone.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il driver dell’asse assorbe troppa corrente- controllare che lo spostamento del guidatubo riferito all'asse x non abbia impedimenti.",
+        "en": "This alarm occurs when the axis driver absorbs too much current- check that the movement of the x-axis pipe guide is not obstructed."
+      }
+    },
+    "HMB_ALM_GT2_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT2_FaultPresent.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_AllarmePeriferiche": {
+      "media": {
+        "file": "HMB_ALM_AllarmePeriferiche.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Controllare tutti i dispositivi connessi al PLC, se uno dei dispositivi è in allarme, non à possibile attivare la macchina.",
+        "en": "Check all the devices connected to the Ethernet Switch, one of the devices is in alarm, it is not possible to activate the machine."
+      }
+    },
+    "HMB_ALM_GT1_GuidaTuboAlto": {
+      "media": {
+        "file": "HMB_ALM_GT1_GuidaTuboAlto.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Utilizziamo un cilindro per gestire la salita e la discesa del guidatuboQuesto allarme si verifica quando il sensore nel cilindro, nella posizione alta, si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "We use a cylinder to manage the rise and fall of the tube guideThis alarm occurs when the sensor in the cylinder, in the high position, turns onWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, replacement is recommendedIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_GT2_GuidaTuboAlto": {
+      "media": {
+        "file": "HMB_ALM_GT2_GuidaTuboAlto.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1_GuidaTuboBasso": {
+      "media": {
+        "file": "HMB_ALM_GT1_GuidaTuboBasso.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Utilizziamo un cilindro per gestire la salita e la discesa del guidatuboQuesto allarme si verifica quando il sensore nel cilindro, nella posizione bassa, si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "We use a cylinder to manage the rise and fall of the tube guideThis alarm occurs when the sensor in the cylinder, in the low position, turns onWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, replacement is recommendedIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_GT2_GuidaTuboBasso": {
+      "media": {
+        "file": "HMB_ALM_GT1_GuidaTuboBasso.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1Y_LimiteMaxSuperato": {
+      "media": {
+        "file": "HMB_ALM_GT1Y_LimiteMaxSuperato.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' stato superato il limite massimo dell'asse x del guidatubo 1Verificare che non ci siano impedimenti e che il motore lavori correttamente",
+        "en": "The maximum limit of the y axis of tube guide 1 has been exceededCheck that there are no obstructions and that the motor is working correctly"
+      }
+    },
+    "HMB_ALM_GT2Y_LimiteMaxSuperato": {
+      "media": {
+        "file": "HMB_ALM_GT2Y_LimiteMaxSuperato.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' stato superato il limite massimo dell'asse y del guidatubo 2Verificare che non ci siano impedimenti e che il motore lavori correttamente",
+        "en": "The maximum limit of the y axis of tube guide 2 has been exceededCheck that there are no obstructions and that the motor is working correctly"
+      }
+    },
+    "HMB_ALM_L1_FineReggia": {
+      "media": {
+        "file": "HMB_ALM_L1_FineReggia.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La reggia risulta essere assente all'interno dei rulli del legatore- verificare la reale presenza della reggia all'interno dei rulli- verificare , se presente, il corretto inserimento della reggia nel legatore.",
+        "en": "The strap is absent inside the knotter rollers- check the real presence of the strap inside the rollers- check, if present, the correct insertion of the strap in the knotter."
+      }
+    },
+    "HMB_ALM_L2_FineReggia": {
+      "media": {
+        "file": "HMB_ALM_L2_FineReggia.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_SequenzaFasi": {
+      "media": {
+        "file": "HMB_ALM_SequenzaFasi.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando la tensione di alimentazione generale scende sotto la soglia impostata sul dispositivo controllo fasi oppure quando la sequenza delle fasi impostata è cambiataLe operazioni richieste per eliminare questo allarme sono le seguenti- verificare la tensione di alimentazione della macchin- verificare che le fasi siano nella giusta sequenzaUna volta verificati tutti questi punti è possibile eseguire il reset degli allarmi con l’appostito bottone giallo posto sul pannello di controllo generale.",
+        "en": "This alarm occurs when the main power supply voltage drops below the threshold set on the phase control device or when the set phase sequence has changed. The operations required to eliminate this alarm are- check the machine power supply voltage. Once all the above have been checked, reset the alarms by pressing the yellow button on the main control panel."
+      }
+    },
+    "HMB_ALM_ControlloTeleruttori": {
+      "media": {
+        "file": "HMB_ALM_ControlloTeleruttori.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Almeno uno dei due telerrutori tra KM0/KM1 non esegue correttamente il comando di Apertura/Chiusura dei contatti",
+        "en": "At least one of the two contactors between KM0/KM1 does not correctly perform the Opening/Closing command of the contacts"
+      }
+    },
+    "HMB_ALM_A1_SpatRulliniInAspo": {
+      "media": {
+        "file": "HMB_ALM_A1_SpatRulliniInAspo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' presente in aggiunta alle due solite spatola una spatola verticale in modo da tenere meglio la coda della bobina, la spatola in questione dovrebbe essere scesa all'interno dell'aspo ed il sensore di riferimento deve essere accesoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che la spatola sia libera di muoversi e che lo faccia correttamenteIn caso non sia cosi controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "In addition to the two usual paddle there is a overhead paddle in order to better hold the end of the coil, the paddle in question should have descended inside the reel and the reference sensor must be switched onIt is advisable to first check for any obstacles that compromise its total movement, making sure that the paddle is free to move and that it does so correctlyIf this is not the case, check- If there are no mechanical errors, check the sensor on the cylinder, verifying that the signal reaches the plc correctly- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If, when fixing the sensor, the LED is impossible to light up in any position on the cylinder, it is likely that it is faulty or that the wiring has been damaged, we recommend replacing itIf everything is working correctly, lastly there is the possibility that the pipes that bring the air to the cylinder are choked or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrives correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A2_SpatRulliniInAspo": {
+      "media": {
+        "file": "HMB_ALM_A2_SpatRulliniInAspo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' presente in aggiunta alle due solite spatola una spatola verticale in modo da tenere meglio la coda della bobina, la spatola in questione dovrebbe essere scesa all'interno dell'aspo ed il sensore di riferimento deve essere accesoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che la spatola sia libera di muoversi e che lo faccia correttamenteIn caso non sia cosi controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "In addition to the two usual paddle there is a overhead paddle in order to better hold the end of the coil, the paddle in question should have descended inside the reel and the reference sensor must be switched onIt is advisable to first check for any obstacles that compromise its total movement, making sure that the paddle is free to move and that it does so correctlyIf this is not the case, check- If there are no mechanical errors, check the sensor on the cylinder, verifying that the signal reaches the plc correctly- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If, when fixing the sensor, the LED is impossible to light up in any position on the cylinder, it is likely that it is faulty or that the wiring has been damaged, we recommend replacing itIf everything is working correctly, lastly there is the possibility that the pipes that bring the air to the cylinder are choked or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrives correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A1_SpatRulliniFuoriAspo": {
+      "media": {
+        "file": "HMB_ALM_A1_SpatRulliniFuoriAspo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' presente in aggiunta alle due solite spatola una spatola verticale in modo da tenere meglio la coda della bobina, la spatola in questione dovrebbe essere salita fuori dall'aspo ed il sensore di riferimento deve essere accesoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che la spatola sia libera di muoversi e che lo faccia correttamenteIn caso non sia cosi controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "In addition to the two usual paddle there is a overhead paddle in order to better hold the end of the coil, the paddle in question should have go out of the reel and the reference sensor must be switched onIt is advisable to first check for any obstacles that compromise its total movement, making sure that the paddle is free to move and that it does so correctlyIf this is not the case, check- If there are no mechanical errors, check the sensor on the cylinder, verifying that the signal reaches the plc correctly- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If, when fixing the sensor, the LED is impossible to light up in any position on the cylinder, it is likely that it is faulty or that the wiring has been damaged, we recommend replacing itIf everything is working correctly, lastly there is the possibility that the pipes that bring the air to the cylinder are choked or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrives correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A2_SpatRulliniFuoriAspo": {
+      "media": {
+        "file": "HMB_ALM_A2_SpatRulliniFuoriAspo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' presente in aggiunta alle due solite spatola una spatola verticale in modo da tenere meglio la coda della bobina, la spatola in questione dovrebbe essere salita fuori dall'aspo ed il sensore di riferimento deve essere accesoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che la spatola sia libera di muoversi e che lo faccia correttamenteIn caso non sia cosi controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "In addition to the two usual paddle there is a overhead paddle in order to better hold the end of the coil, the paddle in question should have go out of the reel and the reference sensor must be switched onIt is advisable to first check for any obstacles that compromise its total movement, making sure that the paddle is free to move and that it does so correctlyIf this is not the case, check- If there are no mechanical errors, check the sensor on the cylinder, verifying that the signal reaches the plc correctly- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If, when fixing the sensor, the LED is impossible to light up in any position on the cylinder, it is likely that it is faulty or that the wiring has been damaged, we recommend replacing itIf everything is working correctly, lastly there is the possibility that the pipes that bring the air to the cylinder are choked or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrives correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_A1_FtcAperturaParziale": {
+      "media": {
+        "file": "HMB_ALM_A1_FtcAperturaParziale.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' stato rilevato che, data l'apertura dell'aspo parziale abilitata, la fotocellula non riflette sul catarinfrangentePer verificare questo problema, assicurarsi che-Non ci siano impedimenti che non permettono alla fotocellula di legger-Assicurarsi che sia correttamente montata e che sia nella posizione corrett-Che la fotocellula non sia danneggiata o che non abbia problemi di alimentazione, quando il raggio è sul catarinfrangente, sulla fotocellula ci devono essere due led, uno arancione ed uno verde, in caso quello verde non cia sia significa che ha questi problemi",
+        "en": "It has been found that, given the partial reel opening enabled, the photocell does not reflect on the reflectorTo verify this problem, make sure that-There are no impediments that do not allow the photocell to rea-Make sure it is correctly fixed and that it is in the correct positio-That the photocell is not damaged or that it has no power supply problems, when the beam is on the reflector, there must be two LEDs on the photocell, one orange and one green, if the green one is not there it means that it has these problems"
+      }
+    },
+    "HMB_ALM_A2_FtcAperturaParziale": {
+      "media": {
+        "file": "HMB_ALM_A2_FtcAperturaParziale.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "E' stato rilevato che, data l'apertura dell'aspo parziale abilitata, la fotocellula non riflette sul catarinfrangentePer verificare questo problema, assicurarsi che-Non ci siano impedimenti che non permettono alla fotocellula di legger-Assicurarsi che sia correttamente montata e che sia nella posizione corrett-Che la fotocellula non sia danneggiata o che non abbia problemi di alimentazione, quando il raggio è sul catarinfrangente, sulla fotocellula ci devono essere due led, uno arancione ed uno verde, in caso quello verde non cia sia significa che ha questi problemi",
+        "en": "It has been found that, given the partial reel opening enabled, the photocell does not reflect on the reflectorTo verify this problem, make sure that-There are no impediments that do not allow the photocell to rea-Make sure it is correctly fixed and that it is in the correct positio-That the photocell is not damaged or that it has no power supply problems, when the beam is on the reflector, there must be two LEDs on the photocell, one orange and one green, if the green one is not there it means that it has these problems"
+      }
+    },
+    "HMB_ALM_A1_CentratoreAvanti": {
+      "media": {
+        "file": "HMB_ALM_A1_CentratoreAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 1, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non avanza correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'avanzamento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 1 Centering device, which has the function of keeping the format change centered and in the best position does not advance correctlyTo check this condition, we use a sensor located on the cylinder that regulates the advance of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_A1_CentratoreIndietro": {
+      "media": {
+        "file": "HMB_ALM_A1_CentratoreIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 1, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non arretra correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'arretramento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 1 Centering device, which has the function of keeping the format change centered and in the best position does not move back correctlyTo verify this condition we use a sensor placed on the cylinder that regulates the backward movement of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_A2_CentratoreAvanti": {
+      "media": {
+        "file": "HMB_ALM_A2_CentratoreAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 2, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non avanza correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'avanzamento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 2 Centering device, which has the function of keeping the format change centered and in the best position does not advance correctlyTo check this condition, we use a sensor located on the cylinder that regulates the advance of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_A2_CentratoreIndietro": {
+      "media": {
+        "file": "HMB_ALM_A2_CentratoreIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 2, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non arretra correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'arretramento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 2 Centering device, which has the function of keeping the format change centered and in the best position does not move back correctlyTo verify this condition we use a sensor placed on the cylinder that regulates the backward movement of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_CF1_CentratoreAvanti": {
+      "media": {
+        "file": "HMB_ALM_A1_CentratoreAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 1, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non avanza correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'avanzamento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 1 Centering device, which has the function of keeping the format change centered and in the best position does not advance correctlyTo check this condition, we use a sensor located on the cylinder that regulates the advance of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_CF1_CentratoreIndietro": {
+      "media": {
+        "file": "HMB_ALM_A1_CentratoreIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 1, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non arretra correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'arretramento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 1 Centering device, which has the function of keeping the format change centered and in the best position does not move back correctlyTo verify this condition we use a sensor placed on the cylinder that regulates the backward movement of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_CF2_CentratoreAvanti": {
+      "media": {
+        "file": "HMB_ALM_A2_CentratoreAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 2, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non avanza correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'avanzamento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 2 Centering device, which has the function of keeping the format change centered and in the best position does not advance correctlyTo check this condition, we use a sensor located on the cylinder that regulates the advance of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_CF2_CentratoreIndietro": {
+      "media": {
+        "file": "HMB_ALM_A2_CentratoreIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il centratore dell'aspo 2, il quale ha la funzione di mantenere il cambio formati centrato e nella miglior posizione non arretra correttamentePer verificare questa condizione utilizziamo un sensore posto sul cilindro che regola l'arretramento di esso,il quale in questo caso risulta spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimentoSuccessivamente controllare- In caso non ci siano errori nella meccanica, il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi.",
+        "en": "The Reel 2 Centering device, which has the function of keeping the format change centered and in the best position does not move back correctlyTo verify this condition we use a sensor placed on the cylinder that regulates the backward movement of it, which in this case is turned offWe recommend that you first check for any obstacles that compromise its total movementThen check- If there are no errors in the mechanics, the sensor on the cylinder, checking that the signal arrives correctly to the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, the last thing is the possibility that the pipes that bring the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems."
+      }
+    },
+    "HMB_ALM_ControlloSpoleEvg": {
+      "media": {
+        "file": "HMB_ALM_ControlloSpoleEvg.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il dispositivo in questione è provvisto di una sicurezza con due sensori che rilevano la chiusura dalla valvola dell'aria. Quindi per funzionare correttamente, il segnale di entrambi i sensori devono arrivare al PLC Safety quando la macchina non è riarmata e quindi sprovvista di aria. Di conseguenza al momento del Riarmo del'Avvolgitore, i sensori si devono spegnere contemporaneamente. Se quanto descritto non avviene il PLC presenterà questo allarme.",
+        "en": "The device is equipped with a safety device with two sensors that detect the closure of the air valve. Therefore, to function correctly, the signal of both sensors must reach the Safety PLC when the machine is not reset and without air. Consequently, at the time of the Rearm, the sensors must switch off at the same time. If this does not happen, the PLC will present this alarm."
+      }
+    },
+    "HMB_ALP_A1_ConfermaTamburo": {
+      "media": {
+        "file": "HMB_ALP_A1_ConfermaTamburo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo avviso si presenta quando, dopo un cambio formato, il diametro del tamburo calcolato tramite il laser (*HMR_A1_TamburoValoreLaser*) non  corrisponde con la misura del diametro Tamburo reale (*HMR_CF1_MemDiamTamburo*)Controllare che il tamburo è realmente *HMR_CF1_MemDiamTamburo*, in caso contrario aggiornare la quotaControllare che la distanza tra il laser e il riscontro è *HMR_A1_LaserTamburoValCalc*, in caso contrario controllare la meccanica del supporto laser e del riscontroPer maggiori informazioni recarsi nella pagina dedicata presente nel menu Impostazioni (arancioni).",
+        "en": "This warning appears when, after a format change, the laser-calculated drum diameter (*HMR_A1_TamburoValoreLaser*) does not match the real measurement of the drum diameter (*HMR_CF1_MemDiamTamburo*)Check that the drum is really *HMR_CF1_MemDiamTamburo*, otherwise update the valueCheck that the distance between the laser and the reference is *HMR_A1_LaserTamburoValCalc*, otherwise check the mechanics of the laser support and referenceFor more information, go to the relative page in the Settings menu (orange)."
+      }
+    },
+    "HMB_ALM_GT1_BrOscillanteScollegatoExt": {
+      "media": {
+        "file": "HMB_ALM_GT1_BrOscillanteScollegatoExt.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Attenzione, è abilitato il braccio oscillante esterno ma risulta elettricamente Scollegato, verificare il connettore a lato del quadro elettrico della macchina.",
+        "en": "Attention, the external dancer is enabled but electrically Disconnected, check the connector next to the machine’s electrical panel."
+      }
+    },
+    "HMB_ALM_GT1_BrOscillanteScollegatoInt": {
+      "media": {
+        "file": "HMB_ALM_GT1_BrOscillanteScollegatoInt.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Attenzione, è abilitato il braccio oscillante Interno ma risulta elettricamente Scollegato, verificare il connettore sul guidatubo.",
+        "en": "Attention, the internal dancer is enabled but electrically Disconnected, check the connector on the pipe-guide."
+      }
+    },
+    "HMB_ALM_L1_PiastroneBasso": {
+      "media": {
+        "file": "HMB_ALM_L1_PiastroneBasso.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il sensore del piastrone, posizione basso, non si accendeIl piastrone è l'elemento indicato in fotoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "This alarm occurs when the sensor of the big plate, low position, does not turn onThe plate is the element shown in the photoWe recommend that you first check for any obstacles that compromise its total movement- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_L2_PiastroneBasso": {
+      "media": {
+        "file": "HMB_ALM_L2_PiastroneBasso.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF1_InBoccola": {
+      "media": {
+        "file": "HMB_ALM_CF1_InBoccola.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "A seconda dell'azione che deve fare, il cilindro del cambio formati si deve spostare avanti o indietroQuest'allarme avviene quando il sensore sul cilindro che inserisce-rimuove la boccola del cambio formato nell'esagono e accerta che la boccola è inserita è spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il cilindro sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "Depending on the action it has to do, the format change cylinder move move up or down in yThis alarm occurs when the sensor on the cylinder that inserts / removes the socket of the format change in the hexagon and ensures that the socket is inserted is offIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the cylinder is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, replacement is recommendedIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_CF2_InBoccola": {
+      "media": {
+        "file": "HMB_ALM_CF2_InBoccola.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF1_FuoriBoccola": {
+      "media": {
+        "file": "HMB_ALM_CF1_FuoriBoccola.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "A seconda dell'azione che deve fare, il cilindro del cambio formati si deve spostare avanti o indietroQuest'allarme avviene quando il sensore sul cilindro che inserisce-rimuove la boccola del cambio formato nell'esagono e accerta che la boccola non è inserita è spentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il cilindro sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "Depending on the action it has to do, the format change cylinder move up or down in yThis alarm occurs when the sensor on the cylinder that inserts / removes the format change socket in the hexagon and ensures that the socket is not inserted is offIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the cylinder is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, replacement is recommendedIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_CF2_FuoriBoccola": {
+      "media": {
+        "file": "HMB_ALM_CF2_FuoriBoccola.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF1_TrasloSuTamburo": {
+      "media": {
+        "file": "HMB_ALM_CF1_TrasloSuTamburo.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il plc non rileva il segnale dal sensore che assicura la corretta posizione del cambio formatoIn questo caso il sensore di rifermento è quello sul cilindro che trasla il cambio formato per allineare la boccola con l'esagono della trasmissione del TamburoVerificare il corretto funzionamento del sensore e accertarsi che il segnale arrivi correttamente al plc. Nel caso la verifica non presenta errori, verificare se ci sono problemi nella meccanica e se la posizione del sensore è ancora corretta.",
+        "en": "The plc does not read the signal from the sensor which ensures the correct position of the format changeIn this case the reference sensor is the one on the cylinder that shifts the format change to align the socket with the Drum transmission hexagonMake sure the sensor is operating correctly and check that the signal is getting to the plc correctly. If the check does not reveal any errors, check whether there are problems with the mechanics and whether the position of the sensor is still correct."
+      }
+    },
+    "HMB_ALM_CF1_TrasloSuFlangia": {
+      "media": {
+        "file": "HMB_ALM_CF1_TrasloSuFlangia.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "A seconda dell'azione che deve fare, il cilindro del cambio formati si deve spostare avanti o indietroQuest'allarme avviene quando il sensore che definisce la traslazione del cambio formato per allineare la boccola con l'esagono della trasmissione della flangia non si accendSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il cilindro sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "Depending on the action it must take, the format change cylinder must move forward or backwardThis alarm occurs when the sensor that defines the translation of the format change to align the socket with the hexagon of the flange transmission does not turn oIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the cylinder is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_CF2_TrasloSuTamburo": {
+      "media": {
+        "file": "HMB_ALM_CF2_TrasloSuTamburo.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF2_TrasloSuFlangia": {
+      "media": {
+        "file": "HMB_ALM_CF2_TrasloSuFlangia.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_BobinaNoEsp": {
+      "media": {
+        "file": "HMB_ALM_A1_BobinaNoEsp.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_Chiusura": {
+      "media": {
+        "file": "HMB_ALM_AX_Chiusura.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_EspulsoreAnterioreIndietro": {
+      "media": {
+        "file": "HMB_ALM_AX_Espulsori.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_EspulsorePosterioreIndietro": {
+      "media": {
+        "file": "HMB_ALM_A1_Espulsori.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_NonInMarcia": {
+      "media": {
+        "file": "HMB_ALM_A1_NonInMarcia.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_BobinaNoEsp": {
+      "media": {
+        "file": "HMB_ALM_A2_BobinaNoEsp.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_Chiusura": {
+      "media": {
+        "file": "HMB_ALM_AX_Chiusura.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_EspulsoreAnterioreIndietro": {
+      "media": {
+        "file": "HMB_ALM_AX_Espulsori.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_EspulsorePosterioreIndietro": {
+      "media": {
+        "file": "HMB_ALM_AX_Espulsori.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A1_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_A1_FaultPresent.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_A2_FaultPresent.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_TraslFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_L1_TraslFaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive della traslazione del legatore 1 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il legatore possa traslare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the strapper 1 translation drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the strapper can move without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_L2_TraslFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_L2_TraslFaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive della traslazione del legatore 2 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il legatore possa traslare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the strapper 2 translation drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the strapper can move without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_L1_AvFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_L1_AvFaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive dell' avanzamento testa del legatore 1 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il legatore possa avanzare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the strapper 1 head advancement drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the strapper can advance without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_L2_AvFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_L2_AvFaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive dell' avanzamento testa del legatore 2 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il legatore possa avanzare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the strapper 2 head advancement drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the strapper can advance without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_L1_LrFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_L1_LrFaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive del Lancio Reggia del legatore 1 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che i rullini del legatore lavorino correttamente senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the strapper 1 strap launch drive is in alarmThe problems that can cause this problem are different, the main cause may be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the strapper rollers work correctly without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_L2_LrFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_L2_LrFaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive del Lancio Reggia del legatore 2 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che i rullini del legatore lavorino correttamente senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the strapper 2 strap launch drive is in alarmThe problems that can cause this problem are different, the main cause may be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the strapper rollers work correctly without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_A1_Cominication": {
+      "media": {
+        "file": "HMB_ALM_A1_Cominication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell'Aspo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Reel 1 driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_A2_Cominication": {
+      "media": {
+        "file": "HMB_ALM_A2_Cominication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell'Aspo 2Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Reel 2 driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1X_Cominication": {
+      "media": {
+        "file": "HMB_ALM_GT1X_Cominication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell'asse X del Guidatubo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the X-axis drive of Pipe Guide 1The main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1Y_Cominication": {
+      "media": {
+        "file": "HMB_ALM_GT1Y_Cominication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell'asse Y del Guidatubo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Y-axis drive of Pipe Guide 1The main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1Z_Cominication": {
+      "media": {
+        "file": "HMB_ALM_GT1Z_Cominication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell'asse Z del Guidatubo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Z-axis drive of Pipe Guide 1The main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1YIN_Cominication": {
+      "media": {
+        "file": "HMB_ALM_GT1YIN_Cominication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell'asse Y IN del Guidatubo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Inlet Y-axis drive of Pipe Guide 1The main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1TR1_Comunication": {
+      "media": {
+        "file": "HMB_ALM_GT1TR1_Comunication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive del traino 1 del guidatubo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Pipe Guide 1 Puller 1 driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1TR2_Comunication": {
+      "media": {
+        "file": "HMB_ALM_GT1TR2_Comunication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive del traino 2 del guidatubo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Pipe Guide 1 Puller 2 driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_GT1TR1_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1TR1_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive del traino 1 del guidatubo 1 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che la boccola possa girare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the pipe guide 1 puller 1 drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the pipe guide can move without impedimentOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_GT1TR2_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1TR2_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive del traino 2 del guidatubo 1 è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che la boccola possa girare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the pipe guide 1 puller 2 drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the pipe guide can move without impedimentOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_L1_ComunicationAvanz": {
+      "media": {
+        "file": "HMB_ALM_L1_ComunicationAvanz.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell' avanzamento testa del Legatore 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Strapper 1 head advancement driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_L2_ComunicationAvanz": {
+      "media": {
+        "file": "HMB_ALM_L2_ComunicationAvanz.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive dell' avanzamento testa del Legatore 2Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Strapper 2 head advancement driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_L1_ComunicationLancioReggia": {
+      "media": {
+        "file": "HMB_ALM_L1_ComunicationLancioReggia.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive del lancio reggia del Legatore 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Strapper 1 strap launch driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_L2_ComunicationLancioReggia": {
+      "media": {
+        "file": "HMB_ALM_L2_ComunicationLancioReggia.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive del lancio reggia del Legatore 2Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Strapper 2 strap launch driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_L1_ComunicationTrasl": {
+      "media": {
+        "file": "HMB_ALM_L1_ComunicationTrasl.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive della traslazione del Legatore 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Strapper 1 translation driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_L2_ComunicationTrasl": {
+      "media": {
+        "file": "HMB_ALM_L2_ComunicationTrasl.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive della traslazione del legatore 2Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the Strapper 2 translation driveThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_CF1_Comunication": {
+      "media": {
+        "file": "HMB_ALM_CF1_Comunication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive del cambio formati dell'aspo 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the reel 1 format change driveThe main problem that triggered this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_CF2_Comunication": {
+      "media": {
+        "file": "HMB_ALM_CF2_Comunication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il drive del cambio formati dell'aspo 2Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaAccertarsi che il cavo ethernet tra l'azionamento e lo switch sia collegato propriamente e/o eventualmente assicurarsi che il cavo funzioni correttamente, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesiQuesto allarme puo essere scaturito anche se il drive si danneggia-rompe, dato che se si spegne l'allarme viene azionato, in caso accertarsi che il problema sia proprio il drive o se semplicemente la +24 non arriva correttamente all'azionamento.",
+        "en": "The PLC cannot communicate with the reel 2 format change driveThe main problem that triggered this alarm is a problem on the internal ethernet network of the machineMake sure that the ethernet cable between the drive and the switch is properly connected and / or if necessary make sure that the cable is working correctly, this can also be understood by the two LEDs on the ethernet port, which must both be onThis alarm can also be triggered if the drive is damaged / broken, since if you turn off the alarm is triggered, in case make sure that the problem is just the drive or if simply the +24 does not arrive correctly to the drive."
+      }
+    },
+    "HMB_ALM_ComunicationGruppoGenerale1": {
+      "media": {
+        "file": "HMB_ALM_ComunicationGruppoGenerale1.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il gruppo valvole generalIl problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente avvitato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the general valve group The main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly screwed and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_L1_ComunicationValvole": {
+      "media": {
+        "file": "HMB_ALM_L1_ComunicationValvole.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il gruppo valvole del legatore 1Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente avvitato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the strapper 1 valve grouThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly screwed and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_L2_ComunicationValvole": {
+      "media": {
+        "file": "HMB_ALM_L2_ComunicationValvole.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il gruppo valvole del legatore 2Il problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente avvitato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the strapper 2 valve grouThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly screwed and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_SkillTronik_Comunication": {
+      "media": {
+        "file": "HMB_ALM_SkillTronik_Comunication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con lo Skill TronikIl problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente avvitato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the SkillTronikThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly screwed and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_Ftc_Comunication": {
+      "media": {
+        "file": "HMB_ALM_Ftc_Comunication.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il nodo dell fotocellule controllo formatiIl problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente collegato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the Check Format PhotocellThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly plugged and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_A1_PosizioneNonCorretta": {
+      "media": {
+        "file": "HMB_ALM_AX_PosizioneApertura.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_A2_PosizioneNonCorretta": {
+      "media": {
+        "file": "HMB_ALM_AX_PosizioneApertura.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_Acc_InternoBraccinoAlto": {
+      "media": {
+        "file": "HMB_ALM_Acc_InternoBraccinoAlto.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "L'asse che sostiene le ruote basse dell'accumulatore scorre su una guida lineare con corsa limitata con il quale possiamo gestire il tensionamento del tubo grazie ad una analogica che rileva la posizione dell'asse. Se il tubo è eccessivamente tensionato e viene superato il limite di sicurezza impostato, l'avvolgitore per sicurezza si ferma",
+        "en": "The axis supporting the low wheels of the accumulator run on a linear guide with limited stroke with which we can manage the pipe tensioning thanks to an analogue module that detects the axis position. If the pipe is excessively taut and the safety limit set is exceeded, for safety purpose the winder stops"
+      }
+    },
+    "HMB_ALM_Acc_SaliScendiFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il driver dell’asse è in allarme. Controllare che nel sistema meccanico di spostamento delle ruote alte dell'accumulatore non ci siano impedimenti.",
+        "en": "This alarm occurs when the axis driver is in alarm. Check that there are no impediments in the mechanical movement system of the high wheel of the accumulator."
+      }
+    },
+    "HMB_ALM_Acc_TrainoFaultPresent": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il traino dell'accumulatore va in allarme. Controllare che non sia bloccato meccanicamente",
+        "en": "The accumulator drive is in alarm. Check that it is not mechanical blocked"
+      }
+    },
+    "HMB_ALM_AperturaCesoia": {
+      "media": {
+        "file": "HMB_ALM_AperturaCesoia.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Ricevuto il comando di apertura in seguito ad il comando di taglio, il rispettivo o i rispettivi sensori nel cilindro che rilavano La cesoia aperta sono spentiControllare- Che non ci siano errori nella meccanica, eventualmente controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "Once the opening command has been received following the cutting command, the respective sensors(s) in the cylinder which release the open shears are offTo check- That there are no errors in the mechanics, if necessary check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_AusiliariSirenaComunicationSafety": {
+      "media": {
+        "file": "HMB_ALM_comunicationsafety.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il dispositivo di sicurezzaIl problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente avvitato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the SkillTronikThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly screwed and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_ComunicationSafetyDevice": {
+      "media": {
+        "file": "HMB_ALM_comunicationsafety.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il dispositivo di sicurezzaIl problema principale che scaturisce questo allarme è un problema sulla rete ethernet interna della macchinaI controlli che devono essere effettuati sono-Verificare che il cavo ethernet non si sia per errore staccato o che si sia rovinato-rotto, quindi accertarsi che il connettore sia correttamente avvitato e che sullo switch ethernet il cavo sia collegato, lo si puo capire anche dai due led sulla porta ethernet, i quali devono essere entrambi accesi-Assicurarsi che non ci sia un problema nell'alimentazione del dispositivo",
+        "en": "The PLC cannot communicate with the safety deviceThe main problem that trigger this alarm is a problem on the internal ethernet network of the machineThe checks that must be carried out are-Check that the ethernet cable has not accidentally come off or that it is damaged / broken, then make sure that the connector is correctly plugged and that the cable is connected on the ethernet switch, you can also understand it from the two LEDs on the ethernet port, both of which must be on-Make sure there is no problem with the power supply of the device"
+      }
+    },
+    "HMB_ALM_AusiliariSirenaComunicationValvGenerale": {
+      "media": {
+        "file": "HMB_ALM_comunicationvalvgenerale.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il PLC non riesce a comunicare con il gruppo valvole generale situato nel pannello pneumatico- verificare che il cavo di alimentazione non sia danneggiato.",
+        "en": "The PLC is unable to communicate with the main valve unit in the pneumatic panel. - check that the power cable is not damaged."
+      }
+    },
+    "HMB_ALM_FaultPresentCutter": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il driver dell’asse è in allarme- controllare che la taglierina non abbia impedimenti.",
+        "en": "This alarm occurs when the axis driver is in alarm. - check that the reel rotation has no impediments."
+      }
+    },
+    "HMB_ALM_GT1X_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1X_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive dell’asse X del guidatubo è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il guidatubo possa muoversi senza impedimentAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the X axis drive of the pipe guide is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the pipe guide can move without impedimentOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_GT1Y_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1Y_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive dell’asse Y del guidatubo è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il guidatubo possa muoversi senza impedimentAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the Y axis drive of the pipe guide is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the pipe guide can move without impedimentOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_GT1Z_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1Z_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive dell’asse Z del guidatubo è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il guidatubo possa muoversi senza impedimentAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the Z axis drive of the pipe guide is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the pipe guide can move without impedimentOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_GT1YIN_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_GT1YIN_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive dell’asse Y IN del guidatubo è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che il guidatubo possa muoversi senza impedimentAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the Inlet Y axis drive of the pipe guide is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the pipe guide can move without impedimentOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_GT2X_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il driver dell’asse è in allarme- controllare che il guidatubo non abbia impedimenti.",
+        "en": "This alarm occurs when the axis driver is in alarm- check that the pipe guide has no obstacles."
+      }
+    },
+    "HMB_ALM_GT2Y_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_L1_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando l’inverter del motore del lancio reggia è in allarme- controllare che la rotazione del motore non abbia impedimenti.",
+        "en": "This alarm occurs when the inverter of the strap launch motor is in alarm- check that the motor rotation has no impediments."
+      }
+    },
+    "HMB_ALM_L2_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_faultpresent.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_CF1_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_CF1_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive del cambio formati è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che la boccola possa girare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the format change drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the socket can turn without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_CF2_FaultPresent": {
+      "media": {
+        "file": "HMB_ALM_CF2_FaultPresent.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il drive del cambio formati è in allarmeI problemi che possono causare questo problema sono diversi, la causa principale puo essere eventuali impedimenti meccanici che non permettono il normale e corretto funzionamento del motore, controllare che la boccola possa girare senza impedimenti o blocchAltre possibilità sono -Il cavo motore arancione si sia per errore staccato dall'azionamento o che si sia rovinato-rotto, verificare la sua integrita-Il cavo encoder si sia staccato oppure danneggiato, verificare che sia correttamente collegato e che non sia danneggiatoPer avere alcune informazioni in piu controllare se presente il codice dei allarme nella pagina di informazione dedicata ai drive o in alternativa se presente il display sul drive è possibile verificarlo direttamente da li",
+        "en": "This alarm occurs when the format change drive is in alarmThe problems that can cause this problem are different, the main cause can be any mechanical impediments that do not allow the normal and correct operation of the motor, check that the socket can turn without impediments or blockOther possibilities are-The orange motor cable has accidentally detached from the drive or is damaged / broken, check its integrity-The encoder cable has detached or damaged, check that it is correctly connected and that it is not damagedTo get some more information, check if the alarm code is present in the information page dedicated to the drives or alternatively if the display on the drive is present, it is possible to check it directly from there."
+      }
+    },
+    "HMB_ALM_FotMouting1": {
+      "media": {
+        "file": "HMB_ALM_FotMouting1.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_FotMouting2": {
+      "media": {
+        "file": "HMB_ALM_FotMouting2.png",
+        "type": "image"
+      }
+    },
+    "HMB_ALM_GT1_AlzaCalibro": {
+      "media": {
+        "file": "HMB_ALM_GTX_AlzaCalibro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il calibro non riesce a stare basso e quindi il sensore nel cilindro resta accesoControllare che- Il movimento basculante del calibro non abbia problemi- La contropressione impostata nel pannello pneumatico sia regolata al meglio e che i tubi che portano l'aria al cilindro non siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite- Se non ci sono errori nella meccanica, eventualmente controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzione.",
+        "en": "This alarm occurs when the pipe guide cannot stay low and therefore the sensor in the cylinder remains onCheck that- The swinging movement of the pipe guide has no problems- The back pressure set in the pneumatic panel is regulated and that the pipes that bring the air to the cylinder are not constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrives correctly and that there are no leaks- If there are no errors in the mechanics, possibly check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing it."
+      }
+    },
+    "HMB_ALM_GT1_BraccioArretra": {
+      "media": {
+        "file": "HMB_ALM_GTX_BraccioArretra.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Durante l'avvolgimento, a seconda della modalità impostata sulla modalità di lavoro del calibro, esso o arretrerà a passi oppure subito completamenteQuesto allarme si verifica quando il calibro non riesce ad arretrare completamente ed il sensore sulla base del cilindro non si accendeControllare- Che non ci siano errori nella meccanica, controllare il movimento dell’asse Z del calibro e controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "During winding, depending on the mode set on the working mode of the pipe guide, it will either step back or immediately completelyThis alarm occurs when the pipe guide cannot completely retract and the sensor on the base of the cylinder does not turn onTo check- That there are no errors in the mechanics, check the movement of the Z axis of the pipe guide and check the sensor on the cylinder, checking that the signal arrives correctly at the plc- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_GT1_BraccioAvanti": {
+      "media": {
+        "file": "HMB_ALM_GTX_BraccioAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando il calibro non riesce ad avanzare completamente ed il sensore in testa al cilindro non si accendeControllare- Che non ci siano errori nella meccanica, controllare il movimento dell’asse Z del calibro e controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi, in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "This alarm occurs when the pipe guide cannot advance completely and the sensor at the head of the cylinder does not turn onTo check- That there are no errors in the mechanics, check the movement of the Z axis of the pipe guide and check the sensor on the cylinder, checking that the signal arrives correctly at the plc- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_GT1_BrOscillanteAlto": {
+      "media": {
+        "file": "HMB_ALM_GTX_BrOscillanteAlto.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il Braccio Oscillante viene regolato in modo che, una volta superata una certa altezza, l'avvolgitore si fermi per evitare che il tubo venga tensionatoQuesto allarme viene quando il braccio oscillante è stato portato ad una altezza impossibile da raggiungere in normale avvolgimento.Controllare che il tubo non abbia dei nodi e che sia libero di scorrere all'interno di tutta la linea, in caso non ci sono impedimenti regolare la velocita dell'avvolgitore per evitare che il tubo venga tensionato dopo il recupero ad inizio bobina.",
+        "en": "The dancing arm is adjusted so that, once a certain height is exceeded, the winder stops to prevent the hose from being tensionedThis alarm comes when the dancing arm has been brought to a height that cannot be reached in normal windingCheck that the hose does not have knots and that it is free to slide inside the tube guide, in case regular maximum value and speed of the winder"
+      }
+    },
+    "HMB_ALM_L1_AccostaTestaAvanti": {
+      "media": {
+        "file": "HMB_ALM_LX_AccostaTestaAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il legatore ,durante la fase di legatura, si avvicina verso la bobina per il confezionamentoUna volta avanzato, per raggiungere la bobina avanzerà solo la testa del legatore, accostandosi alla bobinaQuesto allarme si verifica quando uno dei 2 sensori dei cilindri non si accende. Il programma controlla la posizione avanti del cilindro di accostamento testa e la posizione indietro del cilindro di avanzamento del legatoreSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il legatore sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "During the strapping phase, the strapper approaches the reel for packagingOnce advanced, only the strapper's head will advance to reach the reel, approaching the reelThis alarm occurs when one of the 2 cylinder sensors does not turn on. The program controls the forward position of the head approach cylinder and the back position of the strapper advancement cylinderIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the strapper is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_L1_AccostaTestaIndietro": {
+      "media": {
+        "file": "HMB_ALM_LX_AccostaTestaIndietro.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Il legatore ,durante la fase di legatura, si avvicina verso la bobina per il confezionamentoFinito di legare, la testa tornerà indietroQuesto allarme si verifica quando uno dei 2 sensori dei cilindri non si accende. Il programma controlla la posizione indietro del cilindro di accostamento testa e la posizione indietro del cilindro di avanzamento del legatoreSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il legatore sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "During the strapping phase, the strapper approaches the reel for packagingWhen the tie is finished, the head will go backThis alarm occurs when one of the 2 cylinder sensors does not turn on. The program controls the back position of the head approach cylinder and the back position of the strapper advancement cylinderIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the strapper is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_L1_BeccoSaldanteBasso": {
+      "media": {
+        "file": "HMB_ALM_LX_BeccoSaldanteBasso.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Per confezionare la bobina e saldare la reggia ci serviamo di un becco saldante, il quale si abbassa per saldareQuesto allarme si verifica quando il sensore del becco saldante, posizione basso, non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il becco riesca a salire e scendere in libertàSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "To package the reel and weld the strap we use a soldering spout, which is lowered to weldThis alarm occurs when the soldering spout sensor, low position, does not turn onIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the spout is able to go up and down freelyThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaks."
+      }
+    },
+    "HMB_ALM_L1_LancioReggiaFallito": {
+      "media": {
+        "file": "HMB_ALM_LX_LancioRecuperoReggiaFallito.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Per effettuare la legatura, il legatore lancia la reggia che attraversa tutte la canaline fino a tornato al legatore per essere legataQuesto allarme si verifica quando la reggia non riesce a compiere il percorso stabilitoLe cause di questo problema sono- inceppamento della reggia in fase di lancio: verificare il percorso della reggia e pulirlo da eventuali residui di reggia o di polvere- rullini non regolati correttamente e il loro bloccaggio- controllare il funzionamento del sensore contareggia sulla camma del secondo rullino di trascinamento della reggetta- verificare la corretta pulizia.",
+        "en": "To make the strapping, the strapper throws the strap that crosses all the channels until it returns to the strapper to be tiedThis alarm occurs when the strap is unable to complete the established routeThe causes of this problem are- jamming of the strap during the launch phase: check the path of the strap and clean it from any residue of the strap or dust- rollers not correctly adjusted and their locking- check the functioning of the sensor, count on the cam of the second roller of the strap- check correct cleaning."
+      }
+    },
+    "HMB_ALM_L1_RecuperoReggiaFallito": {
+      "media": {
+        "file": "HMB_ALM_LX_LancioRecuperoReggiaFallito.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Dopo aver effettuato il lancio, i rullini recupereranno la reggia in modo da avere una legatura ben tesaQuesto allarme si verifica quando viene recuperata più reggia, dopo il lancio, rispetto al valore prestabilito- controllare eventuali impedimenti meccanici- verificare che la reggetta percorra tutto il canale di plastica senza impedimenti ed entri correttamente dall’altra parte della testa del legatore (questa operazione andrebbe eseguita con la macchina in potenza)Una volta verificati tutti questi punti è possibile eseguire il reset degli allarmi con l’apposito bottone giallo posto sul pannello di controllo generale. Se è necessario ripetere il lancio reggia premendo l’apposito bottone sul pannello operatore.",
+        "en": "After making the coil, the rollers will retrieve the strap in order to have a well stretched bindingThis alarm occurs when more straps are recovered, after launch, than the preset value- check for any mechanical impediments- check that the strap runs along the entire plastic channel without any resistance or obstructions and correctly enters the other side of the strapper head (this operation should be performed with the machine in power)Once all these points have been verified, the alarms can be reset with the appropriate yellow button located on the general control panel. If it is necessary to repeat the strap launch by pressing the appropriate button on the operator panel."
+      }
+    },
+    "HMB_ALM_L1_PinzaAsolataAvanti": {
+      "media": {
+        "file": "HMB_ALM_LX_PinzaAsolataAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La pinza asolata è una delle tre pinze all'interno del legatoreQuest'allarme si verifica quando il cilindro della pinza asolata (prima pinza che incontra la reggia) non effettua l'avanzamentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che sia libera di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perditePer regolare correttamente il sensore bisogna muovere la pinza in avanti finchè non sbatte sul piastrone. Solo in questa posizione il sensore si deve accendere. Una volta verificati tutti questi punti è possibile eseguire il reset degli allarmi con l’apposito bottone giallo posto sul pannello di controllo generale.",
+        "en": "The slotted gripper is one of the three grippers inside the strapperThis alarm occurs when the slotted gripper cylinder (first gripper that meets the strap) does not advanceWe recommend that you first check for any impediments that compromise the total movement, checking that it is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaksTo correctly adjust the sensor, move the clamp forward until it hits the plate. Only in this position should the sensor switch on. Once all these points have been verified, the alarms can be reset with the appropriate yellow button on the general control panel."
+      }
+    },
+    "HMB_ALM_L1_PinzaCentraleAvanti": {
+      "media": {
+        "file": "HMB_ALM_LX_PinzaCentraleAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La pinza centrale è una delle tre pinze all'interno del legatoreQuest'allarme si verifica quando il cilindro della pinza centrale (seconda pinza che incontra la reggia) non effettua l'avanzamentoSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che sia libera di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perditeUna volta verificati tutti questi punti è possibile eseguire il reset degli allarmi con l’apposito bottone giallo posto sul pannello di controllo generale.",
+        "en": "The central gripper is one of the three grippers inside the strapperThis alarm occurs when the central gripper cylinder (second gripper that meets the strap) does not advanceWe recommend that you first check for any impediments that compromise the total movement, checking that it is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaksOnce all these points have been verified, the alarms can be reset with the appropriate yellow button on the general control panel."
+      }
+    },
+    "HMB_ALM_L1_TerzaPinzaAvanti": {
+      "media": {
+        "file": "HMB_ALM_LX_TerzaPinzaAvanti.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "La terza pinza è una delle tre pinze all'interno del legatoreQuest'allarme si verifica quando sensore del cilindro della pinza centrale (l'ultima pinza che incontra la reggia) non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che sia libera di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perditeUna volta verificati tutti questi punti è possibile eseguire il reset degli allarmi con l’apposito bottone giallo posto sul pannello di controllo generale.",
+        "en": "The third grippier is one of the three grippiers inside the strapperThis alarm occurs when the sensor of the central gripper cylinder (the last gripper that meets the strap) does not turn onWe recommend that you first check for any impediments that compromise the total movement, checking that it is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing itIf everything is working properly, lastly there is the possibility that the pipes that carry the air to the cylinder are constricted or damaged, or that the valve that controls the cylinder has problems, in this case check that the air arrive correctly and that there are no leaksOnce all these points have been verified, the alarms can be reset with the appropriate yellow button on the general control panel."
+      }
+    },
+    "HMB_ALM_PressioneNonRegolare": {
+      "media": {
+        "file": "HMB_ALM_PressioneNonRegolare.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "Questo allarme si verifica quando la pressione dell’aria scende sotto i 4 barControllare- Il pressostato montato sul quadro pneumatic- Il valore di pressione d'esercizio sul manometro generale- Il funzionamento dell'elettrovalvola generale sul gruppo lubrificazione aria.",
+        "en": "This alarm occurs when the air pressure drops below 4 bar. Check- The pressure switch mounted on the pneumatic pane- The operating pressure value on the main pressure gauge- The operation of the main solenoid valve on the air lubrication unit."
+      }
+    },
+    "HMB_ALM_SalitaCF": {
+      "media": {
+        "file": "HMB_ALM_AX_CF_Salita.png",
+        "type": "image"
+      },
+      "testo": {
+        "it": "A seconda dell'azione che deve fare, il cilindro del cambio formati si deve spostare in y in alto o in bassoQuesto allarme si verifica quando il sensore nel cilindro che garantisce che il cambio formati sia alto, non si accendeSi consiglia di controllare come prima cosa eventuali impedimenti che ne compromettano il totale movimento, verificando che il cilindro sia libero di muoversiSuccessivamente controllare- In caso non ci siano errori nella meccanica, controllare il sensore sul cilindro, verificando che il segnale arrivi correttamente al plc- Accertarsi che il sensore sia collegato correttamente, il sensore deve avere un led giallo, se non presente nessuna luce o è presente una luce gialla e arancio, riposizionare il sensore nella posizione corretta- Se durante il fissaggio del sensore il led risulta impossibile da accendere in qualsiasi posizione sul cilindro, è probabile che esso sia difettoso o che il cablaggio si sia danneggiato, si consiglia la sostituzioneSe tutto risulta correttamente funzionante, come ultima cosa c'è la possibiltà che i tubi che portano l'aria al cilindro siano strozzatti o danneggiati, oppure che proprio la valvola che comanda il cilindro abbia dei problemi,in questo caso verificare che l'aria arrivi correttamente e che non ci siano perdite.",
+        "en": "Depending on the action it has to do, the format change cylinder move up or down in yThis alarm occurs when the sensor in the cylinder which ensures that the format change is high, does not turn onIt is advisable to check first of all possible obstacles that compromise the total movement, checking that the cylinder is free to moveThen check- If there are no errors in the mechanics, check the sensor on the cylinder, checking that the signal arrives correctly at the PLC- Make sure that the sensor is connected correctly, the sensor must have a yellow LED, if there is no light or there is a yellow and orange light, reposition the sensor in the correct position- If the LED is impossible to light up in any position on the cylinder when fixing the sensor, it is likely that it is defective or that the wiring has been damaged, we recommend replacing it"
+      }
+    }
+  }
+}

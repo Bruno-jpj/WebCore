@@ -80,7 +80,7 @@
                             <tbody>
                                 <tr>
                                     <td>{{ alarm.titolo }} <input type="checkbox" name="aa_checkBox" id="aa_checkBox_{{alarm.pk}}" value={{ alarm.titolo }} onchange="CheckBoxClick(this)"></td>
-                                    <td>{{ alarm|getattr_field:chosen_language }}</td>
+                                    <td>{% if alarm|getattr_field:chosen_language %} {{ alarm|getattr_field:chosen_language }} {% else %} Nessun Testo trovato {% endif %}</td>
                                     <td>
                                         {% if alarm.img %}
                                             <img src="{{ alarm.img.url }}" width="300">
