@@ -39,15 +39,19 @@ urlpatterns = [
     path(settings.ADMIN_PATH, admin.site.urls),
 
     # Web-App routing
-    path('', IndexLogic.as_view() , name="index"),
+    
+    #path('', IndexLogic.as_view() , name="index"), # not necessary now
+    
+    path('', ManualLogic.as_view(), name="manual"),
+    path('manual-admin/', ManualAdminLogic.as_view(), name="manual_admin"),
     path('login/', login, name="login"),
     path('signup/', signup, name="signup"),
     path('logout/', logout_view, name="logout_view"),
-    path('manual/', csrf_exempt(ManualLogic.as_view()), name="manual"),
-    path('manual-admin/', csrf_exempt(ManualAdminLogic.as_view()), name="manual_admin"),
-    path('account/', account, name="account"),
-    path('contacts/', contacts, name="contacts"),
-    path('line/', line, name="line"),
+    
+    
+    #path('account/', account, name="account"), # not necessary now
+    #path('contacts/', contacts, name="contacts"), # not necessary now
+    #path('line/', line, name="line"), # not necessary now
 
     # API Routing
     path('request/', include("api.urls"))

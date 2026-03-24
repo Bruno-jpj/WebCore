@@ -117,8 +117,8 @@ def login(request: HttpRequest):
                 # put the user.id into the Django session table
                 request.session['user_id'] = user.id
                 
-                # redirect to the Index View
-                return redirect('index')
+                # redirect to the Index View - for now manual page is the Index
+                return redirect('manual')
             else:
                 messages.error(request, "Username o Password errati")
         except Users.DoesNotExist:
@@ -184,6 +184,7 @@ def logout_view(request: HttpRequest):
     return redirect("login")
 #
 # Manual Page Logic
+@check_log_in
 class ManualAdminLogic(View): 
 
     # define the JSON file path - it doesn't like relative path - 
@@ -645,15 +646,19 @@ class ManualAdminLogic(View):
         )   
 #
 # Contacts Page Logic
+@check_log_in
 def contacts(request: HttpRequest):
     return render(request, TEMPLATE.CONTACTS.value)
 # Account Page Logic
+@check_log_in
 def account(request: HttpRequest):
     return render(request, TEMPLATE.ACCOUNT.value)
 # Line Page Logic
+@check_log_in
 def line(request: HttpRequest):
     return render(request, TEMPLATE.LINE.value)
 #
+@check_log_in
 class ManualLogic(View):
     
     # define the JSON file path - it doesn't like relative path - 

@@ -50,12 +50,11 @@ def api_logger_view(var, msg):
 '''
 URL: request/info/
 
-ex. received JSON: {
-    "UUID + Username" => hash + salt ???
-    
+ex. received JSON: {    
     "api_key": "client_key", # header
-    "language": "text_it",
+    "language": "text_it", # text_it = default
     "machine_code": "pp23240",
+    "machine_category":"TR",
     "machine_type": "600",
     "machine_alarm": "temperatura"
 }
@@ -76,7 +75,7 @@ class RequestEvent(APIView):
                 
                 result = handle_post_call(received_data, request)
                 
-                api_logger_view(result, "Result of POST API call")
+                api_logger_view(result, "Result of POST-API call")
                 
                 return Response(result)
                 

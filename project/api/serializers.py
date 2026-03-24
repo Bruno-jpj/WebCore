@@ -1,4 +1,5 @@
 # this file serve to take a model and convert it into JSON compatible data
+# BUT FOR NOW I DO IT MANUALLY - CAUSE I CAN'T MAKE IT WORK WITH MULTIPLE-TABLES
 
 from core.models import (
     Macchinari,
