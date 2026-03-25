@@ -32,7 +32,7 @@ load_dotenv(override=True)
 SECRET_KEY = os.getenv("SECRET_KEY", "x2+-ry!mo65p2jq-^i+2acrgf7$ex&g@6x%jf+n6tkp!bb$59f")
 
 # DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = False
+DEBUG = True
 
 # if debug = false, must have allowed_hosts on
 # solo i domini elencati posso accedere al sito

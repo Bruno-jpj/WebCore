@@ -639,8 +639,8 @@ class ManualAdminLogic(View):
                     # fields_to_update["img"] = img
                     qs.img = img
                     alarm_json_file["lista_allarmi"][alarm_list_value]["media"]["img"] = {
-                        "nome_file": img if img else "None File",
-                        "path_file": img if img else "None File"
+                        "nome_file": getattr(qs.img, 'name', "None File") if img else "None File",
+                        "path_file": getattr(qs.img, 'path', "None File") if img else "None File"
                     }
                     
                     updated = True
@@ -650,8 +650,8 @@ class ManualAdminLogic(View):
                     # fields_to_update["video"] = video
                     qs.video = video
                     alarm_json_file["lista_allarmi"][alarm_list_value]["media"]["video"] = {
-                        "nome_file": video if qs.video else "None File",
-                        "path_file": video if qs.video else "None File"
+                        "nome_file": getattr(qs.video, 'name', "None File") if qs.video else "None File",
+                        "path_file": getattr(qs.video, 'path', "None File") if qs.video else "None File"
                     }
                     updated = True
         except Exception as e:
@@ -707,7 +707,7 @@ class ManualAdminLogic(View):
         alarms_data = []
         
         for t in alarm_list:
-            alarm = AllarmiSoluzioni.objects.filter(titolo = t).first()
+            alarm = AllarmiSoluzioni.objects.get(titolo = t)
             
             if not alarm:
                 continue
@@ -724,8 +724,9 @@ class ManualAdminLogic(View):
             logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual-admin/")
             
         html_string = render_to_string(
-            TEMPLATE.PDF_TEMPLATE.value,
-            {"alarms": alarms_data}
+            template_name=TEMPLATE.PDF_TEMPLATE.value,
+            context={"alarms": alarms_data},
+            request=request
         )
         
         pdf_file = io.BytesIO()
@@ -944,18 +945,26 @@ class ManualLogic(View):
     def create_download_pdf(self, request: HttpRequest, alarm_list: list, chosen_language):
         
         alarms_data = []
+        img_path = None
         
         for t in alarm_list:
-            alarm = AllarmiSoluzioni.objects.filter(titolo = t).first()
+            alarm = AllarmiSoluzioni.objects.get(titolo = t)
             
             if not alarm:
                 continue
             
-            alarms_data.append({
-                "titolo": alarm.titolo,
-                "solution": getattr(alarm, chosen_language),
-                "img": request.build_absolute_uri(alarm.img.url) if alarm.img else None
-            })
+            logger_view(alarm.img.path if alarm.img else "NONE", "allarme...................")
+            
+            try:
+                alarms_data.append({
+                    "titolo": alarm.titolo,
+                    "solution": getattr(alarm, chosen_language),
+                    # "img": None
+                    "img": request.build_absolute_uri(alarm.img.url) if alarm.img and bool(alarm.img) else None
+                })
+            except Exception as e:
+                logger_view(e, "Eccezzione presa nell'aggiunta dell'allarme")
+            
             
             # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
             # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
@@ -963,8 +972,9 @@ class ManualLogic(View):
             logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual/")
             
         html_string = render_to_string(
-            TEMPLATE.PDF_TEMPLATE.value,
-            {"alarms": alarms_data}
+            template_name=TEMPLATE.PDF_TEMPLATE.value,
+            context={"alarms": alarms_data},
+            request=request
         )
         
         pdf_file = io.BytesIO()
