@@ -1,6 +1,7 @@
 import json
 import time
 
+
 from deep_translator import GoogleTranslator
 
 old_json = r'/var/www/webcore/test_script/json/attivita_testi.json'
@@ -201,6 +202,12 @@ def update_translations():
         return
 
     print("Finito. Controlla i risultati.")
+#
+def insert_macchinari():
+    pass
+#
+def insert_informazioni():
+    pass
 #
 if __name__ == "__main__":
     update_translations()
