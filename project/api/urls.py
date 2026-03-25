@@ -4,7 +4,9 @@
 
 from django.urls import path
 from . import views
+from . import views_base
 
 urlpatterns = [
-    path('info/', views.RequestEvent.as_view()),
+    path('info/v2', views.RequestEvent.as_view()),
+    path('info/v1', views_base.RequestEvent.as_view())
 ]
