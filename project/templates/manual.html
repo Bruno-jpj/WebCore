@@ -1,7 +1,6 @@
 {% load static %}
 {% load alarm_tags %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,8 +39,7 @@
                     {% endfor %}
             {% endif %}
         </label>
-    </div>
-    
+    </div>    
     <div class="text_area">
         <!-- Form di ricerca -->
         <form action="{% url 'manual' %}" method="get">
@@ -103,5 +101,6 @@
     </div>
 </main>
 <footer></footer>
+<script src="{% static 'js/manual.js' %}"></script>
 </body>
 </html>
