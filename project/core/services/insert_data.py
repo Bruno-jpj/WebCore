@@ -70,7 +70,7 @@ class Run():
 
         usati = set()
 
-        for _ in range(250):
+        for _ in range(1250):
             pp_num = random.randint(20000, 30000)
             pp = "pp" + str(pp_num)
 
