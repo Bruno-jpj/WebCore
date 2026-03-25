@@ -52,6 +52,8 @@ import time
 import io
 import csv
 
+# Create your views here.
+
 def logger_view(var, msg):
     
     path = '/var/www/webcore/project/debug.log'
@@ -67,8 +69,6 @@ def logger_view(var, msg):
     except Exception as e:
         print(f"Logger Error: {e}")
 #
-# Create your views here.
-
 # HTML Template list
 class TEMPLATE(Enum):
     INDEX = 'index.html'
@@ -712,16 +712,21 @@ class ManualAdminLogic(View):
             if not alarm:
                 continue
             
-            alarms_data.append({
-                "titolo": alarm.titolo,
-                "solution": getattr(alarm, chosen_language),
-                "img": request.build_absolute_uri(alarm.img.url) if alarm.img else None
-            })
+            try:
+                alarms_data.append({
+                    "titolo": alarm.titolo,
+                    "solution": getattr(alarm, chosen_language),
+                    # "img": None
+                    "img": request.build_absolute_uri(alarm.img.url) if alarm.img and bool(alarm.img) else None
+                })
+            except Exception as e:
+                logger_view(e, "Eccezzione presa nell'aggiunta dell'allarme")
             
             # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
             # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
             
-            logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual-admin/")
+            # THIS CODE BELOW GENERATE THIS ERROR: the 'img' attribute has no file associated with it.
+            # logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual/")
             
         html_string = render_to_string(
             template_name=TEMPLATE.PDF_TEMPLATE.value,
@@ -969,11 +974,12 @@ class ManualLogic(View):
             # request.build_absolute_uri(alarm.img.url) → http://127.0.0.1:8000/media/img_name.jpg
             # print(f"immagine_path:  {request.build_absolute_uri(alarm.img.url) if alarm.img else None}")
             
-            logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual/")
+            # THIS CODE BELOW GENERATE THIS ERROR: the 'img' attribute has no file associated with it.
+            # logger_view(request.build_absolute_uri(alarm.img.url), "Percorso dell'immagine  dopo aver premuto Download nel url /manual/")
             
         html_string = render_to_string(
             template_name=TEMPLATE.PDF_TEMPLATE.value,
-            context={"alarms": alarms_data},
+            context={"alarms": alarms_data, "chosen_language": chosen_language},
             request=request
         )
         
