@@ -58,3 +58,7 @@ function SendCheckBoxList(dowload){
     document.getElementById("CheckBoxList").value = JSON.stringify(CheckBoxAlarm);
     document.getElementById("form-lista").submit();
 }
+
+
+// ModifyText
+

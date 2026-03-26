@@ -56,7 +56,7 @@
                         {% csrf_token %}
 
                         <input type="text" name="alarm_title" id="alarm_title" placeholder="Titolo dell'allarme">
-                        <input type="text" name="solution_text" id="solution_text" placeholder="Testo Soluzione">
+                        <textarea name="solution_text" id="solution_text" placeholder="Testo Soluzione"></textarea>
                         <input type="file" accept=".png,.gif,.jpg,.jpeg" name="solution_img" id="solution_img" placeholder="Scegli un'immagine">
                         <input type="file" accept=".mp4" name="solution_video" id="solution_video" placeholder="Scegli un video">
 

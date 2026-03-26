@@ -56,7 +56,7 @@ header select{
 
 main{
     padding:30px;
-    max-width:1400px;
+    max-width:2000px; /* Questo campo gestisce la grandezza della label bianca dove c'è la tabella*/
     margin:auto;
 }
 
@@ -81,7 +81,7 @@ main{
 
 .text_area input[type="text"]{
     padding:9px;
-    width:260px;
+    width:300px;
     border-radius:5px;
     border:1px solid #ccc;
 }
@@ -112,16 +112,31 @@ main{
 
 .input_area{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+    grid-template-columns:1fr 1fr 1fr 1fr; /* 1fr [4 colonne]: è la frazione(percentuale, es: 25% in questo caso) dello spazio che la colonna occupa */
+    /*grid-template-rows: 1fr 1fr;*/
+    gap: 30px;
     margin-bottom:25px;
 }
 
+
+#solution_text {
+    grid-column: span 3;  
+    width: 100%;           /* occupa tutta la colonna */
+    min-height: 100px;     /* altezza iniziale più grande */
+    padding: 15px;
+    font-size: 14px;       /* testo più leggibile */
+    line-height: 1.6;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;      /* permette di ridimensionare in verticale */
+}
+
+
 .input_area input{
     padding:10px;
+    width: 400px;
     border-radius:5px;
     border:1px solid #ccc;
-    width:100%;
 }
 
 /* BUTTONS */
@@ -170,11 +185,13 @@ tr:hover{
 /* MEDIA */
 
 img{
+    max-height: 300px;
     max-width:220px;
     border-radius:6px;
 }
 
 video{
+    max-height:280px;
     max-width:280px;
     border-radius:6px;
 }
