@@ -109,39 +109,33 @@ main{
 }
 
 /* INPUT AREA */
-
-.input_area{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr; /* 1fr [4 colonne]: è la frazione(percentuale, es: 25% in questo caso) dello spazio che la colonna occupa */
-    /*grid-template-rows: 1fr 1fr;*/
-    gap: 30px;
-    margin-bottom:25px;
+/* FORM GRID */
+form#form-lista {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne uguali */
+    gap: 20px;                             /* distanza tra gli elementi */
 }
 
-
-#solution_text {
-    grid-column: span 3;  
+/* INPUT, TEXTAREA, BUTTON */
+form#form-lista input,
+form#form-lista textarea,
+form#form-lista button {
     width: 100%;           /* occupa tutta la colonna */
-    min-height: 100px;     /* altezza iniziale più grande */
-    padding: 15px;
-    font-size: 14px;       /* testo più leggibile */
-    line-height: 1.6;
+    box-sizing: border-box;/* padding incluso nella larghezza */
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    resize: vertical;      /* permette di ridimensionare in verticale */
+    font-size: 14px;
 }
 
-
-.input_area input{
-    padding:10px;
-    width: 400px;
-    border-radius:5px;
-    border:1px solid #ccc;
+/* TEXTAREA più alta */
+#solution_text {
+    min-height: 100px;
+    resize: vertical;
 }
 
-/* BUTTONS */
-
-.input_area button{
+/* BOTTONI */
+form#form-lista button{
     grid-column:span 1;
     padding:10px;
     border:none;
@@ -151,6 +145,21 @@ main{
     font-weight:bold;
     cursor:pointer;
 }
+
+form#form-lista button:hover{
+    background:#27ae60;
+}
+
+/* OPTIONAL: adattamento responsive */
+@media (max-width: 800px) {
+    form#form-lista {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonne su schermi piccoli */
+    }
+}
+
+/* BUTTONS */
+
+.input_area 
 
 .input_area button:hover{
     background:#27ae60;
