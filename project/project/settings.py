@@ -40,6 +40,9 @@ ALLOWED_HOSTS = [
     "*", # all
 ]
 
+# ip/domain trusted with CSRF
+# CSRF_TRUSTED_ORIGINS = ['http://192.168.87.15:8080']
+
 ADMIN_PATH = 'user-bruno/'
 
 # Application definition
