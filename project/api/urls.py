@@ -3,10 +3,14 @@
 # path('url/', view.view_name, name='view_name')
 
 from django.urls import path
-from . import views
-from . import views_base
+from . import (
+    views_api_v1,
+    views_api_v2,
+    views_api_v3
+)
 
 urlpatterns = [
-    path('info/v2', views.RequestEvent.as_view()),
-    path('info/v1', views_base.RequestEvent.as_view())
+    path('info/v2', views_api_v2.RequestEvent.as_view()),
+    path('info/v1', views_api_v1.RequestEvent.as_view()),
+    path('info/v3', views_api_v3.RequestEvent.as_view())
 ]

@@ -64,10 +64,27 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+''''
+GLOBAL RATE LIMITER [API]:
+The rates used in DEFAULT_THROTTLE_RATES can be specified over a period of second, minute, hour or day. 
+The period must be specified after the / separator using s, m, h or d, respectively. 
+For increased clarity, extended units such as second, minute, hour, day or even abbreviations like sec, min, hr are allowed, 
+as only the first character is relevant to identify the rate.
+'''
 REST_FRAMEWORK = {
-    "DEFAULT_RENDERER_CLASSES": [
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.CursorPagination',
+    'PAGE_SIZE':1000, # Number of items per page  
+    'DEFAULT_RENDERER_CLASSES': [
         "rest_framework.renderers.JSONRenderer",
-    ]
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '50/min',
+        'user': '50/min'
+    }
 }
 
 # if DEBUG is true shows JSON data + the auto-html page test

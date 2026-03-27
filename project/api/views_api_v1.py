@@ -164,18 +164,22 @@ def handle_post_call(api_data: dict, request: HttpRequest):
     # 1) select_related: Fa le JOIN interne verso Macchinari e AllarmiSoluzioni in un’unica query
     # 2) filter: filtra sulle condizioni come il WHERE usando le FK ' __ ' per scendere nei campi collegati
     # 3) values: seleziona solo le colonne che vuoi
-    info_qs = Informazioni.objects.select_related('id_macchinario', 'id_allarme').filter(
-    id_allarme__titolo=alarm_obj.titolo,
-    id_macchinario__piano_produzione=machine_obj.piano_produzione
-    ).values(
-        'id',  # corrisponde all'id della tab. Informazioni
-        'id_macchinario__piano_produzione',
-        'id_allarme__titolo',
-        f'id_allarme__{language}',
-        'id_allarme__img',
-        'id_allarme__video'
-    )
     
+    if all([machine_code, machine_alarm]):    
+        info_qs = Informazioni.objects.select_related('id_macchinario', 'id_allarme').filter(
+        id_allarme__titolo=alarm_obj.titolo,
+        id_macchinario__piano_produzione=machine_obj.piano_produzione
+        ).values(
+            'id',  # corrisponde all'id della tab. Informazioni
+            'id_macchinario__piano_produzione',
+            'id_allarme__titolo',
+            f'id_allarme__{language}',
+            'id_allarme__img',
+            'id_allarme__video'
+        )
+    else:
+        return {"status": status.HTTP_503_SERVICE_UNAVAILABLE, "data": "Request not permitted on this Endpoint"}
+        
     api_logger_view(info_qs, "questa è una lista/dict")
     
     #'''

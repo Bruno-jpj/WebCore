@@ -4,10 +4,17 @@ from django.views.decorators.csrf import (
     requires_csrf_token
 ) 
 
+from rest_framework.pagination import CursorPagination
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status, exceptions
+from rest_framework import status, exceptions, generics
+
+from .serializers import(
+    MacchinariSerializers,
+    AllarmiSerializers,
+    InformazioniSerializers
+)
 
 from core.models import (
     Informazioni,
@@ -44,23 +51,29 @@ def api_logger_view(var, msg):
         return Response(f"Eccezzione Log api logger: {e}")
 #
 '''
-URL: request/info/
+URL: request/info/v2
 
-ex. received JSON: {    
-    "api_key": "client_key", # header
-    "language": "text_it", # text_it = default
-    "machine_code": "pp23240", # codice identificativo della macchina
-    "machine_category":"TR",
-    "machine_type": "600",
-    "machine_alarm": "temperatura" # codice identificativo dell'allarme
+ex. received JSON: {
+    "data":[{
+        "api_key": "client_key", # header
+        "language": "text_it", # text_it = default
+        "machine_code": "pp23240", # codice identificativo della macchina
+        "machine_category":"TR",
+        "machine_type": "600",
+        "machine_alarm": "temperatura" # codice identificativo dell'allarme   
+    }],
+    "paginations:{
+        "start_page":0, # pagina di partenza
+        "end_page":10, # pagina finale
+        "limit":1200, # numero dei record ritornati
+        "cursor":"okfng4rs" # UUID
+    }
 }
 '''
 #
 class RequestEvent(APIView):
+    # this request have to be sent as GET not POST [I'm not creating a resorse]
     def get(self, request: Request):
-        return Response({"Error: Endpoint doesn't exists"}, status=status.HTTP_501_NOT_IMPLEMENTED)
-    #
-    def post(self, request: Request):
         try:
             received_data = request.data
             
@@ -80,13 +93,27 @@ class RequestEvent(APIView):
             api_logger_view(e, "Catch Except of POST-RequestEvent")
             
             return Response({"Error" : str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    #
+    def post(self, request: Request):
+        return Response({"Error: Request can't be resolved"}, status=status.HTTP_501_NOT_IMPLEMENTED)
+    #
+    def delete(self, request: Request):
+        return Response({"Error: Request can't be resolved"}, status=status.HTTP_501_NOT_IMPLEMENTED)
+    # change all the parameters of the resorse
+    def put(self, request: Request):
+        return Response({"Error: Request can't be resolved"}, status=status.HTTP_501_NOT_IMPLEMENTED)
+    # change only 1 parameter of the resorse
+    def patch(self, request: Request):
+        return Response({"Error: Request can't be resolved"}, status=status.HTTP_501_NOT_IMPLEMENTED)
+    #
 #
-def create_api_log(request: HttpRequest, client_key, language, machine_code, machine_type, machine_alarm, response_status, api_key):
+def create_api_log(request: HttpRequest, client_key, language, machine_code, machine_category, machine_type, machine_alarm, response_status, api_key):
     
     payload: dict = {
         "client_key": client_key,
         "language": language,
         "machine_code": machine_code,
+        "machine_category": machine_category,
         "machine_type": machine_type,
         "machine_alarm": machine_alarm
     }
@@ -98,6 +125,8 @@ def create_api_log(request: HttpRequest, client_key, language, machine_code, mac
         api = api_key
     )  
 #
+    
+
 def handle_post_call(api_data: dict, request: HttpRequest):
     
     languages_dict: dict = {
@@ -142,38 +171,44 @@ def handle_post_call(api_data: dict, request: HttpRequest):
 
         if machine_code:
             filters['id_macchinario__piano_produzione'] = machine_code
+        else:
+            filters['id_macchinario__piano_produzione'] = None
 
         if machine_alarm:
             filters['id_allarme__titolo'] = machine_alarm
-
-        info_qs = Informazioni.objects.select_related(
-            'id_macchinario', 'id_allarme'
-        ).filter(
-            **filters
-        ).values(
-            'id',
-            'id_macchinario__piano_produzione',
-            'id_allarme__titolo',
-            f'id_allarme__{language}',
-            'id_allarme__img',
-            'id_allarme__video'
-        )
+        else:
+            filters['id_allarme__titolo'] = None
+        
+        if (machine_code is not None) or (machine_alarm is not None):
+            info_qs = Informazioni.objects.select_related(
+                'id_macchinario', 'id_allarme'
+            ).filter(
+                **filters
+            ).values(
+                'id',
+                'id_macchinario__piano_produzione',
+                'id_allarme__titolo',
+                f'id_allarme__{language}',
+                'id_allarme__img',
+                'id_allarme__video'
+            )
+        else:
+            return {"status": status.HTTP_503_SERVICE_UNAVAILABLE, "data": "Request not permitted on this Endpoint"}
         #
         api_logger_view(info_qs, "QuerySet:")
         #
-        create_api_log(request, client_key, language, machine_code, machine_type, machine_alarm, status.HTTP_200_OK, api_key)
+        create_api_log(request, client_key, language, machine_code, machine_category, machine_type, machine_alarm, status.HTTP_200_OK, api_key)
         #
         if info_qs is None:
             return {"status": status.HTTP_204_NO_CONTENT, "data": info_qs} # if info_qs is None return only the ID ???
         else:
             
             # status code 201 because with this I know the info_qs is not empty and it was sent back in the response
-            create_api_log(request, client_key, language, machine_code, machine_type, machine_alarm, status.HTTP_201_CREATED, api_key)
+            create_api_log(request, client_key, language, machine_code, machine_category, machine_type, machine_alarm, status.HTTP_201_CREATED, api_key)
             
             return {"status": status.HTTP_200_OK, "data": info_qs}
         #
     else:
         api_logger_view(None, "Client-Key è vuota, non procedo.")
-        create_api_log(request, client_key, language, machine_code, machine_type, machine_alarm, status.HTTP_200_OK, api_key)
-#
-    
+        create_api_log(request, client_key, language, machine_code, machine_category, machine_type, machine_alarm, status.HTTP_200_OK, api_key)
+# 
