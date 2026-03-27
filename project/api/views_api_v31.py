@@ -178,17 +178,7 @@ class RequestEvent(APIView):
 
                     queryset = Informazioni.objects.select_related(
                         'id_macchinario', 'id_allarme'
-                    ).filter(
-                        **filters
-                    ).values(
-                        'id',
-                        'id_macchinario_id', # need to be esplicited because needed by the CursorPagination for filtering
-                        'id_macchinario__piano_produzione',
-                        'id_allarme__titolo',
-                        f'id_allarme__{language}',
-                        'id_allarme__img',
-                        'id_allarme__video'
-                    )
+                    ).filter(**filters)
                     
                     # creates logs
                     api_logger_view(queryset.count(), "QuerySet:")
@@ -200,10 +190,18 @@ class RequestEvent(APIView):
 
                     # init istance of paginator
                     paginator = self.pagination_class()
-
+                    
+                    # without .values() queryset is a list with insede all the objects => list(obj_1, obj_2, obj_n)
+                    serializer = {
+                        "allarme":queryset[0].id_allarme.titolo,
+                        "soluzione": queryset[0].id_allarme.__setattr__(AllarmiSoluzioni.objects.name, language),
+                        "img":queryset[0].id_allarme.img,
+                        "video":queryset[0].id_allarme.video
+                    }
+                    
                     # apply pagination to the queryset
                     # page will contain the element * page_size (max: page_size)
-                    page = paginator.paginate_queryset(queryset, request)
+                    page = paginator.paginate_queryset(serializer, request)
                     api_logger_view(page, "Number of elements per Query")
                     #
                     if queryset is None:
