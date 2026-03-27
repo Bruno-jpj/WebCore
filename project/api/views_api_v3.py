@@ -46,13 +46,7 @@ ex. received JSON: {
         "machine_category":"TR",
         "machine_type": "600",
         "machine_alarm": "temperatura" # codice identificativo dell'allarme   
-    }],
-    "paginations:{
-        "start_page":0, # pagina di partenza
-        "end_page":10, # pagina finale
-        "limit":1200, # numero dei record ritornati
-        "cursor":"okfng4rs" # UUID
-    }
+    }]
 }
 '''
 
@@ -91,7 +85,11 @@ def create_api_log(request: HttpRequest, client_key, language, machine_code, mac
 #
 class MachineAlarmCursorPagination(CursorPagination):
     page_size = 1000 # records per page
-    ordering = ('id_macchinario','id_allarme') # cursor fields, same order like in the SQL index
+    page_size_query_param = 'page_size' # Optional: Allow the client to set the pagesize with " ?page_size=1100 "
+    max_page_size = 1500
+    # cursor fields, same order like in the SQL index, inside () must be present a UNIQUE / PK element
+    # Django think of 'id_macchinario' as the model obj, so use id_macchinario_id to indicate the int value
+    ordering = ('id_macchinario_id','id')
     cursor_query_param = 'cursor' # URL parameter (default)
     #
     # Puoi usare questo metodo per custom response
@@ -102,8 +100,8 @@ class MachineAlarmCursorPagination(CursorPagination):
         return Response({
             'next': next_link,
             'previous': prev_link,
-            'has_next': next_link is not None,
-            'has_previous': prev_link is not None,
+            'has_next': next_link is not None, # return True or False
+            'has_previous': prev_link is not None, # return True or False
             'results': data
         }, status=status.HTTP_200_OK)
 #
@@ -127,7 +125,6 @@ class RequestEvent(APIView):
     def get(self, request:Request):
         try:
 
-            
             received_data = request.data
             
             if received_data is not None:
@@ -184,6 +181,7 @@ class RequestEvent(APIView):
                         **filters
                     ).values(
                         'id',
+                        'id_macchinario_id', # need to be esplicited because needed by the CursorPagination for filtering
                         'id_macchinario__piano_produzione',
                         'id_allarme__titolo',
                         f'id_allarme__{language}',
@@ -195,6 +193,9 @@ class RequestEvent(APIView):
                     api_logger_view(queryset.count(), "QuerySet:")
                     create_api_log(request, client_key, language, machine_code, machine_category, machine_type, machine_alarm, status.HTTP_200_OK, api_key)
                     
+                    
+                    api_logger_view(Informazioni.objects.filter(id_macchinario__isnull=True).count(), "Numero FK macchinari null")
+                    api_logger_view(Informazioni.objects.filter(id_allarme__isnull=True).count(), "Numero FK allarmi null")
                     # pass the dict to a fake serializer
                     # qs_serializer: dict = queryset[0]
 
@@ -202,8 +203,9 @@ class RequestEvent(APIView):
                     paginator = self.pagination_class()
 
                     # apply pagination to the queryset
-                    # page will contain the element * page_size (max: 1000)
+                    # page will contain the element * page_size (max: page_size)
                     page = paginator.paginate_queryset(queryset, request)
+                    api_logger_view(page, "Number of elements per Query")
                     #
                     if queryset is None:
                         return paginator.get_paginated_response(page)
