@@ -29,7 +29,7 @@ load_dotenv(override=True)
 # SECURITY - IN PRODUZIONE METTI A TRUE, LEVA I COMMENTI E LASCIA DEBUGA A FALSE:
 
 # this key is used for csrf_token protection
-SECRET_KEY = os.getenv("SECRET_KEY", "x2+-ry!mo65p2jq-^i+2acrgf7$ex&g@6x%jf+n6tkp!bb$59f")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # DEBUG = config('DEBUG', default=True, cast=bool)
 DEBUG = False
@@ -135,8 +135,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME','macchine'), 
-        'USER': os.getenv('DB_USERNAME','lore'), 
-        'PASSWORD': os.getenv('DB_PASSWORD','kl!1574FTG'), 
+        'USER': os.getenv('DB_USERNAME'), 
+        'PASSWORD': os.getenv('DB_PASSWORD'), 
         'HOST': os.getenv('DB_IP','127.0.0.1'),
         'PORT': os.getenv('DB_PORT','3306'),
         "OPTIONS": {
